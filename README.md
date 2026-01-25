@@ -7,6 +7,7 @@ ReadBurstData skal lese og poppe alle elementer i FIFOen, slik at empty skal væ
 Telte over loggen og ser at det leses 1 mindre verdi enn det som skrives før assertion kastes.
 
 FIX: la til "@(posedge clk);" mellom readBurstData og assertion. Nå leser testbenchen alle verdier, og empty går trolig høy da vi ikke får error.
+
 2 og 3) 
 Endret "0:1023" til "$" i logic [WIDTH-1:0] expectedDataQueue [$];
 
