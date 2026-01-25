@@ -1,0 +1,81 @@
+m255
+K4
+z2
+!s12c _opt
+Z0 !s99 nomlopt
+!s11f vlog 2025.2 2025.05, May 31 2025
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/home/courses/desdigsys2/2026s/dds226s15/ex-1/lab1
+T_opt
+!i145 1
+!i144 0
+!s110 1769366695
+VNYB8YDQ0n>0D^9=G3AfXo2
+04 24 4 work test_NtnuTfe4171Lab1Fifo fast 0
+=1-90b11c1d54d8-697664a2-f1657-c77ba
+R0
+!s12f OEM100
+!s12b OEM100
+!s124 OEM100
+!s135 nogc
+o-quiet -auto_acc_if_foreign -work work
+Z2 tCvgOpt 0
+n@_opt
+OE;O;2025.2;82
+vNtnuTfe4171Lab1Fifo
+Z3 2./rtl/NtnuTfe4171Lab1Fifo.sv|./tb/test_NtnuTfe4171Lab1Fifo.sv
+Z4 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
+Z5 !s110 1769366688
+!i10b 1
+!s100 dg;fL<BlE@G<mE8>MTB2;0
+IeA^7N@dm23oD3R=4f0]T]0
+S1
+R1
+w1769366682
+8./rtl/NtnuTfe4171Lab1Fifo.sv
+F./rtl/NtnuTfe4171Lab1Fifo.sv
+!i122 0
+L0 1 64
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OE;L;2025.2;82
+r1
+!s85 0
+31
+Z8 !s108 1769366687.000000
+Z9 !s107 ./tb/test_NtnuTfe4171Lab1Fifo.sv|./rtl/NtnuTfe4171Lab1Fifo.sv|
+Z10 !s90 -sv|./rtl/NtnuTfe4171Lab1Fifo.sv|./tb/test_NtnuTfe4171Lab1Fifo.sv|
+!i113 0
+Z11 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+n@ntnu@tfe4171@lab1@fifo
+vtest_NtnuTfe4171Lab1Fifo
+R3
+R4
+R5
+!i10b 1
+!s100 4KTKJ2[aiiVmDTY?cl>5o0
+IOL09RO;Q;?IQ18ddgH4?n0
+S1
+R1
+w1769357064
+8./tb/test_NtnuTfe4171Lab1Fifo.sv
+F./tb/test_NtnuTfe4171Lab1Fifo.sv
+!i122 0
+L0 6 332
+R6
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R2
+ntest_@ntnu@tfe4171@lab1@fifo
