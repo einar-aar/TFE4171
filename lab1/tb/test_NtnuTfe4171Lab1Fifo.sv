@@ -45,9 +45,9 @@ module test_NtnuTfe4171Lab1Fifo;
     // -----------------------------
     // Simple scoreboard using an array FIFO (queue behavior)
     // -----------------------------
-    integer expectedWriteIndex = 0;
-    integer expectedReadIndex = 0;
-    logic [WIDTH-1:0] expectedDataQueue [0:1023];  // ample size for test
+    //integer expectedWriteIndex = 0;
+    //integer expectedReadIndex = 0;
+    logic [WIDTH-1:0] expectedDataQueue [$];
     integer errors = 0;
 
     // -------------------------------------------------------------------------
@@ -55,8 +55,9 @@ module test_NtnuTfe4171Lab1Fifo;
     // -------------------------------------------------------------------------
     task scoreBoardQueuePush(input [WIDTH-1:0] data);
       begin
-        expectedDataQueue[expectedWriteIndex] = data;
-        expectedWriteIndex = expectedWriteIndex + 1;
+        //expectedDataQueue[expectedWriteIndex] = data;
+        //expectedWriteIndex = expectedWriteIndex + 1;
+        expectedDataQueue.push_back(data);
       end
     endtask
 
@@ -66,19 +67,26 @@ module test_NtnuTfe4171Lab1Fifo;
     task scoreBoardPopAndCheck(input [WIDTH-1:0] actual);
       logic [WIDTH-1:0] expected;
       begin
-        if (expectedReadIndex >= expectedWriteIndex) begin
+
+        if (expectedDataQueue.size() == 0) begin
+
           $display("[%0t] ERROR: Read with empty scoreboard!", $time);
           errors = errors + 1;
           $error;
         end
-        expected = expectedDataQueue[expectedReadIndex];
+
+        expected = expectedDataQueue.pop_front();
+
         if (actual !== expected) begin
-          $display("[%0t] MISMATCH: expected=0x%0h actual=0x%0h (index %0d)",
-                    $time, expected, actual, expectedReadIndex);
+
+          $display("[%0t] MISMATCH: expected=0x%0h actual=0x%0h",
+                    $time, expected, actual);
           errors = errors + 1;
           $error;
         end
-        expectedReadIndex = expectedReadIndex + 1;
+
+        // expectedReadIndex = expectedReadIndex + 1;
+
       end
     endtask
 
@@ -87,8 +95,9 @@ module test_NtnuTfe4171Lab1Fifo;
     // -------------------------------------------------------------------------
     task scoreBoardReset;
       begin
-        expectedWriteIndex = 0;
-        expectedReadIndex = 0;
+        /*expectedWriteIndex = 0;
+        expectedReadIndex = 0;*/
+        expectedDataQueue.delete();
       end
     endtask
 
