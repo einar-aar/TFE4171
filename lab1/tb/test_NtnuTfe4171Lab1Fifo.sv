@@ -251,6 +251,7 @@ module test_NtnuTfe4171Lab1Fifo;
       // 1) Write a partial packet (e.g., 16 bytes) then read them back
       writeBurstData(16, 8'h10);
       readBurstData(16);
+      @(posedge clk);
       if (!empty) begin
         $display("[%0t] ERROR: (1) FIFO should be empty after equal write/read", $time);
         errors = errors + 1;
@@ -283,6 +284,7 @@ module test_NtnuTfe4171Lab1Fifo;
       else
         $display("[%0t] SUCCESS: (3a) FIFO filled and full asserted\n", $time);
       readBurstData(DEPTH);
+      @(posedge clk);
       if (!empty) begin
         $display("[%0t] ERROR: (3b) FIFO should be empty after draining", $time);
         errors = errors + 1;
@@ -304,6 +306,7 @@ module test_NtnuTfe4171Lab1Fifo;
         end
       join
 
+      @(posedge clk);
       if (!empty) begin
         $display("[%0t] ERROR: (4) FIFO should be empty after draining", $time);
         errors = errors + 1;
