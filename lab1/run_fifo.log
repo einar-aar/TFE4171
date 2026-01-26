@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -c -assertdebug test_NtnuTfe4171Lab1Fifo -l run_fifo.log -do "run -all; quit" 
-# Start time: 20:55:45 on Jan 25,2026
+# Start time: 08:37:56 on Jan 26,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # //  Questa Sim
@@ -19,6 +19,7 @@
 # //
 # Loading sv_std.std
 # Loading work.test_NtnuTfe4171Lab1Fifo(fast)
+# ** Warning: (vsim-8492) The -assertdebug option was specified but there are no accessible objects.
 # run -all
 #    time     | wrEn   wrData | rdEn  rdData | full empty flush
 #        31 |   0    0x000  |   0   0x0xx  |   0     1     0
@@ -363,7 +364,7 @@
 # 
 # [20491] TEST PASSED: All data matched and flags behaved correctly.
 #     20491 |   0    0x000  |   0   0x09a  |   0     1     0
-# ** Note: $finish    : ./tb/test_NtnuTfe4171Lab1Fifo.sv(336)
+# ** Note: $finish    : ./tb/test_NtnuTfe4171Lab1Fifo.sv(349)
 #    Time: 20541 ns  Iteration: 0  Instance: /test_NtnuTfe4171Lab1Fifo
-# End time: 20:55:53 on Jan 25,2026, Elapsed time: 0:00:08
-# Errors: 0, Warnings: 0
+# End time: 08:38:00 on Jan 26,2026, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 1

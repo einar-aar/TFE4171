@@ -185,7 +185,20 @@ module test_NtnuTfe4171Lab1Fifo;
         arst <= 1'b0;
         repeat (2) @(posedge clk);
         // Sanity: FIFO should be empty and not full
-        if (!empty) begin
+        assert(empty)
+          else begin
+            $display("[%0t] ERROR: empty should be 1 after reset", $time);
+            errors = errors + 1;
+            $fatal(1);
+          end
+
+        assert(!full)
+          else begin
+            $display("[%0t] ERROR: full should be 0 after reset", $time);
+            errors = errors + 1;
+            $fatal(1);
+          end
+        /*if (!empty) begin
           $display("[%0t] ERROR: empty should be 1 after reset", $time);
           errors = errors + 1;
           $fatal(1);
@@ -194,7 +207,7 @@ module test_NtnuTfe4171Lab1Fifo;
           $display("[%0t] ERROR: full should be 0 after reset", $time);
           errors = errors + 1;
           $fatal(1);
-        end
+        end*/
       end
     endtask
 

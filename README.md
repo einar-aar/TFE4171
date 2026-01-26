@@ -14,3 +14,6 @@ Endret "0:1023" til "$" i logic [WIDTH-1:0] expectedDataQueue [$];
 Da det nå er en qeueu type dynamisk array, må vi legge til og fjerne fra arrayen noe annerledes for å ikke få "out of bounds error". Bruker .push_back() for å simulere skriving og legge til bakerst og .pop_front() for å simulere lesing og fjerne det elementet det leste elementet. Dette innebærer endring av funksjonene scoreBoardQueuePush og scoreBoardPopAndCheck.
 
 For å resette scoreboardet, bruker vi .delete() da vi ikke vet hvor stor arrayen er. Dette innebærer endring av funksjonen scoreBoardReset.
+
+4) 
+assertions integrerer seg bedre med formell verifikasjon-verktøy, er enklere å lese og gir bedre feilraporter.
