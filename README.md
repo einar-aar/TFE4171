@@ -23,3 +23,21 @@ Får følgende feilmelding:
 "Error:  ./rtl/NtnuTfe4171Lab1Fifo.sv:44: The expression in the reset condition of the 'if' statement in this 'always' block can only be a simple identifier or its negation. (ELAB-303)"
 
 Feilen var at første if i always_ff må være en sjekk for bare reset. Programmet syntetiserer nå etter å ha lagt til denne sjekken.
+
+7) 
+alle warnings i .log:
+Warning:  Latch inferred in design NtnuTfe4171Lab1Fifo read with 'hdlin_check_no_latch' (ELAB-395)
+
+Warning: In design 'NtnuTfe4171Lab1Fifo', cell 'C1219' does not drive any nets. (LINT-1)
+Warning: In design 'NtnuTfe4171Lab1Fifo', cell 'C1273' does not drive any nets. (LINT-1)
+
+Warning: Main library 'class' does not specify the following unit required for power: 'Leakage Power'. (PWR-424)
+Warning: Target library(s) are not characterized for internal power.  Compile with power constraints is NOT recommended. (PWR-13)
+
+Den første advarselen er nesten alltid et problem. latcher fører ofte til udefinert oppførsel og er gjerne et resultat av feil design, ofte hvis man har glemt å sette alle variabler i alle stier i en kombinatorisk krets.
+
+De to neste advarslene er død logikk. Synteseverktøyet har laget celler som ikke driver noe og dermed ikke gjør noen ting annet enn å ta opp plass. Det kan også være at vi ønsker at disse cellene egentlig skal gjøre noe, men finner ikke ut hva det potensielt kan være.
+
+De to siste sier bare at vi ikke har ressurser i biblioteket til å analysere "Leakage Power" og "internal power", slik at vi ikke kan stole på power analyser.
+
+Antar at vi bare bryr oss om første advarsel. Løsningen her er å tilordne rd_data verdi selv om if-sjekken feiler. Beste løsning som vi ser er å gjøre om fra kombinatorisk logikk til en klokket prosess, slik at rd_data blir til en flipflop og ikke en latch. Etter ny syntese ble advarselen fjernet.

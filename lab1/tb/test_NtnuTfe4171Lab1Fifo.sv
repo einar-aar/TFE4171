@@ -317,22 +317,26 @@ module test_NtnuTfe4171Lab1Fifo;
 
       // 4) Interleaved read/write (same-cycle ops) to exercise FIFO data integrity
       //    Write 12 bytes while reading in parallel after some delay
+
       fork
         begin : writerThread
-        while(1) begin
+        while (1) begin
           writeBurstData(27, 8'h80);
         end
         end
         begin : readerThread
           // small delay before starting reads to allow some fill
-          repeat (5) @(posedge clk);
-          while(1) begin
+          //repeat (5) @(posedge clk);
+          while (1) begin
             readBurstData(27);
           end
+          
         end
         begin : WatchThread
           #10us;
           disable writerThread;
+          disable readerThread;
+          
         end
       join
 
