@@ -58,8 +58,16 @@ module NtnuTfe4171Lab1Fifo #(
     end
 
 		// read out data logic
-    always @* begin
+    /*always @* begin
       if (rd_en && !empty && !flush)
+        rd_data <= mem[rd_ptr[ADDR_WIDTH-1:0]];
+    end*/
+    always_ff @(posedge clk or posedge arst) begin
+      if (arst)
+        rd_data <= 0;
+      else if (flush)
+        rd_data <= 0;
+      else if (rd_en && !empty)
         rd_data <= mem[rd_ptr[ADDR_WIDTH-1:0]];
     end
 
