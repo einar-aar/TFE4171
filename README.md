@@ -17,3 +17,9 @@ For å resette scoreboardet, bruker vi .delete() da vi ikke vet hvor stor arraye
 
 4) 
 assertions integrerer seg bedre med formell verifikasjon-verktøy, er enklere å lese og gir bedre feilraporter.
+
+6) 
+Får følgende feilmelding:
+"Error:  ./rtl/NtnuTfe4171Lab1Fifo.sv:44: The expression in the reset condition of the 'if' statement in this 'always' block can only be a simple identifier or its negation. (ELAB-303)"
+
+Feilen var at første if i always_ff må være en sjekk for bare reset. Programmet syntetiserer nå etter å ha lagt til denne sjekken.

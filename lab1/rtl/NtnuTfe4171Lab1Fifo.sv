@@ -40,7 +40,9 @@ module NtnuTfe4171Lab1Fifo #(
 
     // write mem logic
     always_ff @(posedge clk or posedge arst) begin
-      if (wr_en && !full && !flush)
+      if (arst) begin
+      end
+      else if (wr_en && !full && !flush)
         mem[wr_ptr[ADDR_WIDTH-1:0]] <= wr_data;
     end
 
