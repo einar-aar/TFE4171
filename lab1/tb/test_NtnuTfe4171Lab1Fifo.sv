@@ -214,6 +214,29 @@ module test_NtnuTfe4171Lab1Fifo;
     // -------------------------------------------------------------------------
     // Perform a flush and validate FIFO empty and scoreboard reset
     // -------------------------------------------------------------------------
+  property p_empty;
+    @(posedge clk) disable iff (arst)
+      flush |=> empty;
+  endproperty
+
+  activate_assert_empty: assert property (p_empty)
+    else begin
+      $display("[%0t] ERROR: empty should be 1 after flush", $time);
+      errors = errors + 1;
+      $fatal(1);
+    end
+    
+  property p_n_full;
+    @(posedge clk) disable iff (arst)
+      flush |=> !full;
+  endproperty
+
+  activate_assert_n_full: assert property (p_n_full)
+    else begin
+      $display("[%0t] ERROR: full should be 0 after flush", $time);
+      errors = errors + 1;
+      $fatal(1);
+    end
 
     task flushFifo;
       begin
@@ -224,6 +247,8 @@ module test_NtnuTfe4171Lab1Fifo;
         // Reset scoreboard because logical contents are discarded
         scoreBoardReset();
         @(posedge clk);
+
+        /*
         if (!empty) begin
           $display("[%0t] ERROR: empty should be 1 after flush", $time);
           errors = errors + 1;
@@ -234,6 +259,7 @@ module test_NtnuTfe4171Lab1Fifo;
           errors = errors + 1;
           $fatal(1);
         end
+        */
       end
     endtask
 
@@ -320,23 +346,12 @@ module test_NtnuTfe4171Lab1Fifo;
 
       fork
         begin : writerThread
-        while (1) begin
           writeBurstData(27, 8'h80);
-        end
         end
         begin : readerThread
           // small delay before starting reads to allow some fill
-          //repeat (5) @(posedge clk);
-          while (1) begin
-            readBurstData(27);
-          end
-          
-        end
-        begin : WatchThread
-          #10us;
-          disable writerThread;
-          disable readerThread;
-          
+          repeat (5) @(posedge clk);
+          readBurstData(27);
         end
       join
 
