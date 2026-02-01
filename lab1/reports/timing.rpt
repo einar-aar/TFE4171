@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : NtnuTfe4171Lab1Fifo
 Version: W-2024.09-SP4
-Date   : Sun Feb  1 17:44:56 2026
+Date   : Sun Feb  1 17:52:27 2026
 ****************************************
 
 Operating Conditions: nom_pvt   Library: class

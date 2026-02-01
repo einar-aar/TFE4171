@@ -3,7 +3,7 @@
 Report : qor
 Design : NtnuTfe4171Lab1Fifo
 Version: W-2024.09-SP4
-Date   : Sun Feb  1 17:44:56 2026
+Date   : Sun Feb  1 17:52:27 2026
 ****************************************
 
 
@@ -63,12 +63,12 @@ Date   : Sun Feb  1 17:44:56 2026
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    0.36
-  Logic Optimization:                  0.23
-  Mapping Optimization:                0.62
+  Resource Sharing:                    0.31
+  Logic Optimization:                  0.31
+  Mapping Optimization:                1.23
   -----------------------------------------
-  Overall Compile Time:                6.57
-  Overall Compile Wall Clock Time:     7.22
+  Overall Compile Time:                8.05
+  Overall Compile Wall Clock Time:     8.89
 
   --------------------------------------------------------------------
 
