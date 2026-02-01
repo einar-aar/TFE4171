@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -c -assertdebug test_NtnuTfe4171Lab1Fifo -l run_fifo.log -do "run -all; quit" 
-# Start time: 09:53:13 on Jan 26,2026
+# Start time: 16:11:28 on Feb 01,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # //  Questa Sim
@@ -448,407 +448,407 @@
 #     16833 |   0    0x000  |   0   0x05f  |   0     1     0
 #     16895 |   1    0x080  |   0   0x05f  |   0     1     0
 #     16957 |   0    0x000  |   0   0x05f  |   0     0     0
-#     17019 |   1    0x081  |   0   0x05f  |   0     0     0
-#     17081 |   0    0x000  |   0   0x05f  |   0     0     0
-#     17143 |   1    0x082  |   0   0x05f  |   0     0     0
-# [17205] MISMATCH: expected=0x80 actual=0x5f
-# ** Error: Assertion error.
-#    Time: 17205 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     17205 |   0    0x000  |   1   0x05f  |   0     0     0
-#     17267 |   1    0x083  |   0   0x080  |   0     0     0
-# [17329] MISMATCH: expected=0x81 actual=0x80
-# ** Error: Assertion error.
-#    Time: 17329 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     17329 |   0    0x000  |   1   0x080  |   0     0     0
-#     17391 |   1    0x084  |   0   0x081  |   0     0     0
-# [17453] MISMATCH: expected=0x82 actual=0x81
-# ** Error: Assertion error.
-#    Time: 17453 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     17453 |   0    0x000  |   1   0x081  |   0     0     0
-#     17515 |   1    0x085  |   0   0x082  |   0     0     0
-# [17577] MISMATCH: expected=0x83 actual=0x82
-# ** Error: Assertion error.
-#    Time: 17577 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     17577 |   0    0x000  |   1   0x082  |   0     0     0
-#     17639 |   1    0x086  |   0   0x083  |   0     0     0
-# [17701] MISMATCH: expected=0x84 actual=0x83
-# ** Error: Assertion error.
-#    Time: 17701 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     17701 |   0    0x000  |   1   0x083  |   0     0     0
-#     17763 |   1    0x087  |   0   0x084  |   0     0     0
-# [17825] MISMATCH: expected=0x85 actual=0x84
-# ** Error: Assertion error.
-#    Time: 17825 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     17825 |   0    0x000  |   1   0x084  |   0     0     0
-#     17887 |   1    0x088  |   0   0x085  |   0     0     0
-# [17949] MISMATCH: expected=0x86 actual=0x85
-# ** Error: Assertion error.
-#    Time: 17949 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     17949 |   0    0x000  |   1   0x085  |   0     0     0
-#     18011 |   1    0x089  |   0   0x086  |   0     0     0
-# [18073] MISMATCH: expected=0x87 actual=0x86
-# ** Error: Assertion error.
-#    Time: 18073 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     18073 |   0    0x000  |   1   0x086  |   0     0     0
-#     18135 |   1    0x08a  |   0   0x087  |   0     0     0
-# [18197] MISMATCH: expected=0x88 actual=0x87
-# ** Error: Assertion error.
-#    Time: 18197 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     18197 |   0    0x000  |   1   0x087  |   0     0     0
-#     18259 |   1    0x08b  |   0   0x088  |   0     0     0
-# [18321] MISMATCH: expected=0x89 actual=0x88
-# ** Error: Assertion error.
-#    Time: 18321 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     18321 |   0    0x000  |   1   0x088  |   0     0     0
-#     18383 |   1    0x08c  |   0   0x089  |   0     0     0
-# [18445] MISMATCH: expected=0x8a actual=0x89
-# ** Error: Assertion error.
-#    Time: 18445 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     18445 |   0    0x000  |   1   0x089  |   0     0     0
-#     18507 |   1    0x08d  |   0   0x08a  |   0     0     0
-# [18569] MISMATCH: expected=0x8b actual=0x8a
-# ** Error: Assertion error.
-#    Time: 18569 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     18569 |   0    0x000  |   1   0x08a  |   0     0     0
-#     18631 |   1    0x08e  |   0   0x08b  |   0     0     0
-# [18693] MISMATCH: expected=0x8c actual=0x8b
-# ** Error: Assertion error.
-#    Time: 18693 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     18693 |   0    0x000  |   1   0x08b  |   0     0     0
-#     18755 |   1    0x08f  |   0   0x08c  |   0     0     0
-# [18817] MISMATCH: expected=0x8d actual=0x8c
-# ** Error: Assertion error.
-#    Time: 18817 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     18817 |   0    0x000  |   1   0x08c  |   0     0     0
-#     18879 |   1    0x090  |   0   0x08d  |   0     0     0
-# [18941] MISMATCH: expected=0x8e actual=0x8d
-# ** Error: Assertion error.
-#    Time: 18941 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     18941 |   0    0x000  |   1   0x08d  |   0     0     0
-#     19003 |   1    0x091  |   0   0x08e  |   0     0     0
-# [19065] MISMATCH: expected=0x8f actual=0x8e
-# ** Error: Assertion error.
-#    Time: 19065 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     19065 |   0    0x000  |   1   0x08e  |   0     0     0
-#     19127 |   1    0x092  |   0   0x08f  |   0     0     0
-# [19189] MISMATCH: expected=0x90 actual=0x8f
-# ** Error: Assertion error.
-#    Time: 19189 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     19189 |   0    0x000  |   1   0x08f  |   0     0     0
-#     19251 |   1    0x093  |   0   0x090  |   0     0     0
-# [19313] MISMATCH: expected=0x91 actual=0x90
-# ** Error: Assertion error.
-#    Time: 19313 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     19313 |   0    0x000  |   1   0x090  |   0     0     0
-#     19375 |   1    0x094  |   0   0x091  |   0     0     0
-# [19437] MISMATCH: expected=0x92 actual=0x91
-# ** Error: Assertion error.
-#    Time: 19437 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     19437 |   0    0x000  |   1   0x091  |   0     0     0
-#     19499 |   1    0x095  |   0   0x092  |   0     0     0
-# [19561] MISMATCH: expected=0x93 actual=0x92
-# ** Error: Assertion error.
-#    Time: 19561 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     19561 |   0    0x000  |   1   0x092  |   0     0     0
-#     19623 |   1    0x096  |   0   0x093  |   0     0     0
-# [19685] MISMATCH: expected=0x94 actual=0x93
-# ** Error: Assertion error.
-#    Time: 19685 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     19685 |   0    0x000  |   1   0x093  |   0     0     0
-#     19747 |   1    0x097  |   0   0x094  |   0     0     0
-# [19809] MISMATCH: expected=0x95 actual=0x94
-# ** Error: Assertion error.
-#    Time: 19809 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     19809 |   0    0x000  |   1   0x094  |   0     0     0
-#     19871 |   1    0x098  |   0   0x095  |   0     0     0
-# [19933] MISMATCH: expected=0x96 actual=0x95
-# ** Error: Assertion error.
-#    Time: 19933 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     19933 |   0    0x000  |   1   0x095  |   0     0     0
-#     19995 |   1    0x099  |   0   0x096  |   0     0     0
-# [20057] MISMATCH: expected=0x97 actual=0x96
-# ** Error: Assertion error.
-#    Time: 20057 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     20057 |   0    0x000  |   1   0x096  |   0     0     0
-#     20119 |   1    0x09a  |   0   0x097  |   0     0     0
-# [20181] MISMATCH: expected=0x98 actual=0x97
-# ** Error: Assertion error.
-#    Time: 20181 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     20181 |   0    0x000  |   1   0x097  |   0     0     0
-#     20243 |   1    0x080  |   0   0x098  |   0     0     0
-# [20305] MISMATCH: expected=0x99 actual=0x98
-# ** Error: Assertion error.
-#    Time: 20305 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     20305 |   0    0x000  |   1   0x098  |   0     0     0
-#     20367 |   1    0x081  |   0   0x099  |   0     0     0
-# [20429] MISMATCH: expected=0x9a actual=0x99
-# ** Error: Assertion error.
-#    Time: 20429 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     20429 |   0    0x000  |   1   0x099  |   0     0     0
-#     20491 |   1    0x082  |   0   0x09a  |   0     0     0
-# [20553] MISMATCH: expected=0x80 actual=0x9a
-# ** Error: Assertion error.
-#    Time: 20553 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     20553 |   0    0x000  |   1   0x09a  |   0     0     0
-#     20615 |   1    0x083  |   0   0x080  |   0     0     0
-# [20677] MISMATCH: expected=0x81 actual=0x80
-# ** Error: Assertion error.
-#    Time: 20677 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     20677 |   0    0x000  |   1   0x080  |   0     0     0
-#     20739 |   1    0x084  |   0   0x081  |   0     0     0
-# [20801] MISMATCH: expected=0x82 actual=0x81
-# ** Error: Assertion error.
-#    Time: 20801 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     20801 |   0    0x000  |   1   0x081  |   0     0     0
-#     20863 |   1    0x085  |   0   0x082  |   0     0     0
-# [20925] MISMATCH: expected=0x83 actual=0x82
-# ** Error: Assertion error.
-#    Time: 20925 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     20925 |   0    0x000  |   1   0x082  |   0     0     0
-#     20987 |   1    0x086  |   0   0x083  |   0     0     0
-# [21049] MISMATCH: expected=0x84 actual=0x83
-# ** Error: Assertion error.
-#    Time: 21049 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     21049 |   0    0x000  |   1   0x083  |   0     0     0
-#     21111 |   1    0x087  |   0   0x084  |   0     0     0
-# [21173] MISMATCH: expected=0x85 actual=0x84
-# ** Error: Assertion error.
-#    Time: 21173 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     21173 |   0    0x000  |   1   0x084  |   0     0     0
-#     21235 |   1    0x088  |   0   0x085  |   0     0     0
-# [21297] MISMATCH: expected=0x86 actual=0x85
-# ** Error: Assertion error.
-#    Time: 21297 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     21297 |   0    0x000  |   1   0x085  |   0     0     0
-#     21359 |   1    0x089  |   0   0x086  |   0     0     0
-# [21421] MISMATCH: expected=0x87 actual=0x86
-# ** Error: Assertion error.
-#    Time: 21421 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     21421 |   0    0x000  |   1   0x086  |   0     0     0
-#     21483 |   1    0x08a  |   0   0x087  |   0     0     0
-# [21545] MISMATCH: expected=0x88 actual=0x87
-# ** Error: Assertion error.
-#    Time: 21545 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     21545 |   0    0x000  |   1   0x087  |   0     0     0
-#     21607 |   1    0x08b  |   0   0x088  |   0     0     0
-# [21669] MISMATCH: expected=0x89 actual=0x88
-# ** Error: Assertion error.
-#    Time: 21669 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     21669 |   0    0x000  |   1   0x088  |   0     0     0
-#     21731 |   1    0x08c  |   0   0x089  |   0     0     0
-# [21793] MISMATCH: expected=0x8a actual=0x89
-# ** Error: Assertion error.
-#    Time: 21793 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     21793 |   0    0x000  |   1   0x089  |   0     0     0
-#     21855 |   1    0x08d  |   0   0x08a  |   0     0     0
-# [21917] MISMATCH: expected=0x8b actual=0x8a
-# ** Error: Assertion error.
-#    Time: 21917 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     21917 |   0    0x000  |   1   0x08a  |   0     0     0
-#     21979 |   1    0x08e  |   0   0x08b  |   0     0     0
-# [22041] MISMATCH: expected=0x8c actual=0x8b
-# ** Error: Assertion error.
-#    Time: 22041 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     22041 |   0    0x000  |   1   0x08b  |   0     0     0
-#     22103 |   1    0x08f  |   0   0x08c  |   0     0     0
-# [22165] MISMATCH: expected=0x8d actual=0x8c
-# ** Error: Assertion error.
-#    Time: 22165 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     22165 |   0    0x000  |   1   0x08c  |   0     0     0
-#     22227 |   1    0x090  |   0   0x08d  |   0     0     0
-# [22289] MISMATCH: expected=0x8e actual=0x8d
-# ** Error: Assertion error.
-#    Time: 22289 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     22289 |   0    0x000  |   1   0x08d  |   0     0     0
-#     22351 |   1    0x091  |   0   0x08e  |   0     0     0
-# [22413] MISMATCH: expected=0x8f actual=0x8e
-# ** Error: Assertion error.
-#    Time: 22413 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     22413 |   0    0x000  |   1   0x08e  |   0     0     0
-#     22475 |   1    0x092  |   0   0x08f  |   0     0     0
-# [22537] MISMATCH: expected=0x90 actual=0x8f
-# ** Error: Assertion error.
-#    Time: 22537 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     22537 |   0    0x000  |   1   0x08f  |   0     0     0
-#     22599 |   1    0x093  |   0   0x090  |   0     0     0
-# [22661] MISMATCH: expected=0x91 actual=0x90
-# ** Error: Assertion error.
-#    Time: 22661 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     22661 |   0    0x000  |   1   0x090  |   0     0     0
-#     22723 |   1    0x094  |   0   0x091  |   0     0     0
-# [22785] MISMATCH: expected=0x92 actual=0x91
-# ** Error: Assertion error.
-#    Time: 22785 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     22785 |   0    0x000  |   1   0x091  |   0     0     0
-#     22847 |   1    0x095  |   0   0x092  |   0     0     0
-# [22909] MISMATCH: expected=0x93 actual=0x92
-# ** Error: Assertion error.
-#    Time: 22909 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     22909 |   0    0x000  |   1   0x092  |   0     0     0
-#     22971 |   1    0x096  |   0   0x093  |   0     0     0
-# [23033] MISMATCH: expected=0x94 actual=0x93
-# ** Error: Assertion error.
-#    Time: 23033 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     23033 |   0    0x000  |   1   0x093  |   0     0     0
-#     23095 |   1    0x097  |   0   0x094  |   0     0     0
-# [23157] MISMATCH: expected=0x95 actual=0x94
-# ** Error: Assertion error.
-#    Time: 23157 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     23157 |   0    0x000  |   1   0x094  |   0     0     0
-#     23219 |   1    0x098  |   0   0x095  |   0     0     0
-# [23281] MISMATCH: expected=0x96 actual=0x95
-# ** Error: Assertion error.
-#    Time: 23281 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     23281 |   0    0x000  |   1   0x095  |   0     0     0
-#     23343 |   1    0x099  |   0   0x096  |   0     0     0
-# [23405] MISMATCH: expected=0x97 actual=0x96
-# ** Error: Assertion error.
-#    Time: 23405 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     23405 |   0    0x000  |   1   0x096  |   0     0     0
-#     23467 |   1    0x09a  |   0   0x097  |   0     0     0
-# [23529] MISMATCH: expected=0x98 actual=0x97
-# ** Error: Assertion error.
-#    Time: 23529 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     23529 |   0    0x000  |   1   0x097  |   0     0     0
-#     23591 |   1    0x080  |   0   0x098  |   0     0     0
-# [23653] MISMATCH: expected=0x99 actual=0x98
-# ** Error: Assertion error.
-#    Time: 23653 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     23653 |   0    0x000  |   1   0x098  |   0     0     0
-#     23715 |   1    0x081  |   0   0x099  |   0     0     0
-# [23777] MISMATCH: expected=0x9a actual=0x99
-# ** Error: Assertion error.
-#    Time: 23777 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     23777 |   0    0x000  |   1   0x099  |   0     0     0
-#     23839 |   1    0x082  |   0   0x09a  |   0     0     0
-# [23901] MISMATCH: expected=0x80 actual=0x9a
-# ** Error: Assertion error.
-#    Time: 23901 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     23901 |   0    0x000  |   1   0x09a  |   0     0     0
-#     23963 |   1    0x083  |   0   0x080  |   0     0     0
-# [24025] MISMATCH: expected=0x81 actual=0x80
-# ** Error: Assertion error.
-#    Time: 24025 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     24025 |   0    0x000  |   1   0x080  |   0     0     0
-#     24087 |   1    0x084  |   0   0x081  |   0     0     0
-# [24149] MISMATCH: expected=0x82 actual=0x81
-# ** Error: Assertion error.
-#    Time: 24149 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     24149 |   0    0x000  |   1   0x081  |   0     0     0
-#     24211 |   1    0x085  |   0   0x082  |   0     0     0
-# [24273] MISMATCH: expected=0x83 actual=0x82
-# ** Error: Assertion error.
-#    Time: 24273 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     24273 |   0    0x000  |   1   0x082  |   0     0     0
-#     24335 |   1    0x086  |   0   0x083  |   0     0     0
-# [24397] MISMATCH: expected=0x84 actual=0x83
-# ** Error: Assertion error.
-#    Time: 24397 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     24397 |   0    0x000  |   1   0x083  |   0     0     0
-#     24459 |   1    0x087  |   0   0x084  |   0     0     0
-# [24521] MISMATCH: expected=0x85 actual=0x84
-# ** Error: Assertion error.
-#    Time: 24521 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     24521 |   0    0x000  |   1   0x084  |   0     0     0
-#     24583 |   1    0x088  |   0   0x085  |   0     0     0
-# [24645] MISMATCH: expected=0x86 actual=0x85
-# ** Error: Assertion error.
-#    Time: 24645 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     24645 |   0    0x000  |   1   0x085  |   0     0     0
-#     24707 |   1    0x089  |   0   0x086  |   0     0     0
-# [24769] MISMATCH: expected=0x87 actual=0x86
-# ** Error: Assertion error.
-#    Time: 24769 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     24769 |   0    0x000  |   1   0x086  |   0     0     0
-#     24831 |   1    0x08a  |   0   0x087  |   0     0     0
-# [24893] MISMATCH: expected=0x88 actual=0x87
-# ** Error: Assertion error.
-#    Time: 24893 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     24893 |   0    0x000  |   1   0x087  |   0     0     0
-#     24955 |   1    0x08b  |   0   0x088  |   0     0     0
-# [25017] MISMATCH: expected=0x89 actual=0x88
-# ** Error: Assertion error.
-#    Time: 25017 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     25017 |   0    0x000  |   1   0x088  |   0     0     0
-#     25079 |   1    0x08c  |   0   0x089  |   0     0     0
-# [25141] MISMATCH: expected=0x8a actual=0x89
-# ** Error: Assertion error.
-#    Time: 25141 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     25141 |   0    0x000  |   1   0x089  |   0     0     0
-#     25203 |   1    0x08d  |   0   0x08a  |   0     0     0
-# [25265] MISMATCH: expected=0x8b actual=0x8a
-# ** Error: Assertion error.
-#    Time: 25265 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     25265 |   0    0x000  |   1   0x08a  |   0     0     0
-#     25327 |   1    0x08e  |   0   0x08b  |   0     0     0
-# [25389] MISMATCH: expected=0x8c actual=0x8b
-# ** Error: Assertion error.
-#    Time: 25389 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     25389 |   0    0x000  |   1   0x08b  |   0     0     0
-#     25451 |   1    0x08f  |   0   0x08c  |   0     0     0
-# [25513] MISMATCH: expected=0x8d actual=0x8c
-# ** Error: Assertion error.
-#    Time: 25513 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     25513 |   0    0x000  |   1   0x08c  |   0     0     0
-#     25575 |   1    0x090  |   0   0x08d  |   0     0     0
-# [25637] MISMATCH: expected=0x8e actual=0x8d
-# ** Error: Assertion error.
-#    Time: 25637 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     25637 |   0    0x000  |   1   0x08d  |   0     0     0
-#     25699 |   1    0x091  |   0   0x08e  |   0     0     0
-# [25761] MISMATCH: expected=0x8f actual=0x8e
-# ** Error: Assertion error.
-#    Time: 25761 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     25761 |   0    0x000  |   1   0x08e  |   0     0     0
-#     25823 |   1    0x092  |   0   0x08f  |   0     0     0
-# [25885] MISMATCH: expected=0x90 actual=0x8f
-# ** Error: Assertion error.
-#    Time: 25885 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     25885 |   0    0x000  |   1   0x08f  |   0     0     0
-#     25947 |   1    0x093  |   0   0x090  |   0     0     0
-# [26009] MISMATCH: expected=0x91 actual=0x90
-# ** Error: Assertion error.
-#    Time: 26009 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     26009 |   0    0x000  |   1   0x090  |   0     0     0
-#     26071 |   1    0x094  |   0   0x091  |   0     0     0
-# [26133] MISMATCH: expected=0x92 actual=0x91
-# ** Error: Assertion error.
-#    Time: 26133 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     26133 |   0    0x000  |   1   0x091  |   0     0     0
-#     26195 |   1    0x095  |   0   0x092  |   0     0     0
-# [26257] MISMATCH: expected=0x93 actual=0x92
-# ** Error: Assertion error.
-#    Time: 26257 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     26257 |   0    0x000  |   1   0x092  |   0     0     0
-#     26319 |   1    0x096  |   0   0x093  |   0     0     0
-# [26381] MISMATCH: expected=0x94 actual=0x93
-# ** Error: Assertion error.
-#    Time: 26381 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     26381 |   0    0x000  |   1   0x093  |   0     0     0
-#     26443 |   1    0x097  |   0   0x094  |   0     0     0
-# [26505] MISMATCH: expected=0x95 actual=0x94
-# ** Error: Assertion error.
-#    Time: 26505 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     26505 |   0    0x000  |   1   0x094  |   0     0     0
-#     26567 |   1    0x098  |   0   0x095  |   0     0     0
-# [26629] MISMATCH: expected=0x96 actual=0x95
-# ** Error: Assertion error.
-#    Time: 26629 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     26629 |   0    0x000  |   1   0x095  |   0     0     0
-#     26691 |   1    0x099  |   0   0x096  |   0     0     0
-# [26753] MISMATCH: expected=0x97 actual=0x96
-# ** Error: Assertion error.
-#    Time: 26753 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
-#     26753 |   0    0x000  |   1   0x096  |   0     0     0
-#     26815 |   1    0x09a  |   0   0x097  |   0     0     0
-#     26877 |   1    0x09a  |   0   0x097  |   0     0     1
-#     26939 |   1    0x09a  |   0   0x000  |   0     1     0
-# [27001] ERROR: (4) FIFO should be empty after draining
-# ** Error: Assertion error.
-#    Time: 27001 ns  Scope: test_NtnuTfe4171Lab1Fifo File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 347
-# [27001] TEST FAILED: 127 errors detected.
-#     27001 |   1    0x09a  |   0   0x000  |   0     0     0
-# ** Note: $finish    : ./tb/test_NtnuTfe4171Lab1Fifo.sv(361)
-#    Time: 27051 ns  Iteration: 0  Instance: /test_NtnuTfe4171Lab1Fifo
-# End time: 09:53:18 on Jan 26,2026, Elapsed time: 0:00:05
-# Errors: 127, Warnings: 1
+# [17019] MISMATCH: expected=0x80 actual=0x5f
+# ** Error: Assertion error.
+#    Time: 17019 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     17019 |   1    0x081  |   1   0x05f  |   0     0     0
+#     17081 |   0    0x000  |   0   0x080  |   0     0     0
+# [17143] MISMATCH: expected=0x81 actual=0x80
+# ** Error: Assertion error.
+#    Time: 17143 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     17143 |   1    0x082  |   1   0x080  |   0     0     0
+#     17205 |   0    0x000  |   0   0x081  |   0     0     0
+# [17267] MISMATCH: expected=0x82 actual=0x81
+# ** Error: Assertion error.
+#    Time: 17267 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     17267 |   1    0x083  |   1   0x081  |   0     0     0
+#     17329 |   0    0x000  |   0   0x082  |   0     0     0
+# [17391] MISMATCH: expected=0x83 actual=0x82
+# ** Error: Assertion error.
+#    Time: 17391 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     17391 |   1    0x084  |   1   0x082  |   0     0     0
+#     17453 |   0    0x000  |   0   0x083  |   0     0     0
+# [17515] MISMATCH: expected=0x84 actual=0x83
+# ** Error: Assertion error.
+#    Time: 17515 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     17515 |   1    0x085  |   1   0x083  |   0     0     0
+#     17577 |   0    0x000  |   0   0x084  |   0     0     0
+# [17639] MISMATCH: expected=0x85 actual=0x84
+# ** Error: Assertion error.
+#    Time: 17639 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     17639 |   1    0x086  |   1   0x084  |   0     0     0
+#     17701 |   0    0x000  |   0   0x085  |   0     0     0
+# [17763] MISMATCH: expected=0x86 actual=0x85
+# ** Error: Assertion error.
+#    Time: 17763 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     17763 |   1    0x087  |   1   0x085  |   0     0     0
+#     17825 |   0    0x000  |   0   0x086  |   0     0     0
+# [17887] MISMATCH: expected=0x87 actual=0x86
+# ** Error: Assertion error.
+#    Time: 17887 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     17887 |   1    0x088  |   1   0x086  |   0     0     0
+#     17949 |   0    0x000  |   0   0x087  |   0     0     0
+# [18011] MISMATCH: expected=0x88 actual=0x87
+# ** Error: Assertion error.
+#    Time: 18011 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     18011 |   1    0x089  |   1   0x087  |   0     0     0
+#     18073 |   0    0x000  |   0   0x088  |   0     0     0
+# [18135] MISMATCH: expected=0x89 actual=0x88
+# ** Error: Assertion error.
+#    Time: 18135 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     18135 |   1    0x08a  |   1   0x088  |   0     0     0
+#     18197 |   0    0x000  |   0   0x089  |   0     0     0
+# [18259] MISMATCH: expected=0x8a actual=0x89
+# ** Error: Assertion error.
+#    Time: 18259 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     18259 |   1    0x08b  |   1   0x089  |   0     0     0
+#     18321 |   0    0x000  |   0   0x08a  |   0     0     0
+# [18383] MISMATCH: expected=0x8b actual=0x8a
+# ** Error: Assertion error.
+#    Time: 18383 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     18383 |   1    0x08c  |   1   0x08a  |   0     0     0
+#     18445 |   0    0x000  |   0   0x08b  |   0     0     0
+# [18507] MISMATCH: expected=0x8c actual=0x8b
+# ** Error: Assertion error.
+#    Time: 18507 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     18507 |   1    0x08d  |   1   0x08b  |   0     0     0
+#     18569 |   0    0x000  |   0   0x08c  |   0     0     0
+# [18631] MISMATCH: expected=0x8d actual=0x8c
+# ** Error: Assertion error.
+#    Time: 18631 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     18631 |   1    0x08e  |   1   0x08c  |   0     0     0
+#     18693 |   0    0x000  |   0   0x08d  |   0     0     0
+# [18755] MISMATCH: expected=0x8e actual=0x8d
+# ** Error: Assertion error.
+#    Time: 18755 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     18755 |   1    0x08f  |   1   0x08d  |   0     0     0
+#     18817 |   0    0x000  |   0   0x08e  |   0     0     0
+# [18879] MISMATCH: expected=0x8f actual=0x8e
+# ** Error: Assertion error.
+#    Time: 18879 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     18879 |   1    0x090  |   1   0x08e  |   0     0     0
+#     18941 |   0    0x000  |   0   0x08f  |   0     0     0
+# [19003] MISMATCH: expected=0x90 actual=0x8f
+# ** Error: Assertion error.
+#    Time: 19003 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19003 |   1    0x091  |   1   0x08f  |   0     0     0
+#     19065 |   0    0x000  |   0   0x090  |   0     0     0
+# [19127] MISMATCH: expected=0x91 actual=0x90
+# ** Error: Assertion error.
+#    Time: 19127 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19127 |   1    0x092  |   1   0x090  |   0     0     0
+#     19189 |   0    0x000  |   0   0x091  |   0     0     0
+# [19251] MISMATCH: expected=0x92 actual=0x91
+# ** Error: Assertion error.
+#    Time: 19251 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19251 |   1    0x093  |   1   0x091  |   0     0     0
+#     19313 |   0    0x000  |   0   0x092  |   0     0     0
+# [19375] MISMATCH: expected=0x93 actual=0x92
+# ** Error: Assertion error.
+#    Time: 19375 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19375 |   1    0x094  |   1   0x092  |   0     0     0
+#     19437 |   0    0x000  |   0   0x093  |   0     0     0
+# [19499] MISMATCH: expected=0x94 actual=0x93
+# ** Error: Assertion error.
+#    Time: 19499 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19499 |   1    0x095  |   1   0x093  |   0     0     0
+#     19561 |   0    0x000  |   0   0x094  |   0     0     0
+# [19623] MISMATCH: expected=0x95 actual=0x94
+# ** Error: Assertion error.
+#    Time: 19623 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19623 |   1    0x096  |   1   0x094  |   0     0     0
+#     19685 |   0    0x000  |   0   0x095  |   0     0     0
+# [19747] MISMATCH: expected=0x96 actual=0x95
+# ** Error: Assertion error.
+#    Time: 19747 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19747 |   1    0x097  |   1   0x095  |   0     0     0
+#     19809 |   0    0x000  |   0   0x096  |   0     0     0
+# [19871] MISMATCH: expected=0x97 actual=0x96
+# ** Error: Assertion error.
+#    Time: 19871 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19871 |   1    0x098  |   1   0x096  |   0     0     0
+#     19933 |   0    0x000  |   0   0x097  |   0     0     0
+# [19995] MISMATCH: expected=0x98 actual=0x97
+# ** Error: Assertion error.
+#    Time: 19995 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     19995 |   1    0x099  |   1   0x097  |   0     0     0
+#     20057 |   0    0x000  |   0   0x098  |   0     0     0
+# [20119] MISMATCH: expected=0x99 actual=0x98
+# ** Error: Assertion error.
+#    Time: 20119 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     20119 |   1    0x09a  |   1   0x098  |   0     0     0
+#     20181 |   0    0x000  |   0   0x099  |   0     0     0
+# [20243] MISMATCH: expected=0x9a actual=0x99
+# ** Error: Assertion error.
+#    Time: 20243 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     20243 |   1    0x080  |   1   0x099  |   0     0     0
+#     20305 |   0    0x000  |   0   0x09a  |   0     0     0
+# [20367] MISMATCH: expected=0x80 actual=0x9a
+# ** Error: Assertion error.
+#    Time: 20367 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     20367 |   1    0x081  |   1   0x09a  |   0     0     0
+#     20429 |   0    0x000  |   0   0x080  |   0     0     0
+# [20491] MISMATCH: expected=0x81 actual=0x80
+# ** Error: Assertion error.
+#    Time: 20491 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     20491 |   1    0x082  |   1   0x080  |   0     0     0
+#     20553 |   0    0x000  |   0   0x081  |   0     0     0
+# [20615] MISMATCH: expected=0x82 actual=0x81
+# ** Error: Assertion error.
+#    Time: 20615 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     20615 |   1    0x083  |   1   0x081  |   0     0     0
+#     20677 |   0    0x000  |   0   0x082  |   0     0     0
+# [20739] MISMATCH: expected=0x83 actual=0x82
+# ** Error: Assertion error.
+#    Time: 20739 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     20739 |   1    0x084  |   1   0x082  |   0     0     0
+#     20801 |   0    0x000  |   0   0x083  |   0     0     0
+# [20863] MISMATCH: expected=0x84 actual=0x83
+# ** Error: Assertion error.
+#    Time: 20863 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     20863 |   1    0x085  |   1   0x083  |   0     0     0
+#     20925 |   0    0x000  |   0   0x084  |   0     0     0
+# [20987] MISMATCH: expected=0x85 actual=0x84
+# ** Error: Assertion error.
+#    Time: 20987 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     20987 |   1    0x086  |   1   0x084  |   0     0     0
+#     21049 |   0    0x000  |   0   0x085  |   0     0     0
+# [21111] MISMATCH: expected=0x86 actual=0x85
+# ** Error: Assertion error.
+#    Time: 21111 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     21111 |   1    0x087  |   1   0x085  |   0     0     0
+#     21173 |   0    0x000  |   0   0x086  |   0     0     0
+# [21235] MISMATCH: expected=0x87 actual=0x86
+# ** Error: Assertion error.
+#    Time: 21235 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     21235 |   1    0x088  |   1   0x086  |   0     0     0
+#     21297 |   0    0x000  |   0   0x087  |   0     0     0
+# [21359] MISMATCH: expected=0x88 actual=0x87
+# ** Error: Assertion error.
+#    Time: 21359 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     21359 |   1    0x089  |   1   0x087  |   0     0     0
+#     21421 |   0    0x000  |   0   0x088  |   0     0     0
+# [21483] MISMATCH: expected=0x89 actual=0x88
+# ** Error: Assertion error.
+#    Time: 21483 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     21483 |   1    0x08a  |   1   0x088  |   0     0     0
+#     21545 |   0    0x000  |   0   0x089  |   0     0     0
+# [21607] MISMATCH: expected=0x8a actual=0x89
+# ** Error: Assertion error.
+#    Time: 21607 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     21607 |   1    0x08b  |   1   0x089  |   0     0     0
+#     21669 |   0    0x000  |   0   0x08a  |   0     0     0
+# [21731] MISMATCH: expected=0x8b actual=0x8a
+# ** Error: Assertion error.
+#    Time: 21731 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     21731 |   1    0x08c  |   1   0x08a  |   0     0     0
+#     21793 |   0    0x000  |   0   0x08b  |   0     0     0
+# [21855] MISMATCH: expected=0x8c actual=0x8b
+# ** Error: Assertion error.
+#    Time: 21855 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     21855 |   1    0x08d  |   1   0x08b  |   0     0     0
+#     21917 |   0    0x000  |   0   0x08c  |   0     0     0
+# [21979] MISMATCH: expected=0x8d actual=0x8c
+# ** Error: Assertion error.
+#    Time: 21979 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     21979 |   1    0x08e  |   1   0x08c  |   0     0     0
+#     22041 |   0    0x000  |   0   0x08d  |   0     0     0
+# [22103] MISMATCH: expected=0x8e actual=0x8d
+# ** Error: Assertion error.
+#    Time: 22103 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     22103 |   1    0x08f  |   1   0x08d  |   0     0     0
+#     22165 |   0    0x000  |   0   0x08e  |   0     0     0
+# [22227] MISMATCH: expected=0x8f actual=0x8e
+# ** Error: Assertion error.
+#    Time: 22227 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     22227 |   1    0x090  |   1   0x08e  |   0     0     0
+#     22289 |   0    0x000  |   0   0x08f  |   0     0     0
+# [22351] MISMATCH: expected=0x90 actual=0x8f
+# ** Error: Assertion error.
+#    Time: 22351 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     22351 |   1    0x091  |   1   0x08f  |   0     0     0
+#     22413 |   0    0x000  |   0   0x090  |   0     0     0
+# [22475] MISMATCH: expected=0x91 actual=0x90
+# ** Error: Assertion error.
+#    Time: 22475 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     22475 |   1    0x092  |   1   0x090  |   0     0     0
+#     22537 |   0    0x000  |   0   0x091  |   0     0     0
+# [22599] MISMATCH: expected=0x92 actual=0x91
+# ** Error: Assertion error.
+#    Time: 22599 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     22599 |   1    0x093  |   1   0x091  |   0     0     0
+#     22661 |   0    0x000  |   0   0x092  |   0     0     0
+# [22723] MISMATCH: expected=0x93 actual=0x92
+# ** Error: Assertion error.
+#    Time: 22723 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     22723 |   1    0x094  |   1   0x092  |   0     0     0
+#     22785 |   0    0x000  |   0   0x093  |   0     0     0
+# [22847] MISMATCH: expected=0x94 actual=0x93
+# ** Error: Assertion error.
+#    Time: 22847 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     22847 |   1    0x095  |   1   0x093  |   0     0     0
+#     22909 |   0    0x000  |   0   0x094  |   0     0     0
+# [22971] MISMATCH: expected=0x95 actual=0x94
+# ** Error: Assertion error.
+#    Time: 22971 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     22971 |   1    0x096  |   1   0x094  |   0     0     0
+#     23033 |   0    0x000  |   0   0x095  |   0     0     0
+# [23095] MISMATCH: expected=0x96 actual=0x95
+# ** Error: Assertion error.
+#    Time: 23095 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     23095 |   1    0x097  |   1   0x095  |   0     0     0
+#     23157 |   0    0x000  |   0   0x096  |   0     0     0
+# [23219] MISMATCH: expected=0x97 actual=0x96
+# ** Error: Assertion error.
+#    Time: 23219 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     23219 |   1    0x098  |   1   0x096  |   0     0     0
+#     23281 |   0    0x000  |   0   0x097  |   0     0     0
+# [23343] MISMATCH: expected=0x98 actual=0x97
+# ** Error: Assertion error.
+#    Time: 23343 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     23343 |   1    0x099  |   1   0x097  |   0     0     0
+#     23405 |   0    0x000  |   0   0x098  |   0     0     0
+# [23467] MISMATCH: expected=0x99 actual=0x98
+# ** Error: Assertion error.
+#    Time: 23467 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     23467 |   1    0x09a  |   1   0x098  |   0     0     0
+#     23529 |   0    0x000  |   0   0x099  |   0     0     0
+# [23591] MISMATCH: expected=0x9a actual=0x99
+# ** Error: Assertion error.
+#    Time: 23591 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     23591 |   1    0x080  |   1   0x099  |   0     0     0
+#     23653 |   0    0x000  |   0   0x09a  |   0     0     0
+# [23715] MISMATCH: expected=0x80 actual=0x9a
+# ** Error: Assertion error.
+#    Time: 23715 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     23715 |   1    0x081  |   1   0x09a  |   0     0     0
+#     23777 |   0    0x000  |   0   0x080  |   0     0     0
+# [23839] MISMATCH: expected=0x81 actual=0x80
+# ** Error: Assertion error.
+#    Time: 23839 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     23839 |   1    0x082  |   1   0x080  |   0     0     0
+#     23901 |   0    0x000  |   0   0x081  |   0     0     0
+# [23963] MISMATCH: expected=0x82 actual=0x81
+# ** Error: Assertion error.
+#    Time: 23963 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     23963 |   1    0x083  |   1   0x081  |   0     0     0
+#     24025 |   0    0x000  |   0   0x082  |   0     0     0
+# [24087] MISMATCH: expected=0x83 actual=0x82
+# ** Error: Assertion error.
+#    Time: 24087 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     24087 |   1    0x084  |   1   0x082  |   0     0     0
+#     24149 |   0    0x000  |   0   0x083  |   0     0     0
+# [24211] MISMATCH: expected=0x84 actual=0x83
+# ** Error: Assertion error.
+#    Time: 24211 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     24211 |   1    0x085  |   1   0x083  |   0     0     0
+#     24273 |   0    0x000  |   0   0x084  |   0     0     0
+# [24335] MISMATCH: expected=0x85 actual=0x84
+# ** Error: Assertion error.
+#    Time: 24335 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     24335 |   1    0x086  |   1   0x084  |   0     0     0
+#     24397 |   0    0x000  |   0   0x085  |   0     0     0
+# [24459] MISMATCH: expected=0x86 actual=0x85
+# ** Error: Assertion error.
+#    Time: 24459 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     24459 |   1    0x087  |   1   0x085  |   0     0     0
+#     24521 |   0    0x000  |   0   0x086  |   0     0     0
+# [24583] MISMATCH: expected=0x87 actual=0x86
+# ** Error: Assertion error.
+#    Time: 24583 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     24583 |   1    0x088  |   1   0x086  |   0     0     0
+#     24645 |   0    0x000  |   0   0x087  |   0     0     0
+# [24707] MISMATCH: expected=0x88 actual=0x87
+# ** Error: Assertion error.
+#    Time: 24707 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     24707 |   1    0x089  |   1   0x087  |   0     0     0
+#     24769 |   0    0x000  |   0   0x088  |   0     0     0
+# [24831] MISMATCH: expected=0x89 actual=0x88
+# ** Error: Assertion error.
+#    Time: 24831 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     24831 |   1    0x08a  |   1   0x088  |   0     0     0
+#     24893 |   0    0x000  |   0   0x089  |   0     0     0
+# [24955] MISMATCH: expected=0x8a actual=0x89
+# ** Error: Assertion error.
+#    Time: 24955 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     24955 |   1    0x08b  |   1   0x089  |   0     0     0
+#     25017 |   0    0x000  |   0   0x08a  |   0     0     0
+# [25079] MISMATCH: expected=0x8b actual=0x8a
+# ** Error: Assertion error.
+#    Time: 25079 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     25079 |   1    0x08c  |   1   0x08a  |   0     0     0
+#     25141 |   0    0x000  |   0   0x08b  |   0     0     0
+# [25203] MISMATCH: expected=0x8c actual=0x8b
+# ** Error: Assertion error.
+#    Time: 25203 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     25203 |   1    0x08d  |   1   0x08b  |   0     0     0
+#     25265 |   0    0x000  |   0   0x08c  |   0     0     0
+# [25327] MISMATCH: expected=0x8d actual=0x8c
+# ** Error: Assertion error.
+#    Time: 25327 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     25327 |   1    0x08e  |   1   0x08c  |   0     0     0
+#     25389 |   0    0x000  |   0   0x08d  |   0     0     0
+# [25451] MISMATCH: expected=0x8e actual=0x8d
+# ** Error: Assertion error.
+#    Time: 25451 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     25451 |   1    0x08f  |   1   0x08d  |   0     0     0
+#     25513 |   0    0x000  |   0   0x08e  |   0     0     0
+# [25575] MISMATCH: expected=0x8f actual=0x8e
+# ** Error: Assertion error.
+#    Time: 25575 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     25575 |   1    0x090  |   1   0x08e  |   0     0     0
+#     25637 |   0    0x000  |   0   0x08f  |   0     0     0
+# [25699] MISMATCH: expected=0x90 actual=0x8f
+# ** Error: Assertion error.
+#    Time: 25699 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     25699 |   1    0x091  |   1   0x08f  |   0     0     0
+#     25761 |   0    0x000  |   0   0x090  |   0     0     0
+# [25823] MISMATCH: expected=0x91 actual=0x90
+# ** Error: Assertion error.
+#    Time: 25823 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     25823 |   1    0x092  |   1   0x090  |   0     0     0
+#     25885 |   0    0x000  |   0   0x091  |   0     0     0
+# [25947] MISMATCH: expected=0x92 actual=0x91
+# ** Error: Assertion error.
+#    Time: 25947 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     25947 |   1    0x093  |   1   0x091  |   0     0     0
+#     26009 |   0    0x000  |   0   0x092  |   0     0     0
+# [26071] MISMATCH: expected=0x93 actual=0x92
+# ** Error: Assertion error.
+#    Time: 26071 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     26071 |   1    0x094  |   1   0x092  |   0     0     0
+#     26133 |   0    0x000  |   0   0x093  |   0     0     0
+# [26195] MISMATCH: expected=0x94 actual=0x93
+# ** Error: Assertion error.
+#    Time: 26195 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     26195 |   1    0x095  |   1   0x093  |   0     0     0
+#     26257 |   0    0x000  |   0   0x094  |   0     0     0
+# [26319] MISMATCH: expected=0x95 actual=0x94
+# ** Error: Assertion error.
+#    Time: 26319 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     26319 |   1    0x096  |   1   0x094  |   0     0     0
+#     26381 |   0    0x000  |   0   0x095  |   0     0     0
+# [26443] MISMATCH: expected=0x96 actual=0x95
+# ** Error: Assertion error.
+#    Time: 26443 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     26443 |   1    0x097  |   1   0x095  |   0     0     0
+#     26505 |   0    0x000  |   0   0x096  |   0     0     0
+# [26567] MISMATCH: expected=0x97 actual=0x96
+# ** Error: Assertion error.
+#    Time: 26567 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     26567 |   1    0x098  |   1   0x096  |   0     0     0
+#     26629 |   0    0x000  |   0   0x097  |   0     0     0
+# [26691] MISMATCH: expected=0x98 actual=0x97
+# ** Error: Assertion error.
+#    Time: 26691 ns  Scope: test_NtnuTfe4171Lab1Fifo.scoreBoardPopAndCheck File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 85
+#     26691 |   1    0x099  |   1   0x097  |   0     0     0
+#     26753 |   0    0x000  |   0   0x098  |   0     0     0
+# [26815] ERROR: (4) FIFO should be empty after draining
+# ** Error: Assertion error.
+#    Time: 26815 ns  Scope: test_NtnuTfe4171Lab1Fifo File: ./tb/test_NtnuTfe4171Lab1Fifo.sv Line: 373
+# [26815] TEST FAILED: 128 errors detected.
+#     26815 |   1    0x09a  |   1   0x098  |   0     0     0
+# ** Note: $finish    : ./tb/test_NtnuTfe4171Lab1Fifo.sv(387)
+#    Time: 26865 ns  Iteration: 0  Instance: /test_NtnuTfe4171Lab1Fifo
+# End time: 16:11:32 on Feb 01,2026, Elapsed time: 0:00:04
+# Errors: 128, Warnings: 1
