@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -c -assertdebug test_NtnuTfe4171Lab1Fifo -l run_fifo.log -do "run -all; quit" 
-# Start time: 18:16:00 on Feb 01,2026
+# Start time: 19:39:25 on Feb 01,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # //  Questa Sim
@@ -472,7 +472,7 @@
 # 
 # [27187] TEST PASSED: All data matched and flags behaved correctly.
 #     27187 |   0    0x000  |   0   0x000  |   0     1     0
-# ** Note: $finish    : ./tb/test_NtnuTfe4171Lab1Fifo.sv(393)
+# ** Note: $finish    : ./tb/test_NtnuTfe4171Lab1Fifo.sv(401)
 #    Time: 27237 ns  Iteration: 0  Instance: /test_NtnuTfe4171Lab1Fifo
-# End time: 18:16:05 on Feb 01,2026, Elapsed time: 0:00:05
+# End time: 19:39:31 on Feb 01,2026, Elapsed time: 0:00:06
 # Errors: 0, Warnings: 1

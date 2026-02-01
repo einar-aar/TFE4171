@@ -1,0 +1,201 @@
+# ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
+# vsim -c -assertdebug test_NtnuTfe4171Lab1Fifo_architecturalTest -l run_fifo_arch.log -do "run -all; quit" 
+# Start time: 19:39:33 on Feb 01,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
+# ** Warning: .//tb/test_NtnuTfe4171Lab1Fifo.sv.architecturalTest.sv(329): (vopt-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim
+# //  Version 2025.2 linux May 31 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.test_NtnuTfe4171Lab1Fifo_architecturalTest(fast)
+# run -all
+# [4248] SUCCESS: (1) FIFO data pushed and emptied after equal write/read
+# 
+# [7967] SUCCESS: (2) FIFO data pushed and empty de-asserted
+# 
+# [12617] SUCCESS: (3a) FIFO filled and full asserted
+# 
+# [16586] SUCCESS: (3b) FIFO emptied after filling and empty asserted
+# 
+#                16741 : transmitting packet number 0
+# 
+# 
+# ****                16741 : TX starting new packet 0
+#                18476 : TX packet sent 0
+#                18538 : RX packet popped 0 with ID 0
+#                21607 : RX packet processed 0 with ID 0
+#                21608 : TX ack received 0
+#                21609 : transmitting packet number 1
+# 
+# 
+# ****                21609 : TX starting new packet 1
+#                23312 : TX packet sent 1
+#                23374 : RX packet popped 1 with ID 1
+#                26443 : RX packet processed 1 with ID 1
+#                26444 : TX ack received 1
+#                26445 : transmitting packet number 2
+# 
+# 
+# ****                26445 : TX starting new packet 2
+#                28148 : TX packet sent 2
+#                28210 : RX packet popped 2 with ID 2
+#                31279 : RX packet processed 2 with ID 2
+#                31280 : TX ack received 2
+#                31281 : transmitting packet number 3
+# 
+# 
+# ****                31281 : TX starting new packet 3
+#                32984 : TX packet sent 3
+#                33046 : RX packet popped 3 with ID 3
+#                36115 : RX packet processed 3 with ID 3
+#                36116 : TX ack received 3
+#                36117 : transmitting packet number 4
+# 
+# 
+# ****                36117 : TX starting new packet 4
+#                37820 : TX packet sent 4
+#                37882 : RX packet popped 4 with ID 4
+#                40951 : RX packet processed 4 with ID 4
+#                40952 : TX ack received 4
+#                40953 : transmitting packet number 5
+# 
+# 
+# ****                40953 : TX starting new packet 5
+#                42656 : TX packet sent 5
+#                42718 : RX packet popped 5 with ID 5
+#                45787 : RX packet processed 5 with ID 5
+#                45788 : TX ack received 5
+#                45789 : transmitting packet number 6
+# 
+# 
+# ****                45789 : TX starting new packet 6
+#                47492 : TX packet sent 6
+#                47554 : RX packet popped 6 with ID 6
+#                50623 : RX packet processed 6 with ID 6
+#                50624 : TX ack received 6
+#                50625 : transmitting packet number 7
+# 
+# 
+# ****                50625 : TX starting new packet 7
+#                52328 : TX packet sent 7
+#                52390 : RX packet popped 7 with ID 7
+#                55459 : RX packet processed 7 with ID 7
+#                55460 : TX ack received 7
+#                55461 : transmitting packet number 8
+# 
+# 
+# ****                55461 : TX starting new packet 8
+#                57164 : TX packet sent 8
+#                57226 : RX packet popped 8 with ID 8
+#                60295 : RX packet processed 8 with ID 8
+#                60296 : TX ack received 8
+#                60297 : transmitting packet number 9
+# 
+# 
+# ****                60297 : TX starting new packet 9
+#                62000 : TX packet sent 9
+#                62062 : RX packet popped 9 with ID 9
+#                65131 : RX packet processed 9 with ID 9
+#                65132 : TX ack received 9
+#                65133 : transmitting packet number 10
+# 
+# 
+# ****                65133 : TX starting new packet 10
+#                66836 : TX packet sent 10
+#                66898 : RX packet popped 10 with ID 10
+#                69967 : RX packet processed 10 with ID 10
+#                69968 : TX ack received 10
+#                69969 : transmitting packet number 11
+# 
+# 
+# ****                69969 : TX starting new packet 11
+#                71672 : TX packet sent 11
+#                71734 : RX packet popped 11 with ID 11
+#                74803 : RX packet processed 11 with ID 11
+#                74804 : TX ack received 11
+#                74805 : transmitting packet number 12
+# 
+# 
+# ****                74805 : TX starting new packet 12
+#                76508 : TX packet sent 12
+#                76570 : RX packet popped 12 with ID 12
+#                79639 : RX packet processed 12 with ID 12
+#                79640 : TX ack received 12
+#                79641 : transmitting packet number 13
+# 
+# 
+# ****                79641 : TX starting new packet 13
+#                81344 : TX packet sent 13
+#                81406 : RX packet popped 13 with ID 13
+#                84475 : RX packet processed 13 with ID 13
+#                84476 : TX ack received 13
+#                84477 : transmitting packet number 14
+# 
+# 
+# ****                84477 : TX starting new packet 14
+#                86180 : TX packet sent 14
+#                86242 : RX packet popped 14 with ID 14
+#                89311 : RX packet processed 14 with ID 14
+#                89312 : TX ack received 14
+#                89313 : transmitting packet number 15
+# 
+# 
+# ****                89313 : TX starting new packet 15
+#                91016 : TX packet sent 15
+#                91078 : RX packet popped 15 with ID 15
+#                94147 : RX packet processed 15 with ID 15
+#                94148 : TX ack received 15
+#                94149 : transmitting packet number 16
+# 
+# 
+# ****                94149 : TX starting new packet 16
+#                95852 : TX packet sent 16
+#                95914 : RX packet popped 16 with ID 16
+#                98983 : RX packet processed 16 with ID 16
+#                98984 : TX ack received 16
+#                98985 : transmitting packet number 17
+# 
+# 
+# ****                98985 : TX starting new packet 17
+#               100688 : TX packet sent 17
+#               100750 : RX packet popped 17 with ID 17
+#               103819 : RX packet processed 17 with ID 17
+#               103820 : TX ack received 17
+#               103821 : transmitting packet number 18
+# 
+# 
+# ****               103821 : TX starting new packet 18
+#               105524 : TX packet sent 18
+#               105586 : RX packet popped 18 with ID 18
+#               108655 : RX packet processed 18 with ID 18
+#               108656 : TX ack received 18
+#               108657 : transmitting packet number 19
+# 
+# 
+# ****               108657 : TX starting new packet 19
+#               110360 : TX packet sent 19
+#               110422 : RX packet popped 19 with ID 19
+#               113491 : RX packet processed 19 with ID 19
+#               113492 : TX ack received 19
+# [210658] (4) All transmitted packets (20) are received
+# [210658] SUCCESS: (4) FIFO emptied and empty asserted
+# 
+# [210658] TEST PASSED: All data matched and flags behaved correctly.
+# 
+# ** Note: $finish    : .//tb/test_NtnuTfe4171Lab1Fifo.sv.architecturalTest.sv(518)
+#    Time: 211658 ns  Iteration: 0  Instance: /test_NtnuTfe4171Lab1Fifo_architecturalTest
+# End time: 19:39:43 on Feb 01,2026, Elapsed time: 0:00:10
+# Errors: 0, Warnings: 1

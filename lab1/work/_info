@@ -1,8 +1,10 @@
 m255
 K4
 z2
-!s12c _opt
+!s12c _opt1
 Z0 !s99 nomlopt
+!s12c _opt
+R0
 !s11f vlog 2025.2 2025.05, May 31 2025
 13
 !s112 1.1
@@ -14,23 +16,40 @@ Z1 d/home/courses/desdigsys2/2026s/dds226s15/ex-1/lab1
 T_opt
 !i145 1
 !i144 0
-!s110 1769966162
-V0GJF]=Mlgf004@bkJScKd1
+!s110 1769971168
+Vm8Kbkm:[Gf_DGjJb^b5kQ2
 04 24 4 work test_NtnuTfe4171Lab1Fifo fast 0
-=1-90b11c1d54d8-697f8a50-aa377-16cd51
+=1-90b11c1d54d8-697f9ddd-e918d-16f37d
 R0
-!s12f OEM100
-!s12b OEM100
-!s124 OEM100
-!s135 nogc
-o-quiet -auto_acc_if_foreign -work work
-Z2 tCvgOpt 0
+Z2 !s12f OEM100
+Z3 !s12b OEM100
+Z4 !s124 OEM100
+Z5 !s135 nogc
+Z6 o-quiet -auto_acc_if_foreign -work work
+Z7 tCvgOpt 0
 n@_opt
-OE;O;2025.2;82
+Z8 OE;O;2025.2;82
+R1
+T_opt1
+!i145 1
+!i144 0
+!s110 1769971178
+VhR3H^3gSH2R>>2dSLTdCf0
+04 42 4 work test_NtnuTfe4171Lab1Fifo_architecturalTest fast 0
+=1-90b11c1d54d8-697f9de5-ee67d-16f435
+R0
+R2
+R3
+R4
+R5
+R6
+R7
+n@_opt1
+R8
 vNtnuTfe4171Lab1Fifo
-Z3 2./rtl/NtnuTfe4171Lab1Fifo.sv|./tb/test_NtnuTfe4171Lab1Fifo.sv
-Z4 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
-Z5 !s110 1769966158
+Z9 2./rtl/NtnuTfe4171Lab1Fifo.sv|./tb/test_NtnuTfe4171Lab1Fifo.sv|.//tb/test_NtnuTfe4171Lab1Fifo.sv.architecturalTest.sv
+Z10 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
+Z11 !s110 1769971163
 !i10b 1
 !s100 4497]=_U_Pb>jzC8;iA8C1
 I[lWj1`<fG]fmZg:WM`b;B1
@@ -41,41 +60,67 @@ w1769964733
 F./rtl/NtnuTfe4171Lab1Fifo.sv
 !i122 0
 L0 1 67
-Z6 VDg1SIo80bB@j0V0VzS_@n1
-Z7 OE;L;2025.2;82
+Z12 VDg1SIo80bB@j0V0VzS_@n1
+Z13 OE;L;2025.2;82
 r1
 !s85 0
 31
-Z8 !s108 1769966157.000000
-Z9 !s107 ./tb/test_NtnuTfe4171Lab1Fifo.sv|./rtl/NtnuTfe4171Lab1Fifo.sv|
-Z10 !s90 -sv|./rtl/NtnuTfe4171Lab1Fifo.sv|./tb/test_NtnuTfe4171Lab1Fifo.sv|
+Z14 !s108 1769971162.000000
+Z15 !s107 .//tb/test_NtnuTfe4171Lab1Fifo.sv.architecturalTest.sv|./tb/test_NtnuTfe4171Lab1Fifo.sv|./rtl/NtnuTfe4171Lab1Fifo.sv|
+Z16 !s90 -sv|./rtl/NtnuTfe4171Lab1Fifo.sv|./tb/test_NtnuTfe4171Lab1Fifo.sv|.//tb/test_NtnuTfe4171Lab1Fifo.sv.architecturalTest.sv|
 !i113 0
-Z11 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R2
+Z17 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R7
 n@ntnu@tfe4171@lab1@fifo
 vtest_NtnuTfe4171Lab1Fifo
-R3
-R4
-R5
+R9
+R10
+R11
 !i10b 1
-!s100 bS;g@=E=7MnbIc4RgYH8j2
-IW0NBSVTzTdnLGnBJD4[d41
+!s100 QIa1^X0UD09oZ;QXgBSFD0
+InU2WzEZ7W1`]>AWinI]6P1
 S1
 R1
-w1769966150
+w1769968364
 8./tb/test_NtnuTfe4171Lab1Fifo.sv
 F./tb/test_NtnuTfe4171Lab1Fifo.sv
 !i122 0
-L0 6 401
-R6
-R7
+L0 6 409
+R12
+R13
 r1
 !s85 0
 31
-R8
+R14
+R15
+R16
+!i113 0
+R17
+R7
+ntest_@ntnu@tfe4171@lab1@fifo
+vtest_NtnuTfe4171Lab1Fifo_architecturalTest
 R9
 R10
-!i113 0
 R11
-R2
-ntest_@ntnu@tfe4171@lab1@fifo
+!i10b 1
+!s100 I4C6o]mei@j^b4MW@:9^Y3
+IAB81JKDWT7b4B]Zmbhz2Z0
+S1
+R1
+w1769971157
+8.//tb/test_NtnuTfe4171Lab1Fifo.sv.architecturalTest.sv
+F.//tb/test_NtnuTfe4171Lab1Fifo.sv.architecturalTest.sv
+!i122 0
+L0 6 528
+R12
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R7
+ntest_@ntnu@tfe4171@lab1@fifo_architectural@test
