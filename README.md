@@ -40,7 +40,7 @@ De to neste advarslene er død logikk. Synteseverktøyet har laget celler som ik
 
 De to siste sier bare at vi ikke har ressurser i biblioteket til å analysere "Leakage Power" og "internal power", slik at vi ikke kan stole på power analyser.
 
-Antar at vi bare bryr oss om første advarsel. Løsningen her er å tilordne rd_data verdi selv om if-sjekken feiler. Beste løsning som vi ser er å gjøre om fra kombinatorisk logikk til en klokket prosess, slik at rd_data blir til en flipflop og ikke en latch. Etter ny syntese ble advarselen fjernet.
+Antar at vi bare bryr oss om første advarsel. Løsningen her er å tilordne rd_data verdi selv om if-sjekken feiler, slik at vi ikke trenger å huske forrige verdi i en latch. Setter bare rd_data = '0. Byttet også fra '<=' til '=', da kombinatoriske kretser ikke tillater den første. Etter ny syntese ble advarselen fjernet.
 
 8) 
 Disse assertionsene overvåkes kontinuerlig, slik at man slipper å skrive mange if-setninger. De er også bedre med tanke på gjenbruk i koden, både denne testbenchen og hvis det skal gjenbrukes i andre.
