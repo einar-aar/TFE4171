@@ -18,6 +18,9 @@ For å resette scoreboardet, bruker vi .delete() da vi ikke vet hvor stor arraye
 4) 
 assertions integrerer seg bedre med formell verifikasjon-verktøy, er enklere å lese og gir bedre feilraporter.
 
+5) 
+Ingen spørsmål knyttet til oppgaven, se kode.
+
 6) 
 Får følgende feilmelding:
 "Error:  ./rtl/NtnuTfe4171Lab1Fifo.sv:44: The expression in the reset condition of the 'if' statement in this 'always' block can only be a simple identifier or its negation. (ELAB-303)"
@@ -40,4 +43,23 @@ De to neste advarslene er død logikk. Synteseverktøyet har laget celler som ik
 
 De to siste sier bare at vi ikke har ressurser i biblioteket til å analysere "Leakage Power" og "internal power", slik at vi ikke kan stole på power analyser.
 
-Antar at vi bare bryr oss om første advarsel. Løsningen her er å tilordne rd_data verdi selv om if-sjekken feiler. Beste løsning som vi ser er å gjøre om fra kombinatorisk logikk til en klokket prosess, slik at rd_data blir til en flipflop og ikke en latch. Etter ny syntese ble advarselen fjernet.
+Antar at vi bare bryr oss om første advarsel. Løsningen her er å tilordne rd_data verdi selv om if-sjekken feiler, slik at vi ikke trenger å huske forrige verdi i en latch. Setter bare rd_data = '0. Byttet også fra '<=' til '=', da kombinatoriske kretser ikke tillater den første. Etter ny syntese ble advarselen fjernet.
+
+8) 
+Disse assertionsene overvåkes kontinuerlig, slik at man slipper å skrive mange if-setninger. De er også bedre med tanke på gjenbruk i koden, både denne testbenchen og hvis det skal gjenbrukes i andre.
+
+Bakdel er at de kan være vanskeligere å debugge og tar gjerne lengre tid å skrive for enkle testbencher.
+
+9) 
+Timeout er på 5.1us * 16MHz = ca 82 klokkesykluser.
+
+Løsning 1:
+Vi lager et ACK signal fra receiver til sender, som sier ifra at pakke 0 er prossessert. Når ACK går høy, får sender sende neste pakke.
+
+Løsning 2:
+Sender får lov til å begynne sending av neste pakke med en gang receiver har mottat forrige pakke og lagt den i intern buffer. Dette er mulig da FIFO kan holde en hel pakke. Bruker her ACK før pakken er ferdig behandlet. Dette er en optimalisert versjon av løsning 1.
+
+Implementerer løsning 1.
+La til en wait(receiver_ack) i sender-tråden, setter receiver_ack til 0 med en gang receiver tok imot en pakke, setter den høy etter pakken er ferdigprosessert og høy etter resets og flush. Resultatet er ingen errors.
+
+OBS: Noe endringer på filstiene i run_tb.scr og modulnavn i architectural testbenchen.

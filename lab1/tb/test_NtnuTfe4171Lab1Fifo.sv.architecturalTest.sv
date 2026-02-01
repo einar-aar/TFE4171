@@ -3,11 +3,14 @@
 // Created : omqa at 2025-12-01
 //====================================================================
 
-module test_NtnuTfe4171Lab1Fifo;
+module test_NtnuTfe4171Lab1Fifo_architecturalTest;
 
     // Parameters
     localparam WIDTH = 8;
     localparam DEPTH = 32;
+
+    // receiver ack signal
+    logic receiver_ack;
 
     // DUT signals
     logic clk;
@@ -180,6 +183,7 @@ module test_NtnuTfe4171Lab1Fifo;
         rd_en <= 1'b0;
         flush <= 1'b0;
         wr_data <= '0;
+        receiver_ack <= 1'b1;
         scoreBoardReset();
         repeat (3) @(posedge clk);
         arst <= 1'b0;
@@ -210,6 +214,7 @@ module test_NtnuTfe4171Lab1Fifo;
         flush <= 1'b0;
         // Reset scoreboard because logical contents are discarded
         scoreBoardReset();
+        receiver_ack = 1'b1;
         @(negedge clk);
         if (!empty) begin
           $display("[%0t] ERROR: empty should be 1 after flush", $time);
@@ -342,6 +347,9 @@ module test_NtnuTfe4171Lab1Fifo;
     always@(posedge eventRxPacket) begin
       fork
         begin : receivePacket
+
+          receiver_ack = 1'b0;
+
           receiveOnePacket;
           repeat (numCyclesToProcessPacket) @(posedge clk);
           $display ("%t : RX packet processed %0d with ID %0d", $realtime, currentPacketRxNum, rxPacketId);
@@ -349,12 +357,14 @@ module test_NtnuTfe4171Lab1Fifo;
           #1;
           // $display ("%t : RX ID %0d : packetAck %p ", $realtime, rxPacketId, packetAck);
           currentPacketRxNum++;
+          receiver_ack = 1'b1;
         end : receivePacket
         begin : waitForFlush
           wait (flush);
           $display ("**** %t : RX packet %0d (ID=%0d) flushed.", $realtime, currentPacketRxNum, rxPacketId);
           @(negedge clk) rd_en = 1'b0;
           wait (!flush);
+          receiver_ack = 1'b1;
         end : waitForFlush
       join_any
       disable fork;
@@ -446,10 +456,12 @@ module test_NtnuTfe4171Lab1Fifo;
 
       // 4) Interleaved read/write (same-cycle ops) to exercise FIFO data integrity
       //    Write 12 bytes while reading in parallel after some delay
+      
       fork
         begin : writerThread
           for (int ii=0; ii<NUM_PACKETS_TO_TRANSMIT; ii++) begin
             wait (ii === currentPacketTxNum );
+            wait (receiver_ack === 1);
             #1;
             $display ("%t : transmitting packet number %0d", $realtime, ii);
             ->eventTxPacket;

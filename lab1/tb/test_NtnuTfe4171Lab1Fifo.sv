@@ -214,6 +214,29 @@ module test_NtnuTfe4171Lab1Fifo;
     // -------------------------------------------------------------------------
     // Perform a flush and validate FIFO empty and scoreboard reset
     // -------------------------------------------------------------------------
+  property p_empty;
+    @(posedge clk) disable iff (arst)
+      flush |=> empty;
+  endproperty
+
+  activate_assert_empty: assert property (p_empty)
+    else begin
+      $display("[%0t] ERROR: empty should be 1 after flush", $time);
+      errors = errors + 1;
+      $fatal(1);
+    end
+    
+  property p_n_full;
+    @(posedge clk) disable iff (arst)
+      flush |=> !full;
+  endproperty
+
+  activate_assert_n_full: assert property (p_n_full)
+    else begin
+      $display("[%0t] ERROR: full should be 0 after flush", $time);
+      errors = errors + 1;
+      $fatal(1);
+    end
 
     task flushFifo;
       begin
@@ -224,6 +247,8 @@ module test_NtnuTfe4171Lab1Fifo;
         // Reset scoreboard because logical contents are discarded
         scoreBoardReset();
         @(posedge clk);
+
+        /*
         if (!empty) begin
           $display("[%0t] ERROR: empty should be 1 after flush", $time);
           errors = errors + 1;
@@ -234,6 +259,7 @@ module test_NtnuTfe4171Lab1Fifo;
           errors = errors + 1;
           $fatal(1);
         end
+        */
       end
     endtask
 
@@ -318,27 +344,37 @@ module test_NtnuTfe4171Lab1Fifo;
       // 4) Interleaved read/write (same-cycle ops) to exercise FIFO data integrity
       //    Write 12 bytes while reading in parallel after some delay
 
-      fork
+      fork : write_read_fork
         begin : writerThread
-        while (1) begin
-          writeBurstData(27, 8'h80);
-        end
+          forever begin
+            writeBurstData(27, 8'h80);
+          end
         end
         begin : readerThread
           // small delay before starting reads to allow some fill
-          //repeat (5) @(posedge clk);
-          while (1) begin
+          repeat (5) @(posedge clk);
+          forever begin
             readBurstData(27);
           end
           
         end
-        begin : WatchThread
+        begin : timerThread
           #10us;
           disable writerThread;
-          disable readerThread;
-          
+
+          // i writeWordIntoFifo cleares disse i en klokkesyklus etter de settes.
+          // Hvis prosessen drepes etter de settes men før de cleares kan de bli høy konstant.
+          wr_en <= 1'b0;
+          wr_data <= '0;
         end
-      join
+      join_any
+
+      disable write_read_fork;
+      rd_en <= 1'b0;
+
+      while (!empty) begin
+        readWordFromFifo();
+      end;
 
       @(posedge clk);
       if (!empty) begin
