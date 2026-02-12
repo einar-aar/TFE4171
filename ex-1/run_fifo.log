@@ -1,0 +1,11 @@
+# ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
+# vsim -c -assertdebug test_NtnuTfe4171Lab1Fifo -l run_fifo.log -do "run -all; quit" 
+# Start time: 09:12:18 on Jan 26,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
+# ** Error: (vopt-11) Could not find work.test_NtnuTfe4171Lab1Fifo.
+# Optimization failed
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=0.
+# Error loading design
+# End time: 09:12:19 on Jan 26,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0

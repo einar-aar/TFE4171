@@ -1,0 +1,123 @@
+ 
+****************************************
+Report : qor
+Design : NtnuTfe4171Lab1Fifo
+Version: W-2024.09-SP4
+<<<<<<< HEAD
+Date   : Mon Jan 26 09:52:51 2026
+=======
+Date   : Sun Feb  1 17:52:27 2026
+>>>>>>> Einar
+****************************************
+
+
+  Timing Path Group 'clk'
+  -----------------------------------
+  Levels of Logic:              11.00
+  Critical Path Length:         14.35
+  Critical Path Slack:          47.35
+  Critical Path Clk Period:     62.50
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          0
+  Hierarchical Port Count:          0
+<<<<<<< HEAD
+  Leaf Cell Count:                902
+  Buf/Inv Cell Count:              63
+  Buf Cell Count:                  45
+  Inv Cell Count:                  63
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:       626
+  Sequential Cell Count:          276
+=======
+  Leaf Cell Count:                877
+  Buf/Inv Cell Count:              55
+  Buf Cell Count:                  45
+  Inv Cell Count:                  55
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:       609
+  Sequential Cell Count:          268
+>>>>>>> Einar
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+<<<<<<< HEAD
+  Combinational Area:     1090.000000
+  Noncombinational Area:  1972.000000
+  Buf/Inv Area:             63.000000
+  Total Buffer Area:            45.00
+  Total Inverter Area:          63.00
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:              3062.000000
+  Design Area:            3062.000000
+=======
+  Combinational Area:     1069.000000
+  Noncombinational Area:  1900.000000
+  Buf/Inv Area:             55.000000
+  Total Buffer Area:            45.00
+  Total Inverter Area:          55.00
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:              2969.000000
+  Design Area:            2969.000000
+>>>>>>> Einar
+
+
+  Design Rules
+  -----------------------------------
+<<<<<<< HEAD
+  Total Number of Nets:           999
+=======
+  Total Number of Nets:          1160
+>>>>>>> Einar
+  Nets With Violations:             0
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: venus.tele.ntnu.no
+
+  Compile CPU Statistics
+  -----------------------------------------
+<<<<<<< HEAD
+  Resource Sharing:                    0.37
+  Logic Optimization:                  0.24
+  Mapping Optimization:                0.67
+  -----------------------------------------
+  Overall Compile Time:                6.69
+  Overall Compile Wall Clock Time:     7.29
+=======
+  Resource Sharing:                    0.31
+  Logic Optimization:                  0.31
+  Mapping Optimization:                1.23
+  -----------------------------------------
+  Overall Compile Time:                8.05
+  Overall Compile Wall Clock Time:     8.89
+>>>>>>> Einar
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+  --------------------------------------------------------------------
+
+
+1
