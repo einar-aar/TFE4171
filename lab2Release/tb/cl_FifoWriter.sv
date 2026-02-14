@@ -10,16 +10,20 @@ class cl_FifoWriter #(parameter int WIDTH = 8);
   local virtual if_TbEvents.writer eif;
   local cl_Scoreboard #(WIDTH) sb;
   local cl_TbUtils    #(WIDTH) utils;
+  virtual if_Fifo #(WIDTH) virtual_if;
 
   function new(
 
     cl_Scoreboard #(WIDTH)      sb,
     virtual if_TbEvents.writer  eif,
-    cl_TbUtils   #(WIDTH)       utils
-  );
+    cl_TbUtils   #(WIDTH)       utils,
+    virtual if_Fifo #(WIDTH) tb_if);
+
     this.sb    = sb;
     this.eif   = eif;
     this.utils = utils;
+    this.virtual_if   = tb_if;
+  
   endfunction
 
   // Single word write
@@ -30,9 +34,11 @@ class cl_FifoWriter #(parameter int WIDTH = 8);
     output logic [WIDTH-1:0] wr_data,
     input  logic [WIDTH-1:0] data
   );
-    $display ("%t, %m", $realtime);
-    @(posedge clk);
-    $display ("%t, clock edge", $realtime);
+    //$display ("ta_writeWord function entered");
+    //$display ("%t, %m", $realtime);
+    @(posedge virtual_if.clk);
+    //$display ("clk posedge triggered");
+    //$display ("%t, clock edge", $realtime);
     if (!full) begin
       wr_en   = 1'b1;
       wr_data = data;
@@ -41,7 +47,7 @@ class cl_FifoWriter #(parameter int WIDTH = 8);
       wr_en   = 1'b0;
       wr_data = '0;
     end
-    @(posedge clk);
+    @(posedge virtual_if.clk);
     wr_en   = 1'b0;
     wr_data = '0;
   endtask
@@ -55,9 +61,12 @@ class cl_FifoWriter #(parameter int WIDTH = 8);
     output bit               wr_en,
     output logic [WIDTH-1:0] wr_data
   );
+    //$display ("Begin write burst");
     for (int i = 0; i < n; i++) begin
       logic [WIDTH-1:0] data = (seed + i) & {WIDTH{1'b1}};
+      //$display ("Word %0d write initialized", i);
       ta_writeWord(clk, full, wr_en, wr_data, data);
+      //$display ("Word %0d written", i);
     end
   endtask
 
@@ -78,7 +87,7 @@ class cl_FifoWriter #(parameter int WIDTH = 8);
       if (full) begin
         wait (!full);
       end
-      @(negedge clk);
+      @(negedge virtual_if);
       wr_en = 1'b1;
       if (i == 0) begin
         wr_data = currentPacketTxNum[WIDTH-1:0];
@@ -88,7 +97,7 @@ class cl_FifoWriter #(parameter int WIDTH = 8);
         sb.ta_queuePush(data);
       end
     end
-    @(negedge clk);
+    @(negedge virtual_if.clk);
     wr_en  = 1'b0;
     wr_data = '0;
     $display ("%t : TX packet sent %0d", $realtime, currentPacketTxNum);
@@ -116,7 +125,7 @@ class cl_FifoWriter #(parameter int WIDTH = 8);
           // sendPacket + waitForFlushWhileTx
           fork
             begin : sendPacket
-              ta_xmitOnePacket(currentPacketTxNum, numWordsInPacket, clk, full, flush, wr_en, wr_data);
+              ta_xmitOnePacket(currentPacketTxNum, numWordsInPacket, virtual_if.clk, full, flush, wr_en, wr_data);
             end : sendPacket
             begin : waitForFlushWhileTx
               wait (flush);

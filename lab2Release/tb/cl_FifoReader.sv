@@ -10,13 +10,16 @@
 class cl_FifoReader #(parameter int WIDTH = 8);
   local virtual if_TbEvents.reader  eif;
   local cl_Scoreboard #(WIDTH) sb;
+  virtual if_Fifo #(WIDTH) virtual_if;
 
   function new(
     cl_Scoreboard #(WIDTH) sb,
-    virtual if_TbEvents.reader  eif
+    virtual if_TbEvents.reader  eif,
+    virtual if_Fifo #(WIDTH) tb_if
   );
     this.sb = sb;
     this.eif = eif;
+    this.virtual_if = tb_if;
   endfunction
 
   // Single word read
@@ -28,13 +31,13 @@ class cl_FifoReader #(parameter int WIDTH = 8);
     output int               errors_added
   );
     errors_added = 0;
-    @(posedge clk);
+    @(posedge virtual_if.clk);
     if (!empty) begin
       rd_en = 1'b1;
     end else begin
       rd_en = 1'b0;
     end
-    @(posedge clk);
+    @(posedge virtual_if.clk);
     if (rd_en && !empty) begin
       int localErrCount;
       sb.ta_popAndCheck(rd_data, localErrCount);

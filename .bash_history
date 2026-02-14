@@ -156,3 +156,44 @@ cd lab1
 pandoc README.md -o README.pdf
 sudo apt update
 module avail pandoc
+cp ../dd2master/lab2Release.tar.gz ./
+ls
+tar -xvzf lab2Release.tar.gz
+ls
+cd ex-1
+mv .git ..
+ls -a
+mv .git ..
+cd ..
+git status
+ls -a
+rm -rf ex-1/.git
+git add ex-1
+git commit -m "Fixed nested repo"
+git push
+git remote add origin https://github.com/einar-aar/TFE4171
+git remote -v
+git push -u origin main
+git push -u origin master
+echo ".vscode-server/" >> .gitignore
+echo "work/" >> .gitignore
+echo "*.log" >> .gitignore
+git rm -r --cached .vscode-server
+git add .gitignore
+git push
+git push --set-upstream origin master
+git rm -r --cached .vscode-server
+git commit -m "Remove .vscode-server from repo"
+ git rm -r --cached .vscode-server
+git filter-branch --force --index-filter 'git rm -r --cached --ignore-unmatch .vscode-server' --prune-empty --tag-name-filter cat -- --all
+git push --force --set-upstream origin master
+cd lab2Release
+./run_tb.scr
+ls
+cd lab2Release
+ls
+./run_tb.scr
+ls
+cd lab2Release
+ls
+./run_tb.scr
