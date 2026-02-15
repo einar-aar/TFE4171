@@ -69,3 +69,9 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
 The instanciation of writer in tb to this: cl_FifoWriter #(WIDTH) writer = new(sb, ev_if, /*utils,*/ tb_if);
 
 This works because the writer and reader objects inherit the characteristics of the base class by using the extend line in the definition. the base-part of the objects are instanciated with the super.new function, calling the constructor of the base class.
+
+4) 
+SystemVerilog creates a default constructor that instanciates the object and sets variables to default values. For example the q variable will be instanciated as empty.
+The new function should only be explicitly defined when you want to pass in signals/variables or set variables to specific values.
+
+5) 
