@@ -75,3 +75,6 @@ SystemVerilog creates a default constructor that instanciates the object and set
 The new function should only be explicitly defined when you want to pass in signals/variables or set variables to specific values.
 
 5) 
+
+6) 
+Rand allows SystemVerilog to add the variable to the constrainted random environment, enabling functions to randomize the content inside q. This could help the testbench achieve fully exhaustive testing by testing situations the developer haven't thought of.
