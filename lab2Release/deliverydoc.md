@@ -25,3 +25,47 @@ usage of interface: @(posedge virtual_if.clk);
 Now the ta_writeBurst finishes successfully, but ta_readBurst hangs. ta_readBurst and ta_readWord had the same bugs and same fixes. Simulation runs to completion, but we now get an error related to TX timeout.
 
 3) 
+Firstly, changed the sb in the parent class cl_TbUtils to protected, so that the reader and writer class inherit this value. Next, changed the start of the reader class to this:
+
+local virtual if_TbEvents.reader  eif;
+  //local cl_Scoreboard #(WIDTH) sb;
+  virtual if_Fifo #(WIDTH) virtual_if;
+
+  function new(
+    cl_Scoreboard #(WIDTH) sb,
+    virtual if_TbEvents.reader  eif,
+    virtual if_Fifo #(WIDTH) tb_if
+  );
+    super.new(tb_if, sb);
+    //this.sb = sb;
+    this.eif = eif;
+    this.virtual_if = tb_if;
+  endfunction
+
+The writer class to this:
+
+class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
+  local virtual if_TbEvents.writer eif;
+  // local cl_Scoreboard #(WIDTH) sb;
+  // local cl_TbUtils    #(WIDTH) utils;
+  virtual if_Fifo #(WIDTH) virtual_if;
+
+  function new(
+
+    cl_Scoreboard #(WIDTH)      sb,
+    virtual if_TbEvents.writer  eif,
+    // cl_TbUtils   #(WIDTH)       utils,
+    virtual if_Fifo #(WIDTH) tb_if);
+
+    super.new(tb_if, sb);
+
+    // this.sb    = sb;
+    this.eif   = eif;
+    // this.utils = utils;
+    this.virtual_if   = tb_if;
+  
+  endfunction
+
+The instanciation of writer in tb to this: cl_FifoWriter #(WIDTH) writer = new(sb, ev_if, /*utils,*/ tb_if);
+
+This works because the writer and reader objects inherit the characteristics of the base class by using the extend line in the definition. the base-part of the objects are instanciated with the super.new function, calling the constructor of the base class.

@@ -7,9 +7,9 @@
 // =========================================
 // cl_FifoReader : tasks take DUT/event signals as args
 // =========================================
-class cl_FifoReader #(parameter int WIDTH = 8);
+class cl_FifoReader #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
   local virtual if_TbEvents.reader  eif;
-  local cl_Scoreboard #(WIDTH) sb;
+  // local cl_Scoreboard #(WIDTH) sb;
   virtual if_Fifo #(WIDTH) virtual_if;
 
   function new(
@@ -17,7 +17,10 @@ class cl_FifoReader #(parameter int WIDTH = 8);
     virtual if_TbEvents.reader  eif,
     virtual if_Fifo #(WIDTH) tb_if
   );
-    this.sb = sb;
+
+    super.new(tb_if, sb);
+
+    // this.sb = sb;
     this.eif = eif;
     this.virtual_if = tb_if;
   endfunction
@@ -77,12 +80,12 @@ class cl_FifoReader #(parameter int WIDTH = 8);
     for (int i=0; i<numWordsInPacket; i++) begin
       int localErrCount;
       if (empty) wait (!empty);
-      @(negedge clk); rd_en = 1'b1;
-      @(posedge clk) data = rd_data;
+      @(negedge virtual_if.clk); rd_en = 1'b1;
+      @(posedge virtual_if.clk) data = rd_data;
       sb.ta_popAndCheck(data, localErrCount); errors_added += localErrCount;
       if (i == 0) rxPacketId = data;
     end
-    @(negedge clk); rd_en = 1'b0;
+    @(negedge virtual_if.clk); rd_en = 1'b0;
   endtask
 
   // Background RX model. Call once; it will run forever and react to posedge of eif.rxTrig.
@@ -104,10 +107,10 @@ class cl_FifoReader #(parameter int WIDTH = 8);
       fork
         begin : receivePacket
           int localErrors, id;
-          ta_receiveOnePacket(numWordsInPacket, clk, empty, rd_en, rd_data, flush, id, localErrors);
+          ta_receiveOnePacket(numWordsInPacket, virtual_if.clk, empty, rd_en, rd_data, flush, id, localErrors);
           rxPacketId = id;
           errorCnt  += localErrors;
-          repeat (numCyclesToProcessPacket) @(posedge clk);
+          repeat (numCyclesToProcessPacket) @(posedge virtual_if.clk);
           $display ("%t : RX packet processed %0d with ID %0d", $realtime, currentPacketRxNum, rxPacketId);
           packetAck.push_back(rxPacketId);
           #1;
@@ -117,7 +120,7 @@ class cl_FifoReader #(parameter int WIDTH = 8);
         begin : waitForFlush
           wait (flush);
           $display ("**** %t : RX packet %0d (ID=%0d) flushed.", $realtime, currentPacketRxNum, rxPacketId);
-          @(negedge clk) rd_en = 1'b0;
+          @(negedge virtual_if.clk) rd_en = 1'b0;
           wait (!flush);
         end : waitForFlush
       join_any

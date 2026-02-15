@@ -6,22 +6,24 @@
 // =========================================
 // cl_FifoWriter : tasks take DUT signals as args
 // =========================================
-class cl_FifoWriter #(parameter int WIDTH = 8);
+class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
   local virtual if_TbEvents.writer eif;
-  local cl_Scoreboard #(WIDTH) sb;
-  local cl_TbUtils    #(WIDTH) utils;
+  // local cl_Scoreboard #(WIDTH) sb;
+  // local cl_TbUtils    #(WIDTH) utils;
   virtual if_Fifo #(WIDTH) virtual_if;
 
   function new(
 
     cl_Scoreboard #(WIDTH)      sb,
     virtual if_TbEvents.writer  eif,
-    cl_TbUtils   #(WIDTH)       utils,
+    // cl_TbUtils   #(WIDTH)       utils,
     virtual if_Fifo #(WIDTH) tb_if);
 
-    this.sb    = sb;
+    super.new(tb_if, sb);
+
+    // this.sb    = sb;
     this.eif   = eif;
-    this.utils = utils;
+    // this.utils = utils;
     this.virtual_if   = tb_if;
   
   endfunction
@@ -147,7 +149,7 @@ class cl_FifoWriter #(parameter int WIDTH = 8);
               $display ("%t : TX timeout detected %0d", $realtime, thisPacketIndex);
               errorCnt++;
               $error;
-              utils.ta_flushFifo(errorCnt);
+              ta_flushFifo(errorCnt);
             end : transmitPacketAndWaitForTimeout
 
             begin : waitForAckInTx

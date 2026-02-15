@@ -197,3 +197,6 @@ ls
 cd lab2Release
 ls
 ./run_tb.scr
+ls
+cd lab2Release
+./run_tb.scr

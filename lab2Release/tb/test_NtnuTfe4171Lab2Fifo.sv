@@ -32,7 +32,7 @@ module test_NtnuTfe4171Lab2Fifo;
 
   cl_Scoreboard #(WIDTH) sb     = new();
   cl_TbUtils    #(WIDTH) utils  = new(tb_if, sb);
-  cl_FifoWriter #(WIDTH) writer = new(sb, ev_if, utils, tb_if);
+  cl_FifoWriter #(WIDTH) writer = new(sb, ev_if, /*utils,*/ tb_if);
   cl_FifoReader #(WIDTH) reader = new(sb, ev_if, tb_if);
   
   
