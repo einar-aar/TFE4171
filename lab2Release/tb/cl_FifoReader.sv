@@ -60,7 +60,7 @@ class cl_FifoReader #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
   );
     errors_added = 0;
     for (int i = 0; i < n; i++) begin
-      int localErrCount; ta_readWord(clk, empty, rd_en, rd_data, localErrCount); errors_added += localErrCount;
+      int localErrCount; ta_readWord(virtual_if.clk, virtual_if.empty, virtual_if.rd_en, rd_data, localErrCount); errors_added += localErrCount;
     end
   endtask
 
@@ -79,7 +79,7 @@ class cl_FifoReader #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
     errors_added = 0;
     for (int i=0; i<numWordsInPacket; i++) begin
       int localErrCount;
-      if (empty) wait (!empty);
+      if (virtual_if.empty) wait (!virtual_if.empty);
       @(negedge virtual_if.clk); rd_en = 1'b1;
       @(posedge virtual_if.clk) data = rd_data;
       sb.ta_popAndCheck(data, localErrCount); errors_added += localErrCount;
@@ -107,21 +107,22 @@ class cl_FifoReader #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
       fork
         begin : receivePacket
           int localErrors, id;
-          ta_receiveOnePacket(numWordsInPacket, virtual_if.clk, empty, rd_en, rd_data, flush, id, localErrors);
+          ta_receiveOnePacket(numWordsInPacket, virtual_if.clk, virtual_if.empty, virtual_if.rd_en, rd_data, virtual_if.flush, id, localErrors);
           rxPacketId = id;
           errorCnt  += localErrors;
           repeat (numCyclesToProcessPacket) @(posedge virtual_if.clk);
           $display ("%t : RX packet processed %0d with ID %0d", $realtime, currentPacketRxNum, rxPacketId);
           packetAck.push_back(rxPacketId);
+          // packetAck.push_back(currentPacketRxNum);
           #1;
           currentPacketRxNum++;
         end : receivePacket
 
         begin : waitForFlush
-          wait (flush);
+          wait (virtual_if.flush);
           $display ("**** %t : RX packet %0d (ID=%0d) flushed.", $realtime, currentPacketRxNum, rxPacketId);
           @(negedge virtual_if.clk) rd_en = 1'b0;
-          wait (!flush);
+          wait (!virtual_if.flush);
         end : waitForFlush
       join_any
       disable fork;

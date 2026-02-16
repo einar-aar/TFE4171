@@ -200,3 +200,34 @@ ls
 ls
 cd lab2Release
 ./run_tb.scr
+ls
+git branch
+git update
+git refresh
+git pull
+git branch
+git cheackout -b Daniel
+git checkout Daniel
+git branch -b Daniel
+git branch Daniel
+git branch
+git cheackout Daniel
+git checkout Daniel
+git branch
+ls
+cd lab2Release
+ls
+run_tb.scr
+.\ run_tb.scr
+.\run_tb.scr
+ls
+/run_tb.scr
+.run_tb.scr
+./run_tb.scr
+./
+ls
+..
+cd ..
+ls
+tar -xvzf lab2Release.tar.gz
+git branch

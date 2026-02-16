@@ -75,6 +75,29 @@ SystemVerilog creates a default constructor that instanciates the object and set
 The new function should only be explicitly defined when you want to pass in signals/variables or set variables to specific values.
 
 5) 
+The .randomize() function randomizes all variables defined as rand. Utilizing this to randomize a new variable "random_data" that will be used inside the loop of ta_writeBurst.
+
+Declaration at the top of the class:
+rand logic [WIDTH-1:0] random_data;
+
+Usage within loop:
+this.randomize();
+
+For the next randomize functionality we need some sort of constraint to randomize within said limit. For learning purposes, we did this in a different way. We made a new class at the beginning of cl_FifoWriter.sv:
+class cl_random_data #(parameter int WIDTH = 8);
+
+  rand logic [WIDTH-1:0] rand_data;
+  constraint c_rand_data { rand_data inside {[0:'h80]}; }
+
+endclass
+
+Initialized the object inside the writer class:
+random_data_2 = new();
+
+Randomized the data in the object like this:
+random_data_2.randomize();
+
+And then changed data with random_data_2.rand_data everywhere it's used inside this functionality.
 
 6) 
 Rand allows SystemVerilog to add the variable to the constrainted random environment, enabling functions to randomize the content inside q. This could help the testbench achieve fully exhaustive testing by testing situations the developer haven't thought of.
