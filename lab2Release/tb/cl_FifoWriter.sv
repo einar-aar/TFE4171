@@ -6,11 +6,23 @@
 // =========================================
 // cl_FifoWriter : tasks take DUT signals as args
 // =========================================
+
+// Class for randomized write:
+class cl_random_data #(parameter int WIDTH = 8);
+
+  rand logic [WIDTH-1:0] rand_data;
+  constraint c_rand_data { rand_data inside {[0:'h80]}; }
+
+endclass
+
+// Class for FiFo writer
 class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
   local virtual if_TbEvents.writer eif;
   // local cl_Scoreboard #(WIDTH) sb;
   // local cl_TbUtils    #(WIDTH) utils;
   virtual if_Fifo #(WIDTH) virtual_if;
+  rand logic [WIDTH-1:0] random_data;
+  cl_random_data #(WIDTH) random_data_2;
 
   function new(
 
@@ -20,6 +32,7 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
     virtual if_Fifo #(WIDTH) tb_if);
 
     super.new(tb_if, sb);
+    random_data_2 = new();
 
     // this.sb    = sb;
     this.eif   = eif;
@@ -65,9 +78,10 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
   );
     //$display ("Begin write burst");
     for (int i = 0; i < n; i++) begin
-      logic [WIDTH-1:0] data = (seed + i) & {WIDTH{1'b1}};
+      // logic [WIDTH-1:0] data = (seed + i) & {WIDTH{1'b1}};
+      this.randomize();
       //$display ("Word %0d write initialized", i);
-      ta_writeWord(clk, full, wr_en, wr_data, data);
+      ta_writeWord(clk, full, wr_en, wr_data, random_data);
       //$display ("Word %0d written", i);
     end
   endtask
@@ -82,21 +96,25 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
     output bit               wr_en,
     output logic [WIDTH-1:0] wr_data
   );
-    logic [WIDTH-1:0] data = $urandom_range(0, 'h80);
+    random_data_2.randomize();
+    // logic [WIDTH-1:0] data = $urandom_range(0, 'h80);
     $display ("\n\n**** %t : TX starting new packet %0d", $realtime, currentPacketTxNum);
     for (int i = 0; i < numWordsInPacket; i++) begin
-      data = (data + i) & {WIDTH{1'b1}};
+      // data = (data + i) & {WIDTH{1'b1}};
+      random_data_2.rand_data = (random_data_2.rand_data + i) & {WIDTH{1'b1}};
       if (full) begin
         wait (!full);
       end
-      @(negedge virtual_if);
+      @(negedge virtual_if.clk);
       wr_en = 1'b1;
       if (i == 0) begin
         wr_data = currentPacketTxNum[WIDTH-1:0];
         sb.ta_queuePush(currentPacketTxNum[WIDTH-1:0]);
       end else begin
-        wr_data = data;
-        sb.ta_queuePush(data);
+        // wr_data = data;
+        wr_data = random_data_2.rand_data;
+        // sb.ta_queuePush(data);
+        sb.ta_queuePush(random_data_2.rand_data);
       end
     end
     @(negedge virtual_if.clk);
@@ -169,4 +187,3 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
     end
   endtask
 endclass
-
