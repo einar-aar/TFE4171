@@ -81,7 +81,7 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
       // logic [WIDTH-1:0] data = (seed + i) & {WIDTH{1'b1}};
       this.randomize();
       //$display ("Word %0d write initialized", i);
-      ta_writeWord(virtual_if.clk, virtual_if.full, virtual_if.wr_en, wr_data, random_data);
+      ta_writeWord(clk, full, wr_en, wr_data, random_data);
       //$display ("Word %0d written", i);
     end
   endtask
