@@ -253,3 +253,28 @@ cd lab2Release
 ./run_tb.scr
 git config pull.rebase false
 ./run_tb.scr
+cd lab2Release
+ls
+./run_tb.scr
+vsim -c -coverage work.test_NtnuTfe4171Lab1Fifo -voptargs="+cover=sbceft" -do "run -all; coverage save -onexit -codeAll -cvg coverage.ucdb; exit"
+vcover report -details coverage.ucdb
+./run_tb.scr
+vcover report -details coverage.ucdb
+./run_tb.scr
+vcover report -details coverage.ucdb
+vcover report -html -htmldir htmlReport -details coverage.ucdb
+vcover report -html -output htmlReport -details coverage.ucdb
+./run_tb.scr
+vcover report -details coverage.ucdb
+./run_tb.scr
+vcover report -details coverage.ucdb
+find . -name "coverage.ucdb"
+sudo find / -name "coverage.ucdb" 2>/dev/null
+find / -iname "coverage.ucdb" 2>/dev/null
+./run_tb.scr
+sudo find / -name "coverage.ucdb" 2>/dev/null
+find . -name "coverage.ucdb"
+./run_tb.scr
+find . -name "coverage.ucdb"
+sudo find / -name "coverage.ucdb" 2>/dev/null
+vcover report -details coverage.ucdb
