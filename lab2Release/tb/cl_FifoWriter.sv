@@ -55,16 +55,18 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
     //$display ("clk posedge triggered");
     //$display ("%t, clock edge", $realtime);
     if (!virtual_if.full) begin
-      wr_en   = 1'b1;
-      wr_data = data;
+      $display ("Not full");
+      virtual_if.wr_en   = 1'b1;
+      virtual_if.wr_data = data;
       sb.ta_queuePush(data);
     end else begin
-      wr_en   = 1'b0;
-      wr_data = '0;
+      virtual_if.wr_en   = 1'b0;
+      virtual_if.wr_data = '0;
+      $display ("full");
     end
     @(posedge virtual_if.clk);
-    wr_en   = 1'b0;
-    wr_data = '0;
+    virtual_if.wr_en   = 1'b0;
+    virtual_if.wr_data = '0;
   endtask
 
   // Burst write
@@ -82,7 +84,7 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
       this.randomize();
       //$display ("Word %0d write initialized", i);
       ta_writeWord(clk, full, wr_en, wr_data, random_data);
-      //$display ("Word %0d written", i);
+      $display ("Word %0d written", i);
     end
   endtask
 
@@ -102,24 +104,24 @@ class cl_FifoWriter #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
     for (int i = 0; i < numWordsInPacket; i++) begin
       // data = (data + i) & {WIDTH{1'b1}};
       random_data_2.rand_data = (random_data_2.rand_data + i) & {WIDTH{1'b1}};
-      if (full) begin
-        wait (!full);
+      if (virtual_if.full) begin
+        wait (!virtual_if.full);
       end
       @(negedge virtual_if.clk);
-      wr_en = 1'b1;
+      virtual_if.wr_en = 1'b1;
       if (i == 0) begin
-        wr_data = currentPacketTxNum[WIDTH-1:0];
+        virtual_if.wr_data = currentPacketTxNum[WIDTH-1:0];
         sb.ta_queuePush(currentPacketTxNum[WIDTH-1:0]);
       end else begin
         // wr_data = data;
-        wr_data = random_data_2.rand_data;
+        virtual_if.wr_data = random_data_2.rand_data;
         // sb.ta_queuePush(data);
         sb.ta_queuePush(random_data_2.rand_data);
       end
     end
     @(negedge virtual_if.clk);
-    wr_en  = 1'b0;
-    wr_data = '0;
+    virtual_if.wr_en  = 1'b0;
+    virtual_if.wr_data = '0;
     $display ("%t : TX packet sent %0d", $realtime, currentPacketTxNum);
   endtask
 

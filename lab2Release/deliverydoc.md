@@ -22,7 +22,7 @@ connect interfaces together: this.virtual_if   = tb_if;
 
 usage of interface: @(posedge virtual_if.clk);
 
-Now the ta_writeBurst finishes successfully, but ta_readBurst hangs. ta_readBurst and ta_readWord had the same bugs and same fixes. Simulation runs to completion, but we now get an error related to TX timeout.
+Now the ta_writeBurst finishes successfully, but ta_readBurst hangs. ta_readBurst and ta_readWord had the same bugs and same fixes. Simulation runs now successfully after adding the interface throughout the whole class of both reader and writer class.
 
 3) 
 Firstly, changed the sb in the parent class cl_TbUtils to protected, so that the reader and writer class inherit this value. Next, changed the start of the reader class to this:

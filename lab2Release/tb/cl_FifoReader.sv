@@ -35,18 +35,21 @@ class cl_FifoReader #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
   );
     errors_added = 0;
     @(posedge virtual_if.clk);
-    if (!empty) begin
-      rd_en = 1'b1;
+    if (!virtual_if.empty) begin
+      virtual_if.rd_en = 1'b1;
+      $display ("not empty");
     end else begin
-      rd_en = 1'b0;
+      virtual_if.rd_en = 1'b0;
+      $display ("empty");
     end
     @(posedge virtual_if.clk);
-    if (rd_en && !empty) begin
+    if (virtual_if.rd_en && !virtual_if.empty) begin
       int localErrCount;
-      sb.ta_popAndCheck(rd_data, localErrCount);
+      sb.ta_popAndCheck(virtual_if.rd_data, localErrCount);
       errors_added += localErrCount;
+      $display ("Word read");
     end
-    rd_en = 1'b0;
+    virtual_if.rd_en = 1'b0;
   endtask
 
   // Burst read
@@ -60,7 +63,8 @@ class cl_FifoReader #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
   );
     errors_added = 0;
     for (int i = 0; i < n; i++) begin
-      int localErrCount; ta_readWord(virtual_if.clk, virtual_if.empty, virtual_if.rd_en, rd_data, localErrCount); errors_added += localErrCount;
+      int localErrCount; ta_readWord(virtual_if.clk, virtual_if.empty, virtual_if.rd_en, virtual_if.rd_data, localErrCount); errors_added += localErrCount;
+      $display ("Word %0d read and popped", i);
     end
   endtask
 
@@ -80,12 +84,12 @@ class cl_FifoReader #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
     for (int i=0; i<numWordsInPacket; i++) begin
       int localErrCount;
       if (virtual_if.empty) wait (!virtual_if.empty);
-      @(negedge virtual_if.clk); rd_en = 1'b1;
-      @(posedge virtual_if.clk) data = rd_data;
+      @(negedge virtual_if.clk); virtual_if.rd_en = 1'b1;
+      @(posedge virtual_if.clk) data = virtual_if.rd_data;
       sb.ta_popAndCheck(data, localErrCount); errors_added += localErrCount;
       if (i == 0) rxPacketId = data;
     end
-    @(negedge virtual_if.clk); rd_en = 1'b0;
+    @(negedge virtual_if.clk); virtual_if.rd_en = 1'b0;
   endtask
 
   // Background RX model. Call once; it will run forever and react to posedge of eif.rxTrig.
@@ -103,10 +107,13 @@ class cl_FifoReader #(parameter int WIDTH = 8) extends cl_TbUtils #(WIDTH);
     input  bit               empty
   );
     forever begin
+      $display ("debug1");
       @(posedge eif.rxTrig);
+      $display ("debug2");
       fork
         begin : receivePacket
           int localErrors, id;
+          $display ("debug3");
           ta_receiveOnePacket(numWordsInPacket, virtual_if.clk, virtual_if.empty, virtual_if.rd_en, rd_data, virtual_if.flush, id, localErrors);
           rxPacketId = id;
           errorCnt  += localErrors;

@@ -231,3 +231,25 @@ cd ..
 ls
 tar -xvzf lab2Release.tar.gz
 git branch
+ls
+git branch -D einar                # slett lokal
+git push origin --delete einar     # slett remote
+git checkout master
+git checkout -b einar
+git push -u origin einar
+git branch -D Einar
+git pull
+git fetch origin
+git branch -r | grep Einar
+git checkout master
+git checkout einar
+git pull
+git checkout -B Einar
+git push origin --delete Einar
+git pull
+git checkout master
+git branch -D Einar
+cd lab2Release
+./run_tb.scr
+git config pull.rebase false
+./run_tb.scr

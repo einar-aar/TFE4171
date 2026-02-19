@@ -15,10 +15,10 @@ T_opt
 !i145 1
 !s11d cl_Scoreboard_sv_unit /home/courses/desdigsys2/2026s/dds226s15/lab2Release/tb.work 2 if_TbEvents 1 /home/courses/desdigsys2/2026s/dds226s15/lab2Release/tb.work if_Fifo 1 /home/courses/desdigsys2/2026s/dds226s15/lab2Release/tb.work 
 !i144 0
-!s110 1771232946
-VMnR1TNaLifUSm`=oI0fKT1
+!s110 1771496066
+V4:bLi<8aXTl;Tk;;o<g^[3
 04 24 4 work test_NtnuTfe4171Lab2Fifo fast 0
-=1-90b11c1d54d8-6992deb0-924f3-ca24e
+=1-90b11c1d54d8-6996e280-937b7-10c257
 R0
 !s12f OEM100
 !s12b OEM100
@@ -34,17 +34,17 @@ Z3 2./tb/cl_Scoreboard.sv|./tb/cl_TbUtils.sv|./tb/cl_FifoReader.sv|./tb/cl_FifoW
 !s115 if_TbEvents
 !s115 if_Fifo
 Z4 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
-Z5 !s110 1771232942
-Vek;aD7FGO5FWK>9GPnCKl3
+Z5 !s110 1771496062
+VbIJNMj4M[FdXMJBb`<4_X2
 r1
 !s85 0
 !i10b 1
-!s100 F1Z9Y5TZ1Caml2JEz8XFn0
-Iek;aD7FGO5FWK>9GPnCKl3
+!s100 NkZkd245X7lI`9o2aV17L1
+IbIJNMj4M[FdXMJBb`<4_X2
 !i103 1
 S1
 R1
-w1771232932
+w1771496057
 8./tb/cl_Scoreboard.sv
 F./tb/cl_Scoreboard.sv
 8./tb/cl_TbUtils.sv
@@ -63,7 +63,7 @@ Z11 F./tb/test_NtnuTfe4171Lab2Fifo.sv
 Z12 L0 9 0
 Z13 OE;L;2025.2;82
 31
-Z14 !s108 1771232941.000000
+Z14 !s108 1771496061.000000
 Z15 !s107 ./tb/test_NtnuTfe4171Lab2Fifo.sv|./tb/if_TbEvents.sv|./tb/if_Fifo.sv|./tb/cl_FifoWriter.sv|./tb/cl_FifoReader.sv|./tb/cl_TbUtils.sv|./tb/cl_Scoreboard.sv|
 Z16 !s90 -sv|-L|design|-work|work|-mfcu|./tb/cl_Scoreboard.sv|./tb/cl_TbUtils.sv|./tb/cl_FifoReader.sv|./tb/cl_FifoWriter.sv|./tb/if_Fifo.sv|./tb/if_TbEvents.sv|./tb/test_NtnuTfe4171Lab2Fifo.sv|
 !i113 0
@@ -73,7 +73,7 @@ ncl_@scoreboard_sv_unit
 Yif_Fifo
 R3
 R4
-Z18 DXx4 work 21 cl_Scoreboard_sv_unit 0 22 ek;aD7FGO5FWK>9GPnCKl3
+Z18 DXx4 work 21 cl_Scoreboard_sv_unit 0 22 bIJNMj4M[FdXMJBb`<4_X2
 R5
 Z19 VDg1SIo80bB@j0V0VzS_@n1
 r1
@@ -135,16 +135,16 @@ R19
 r1
 !s85 0
 !i10b 1
-!s100 `]?Z4V4j0O>MoRGi6?bFn1
-IM3:zG618NoW<PHH1fdI]:2
+!s100 i]]NZz4TcIe1TV[2UNfma2
+ICNYGN;:?I]EhMkWFi15M_3
 R20
 S1
 R1
-w1771228133
+w1771495725
 R10
 R11
 !i122 0
-L0 7 184
+L0 7 188
 R13
 31
 R14

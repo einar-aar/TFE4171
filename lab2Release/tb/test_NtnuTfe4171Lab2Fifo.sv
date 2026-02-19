@@ -120,7 +120,7 @@ module test_NtnuTfe4171Lab2Fifo;
     errorCnt += localErrCnt1;
     #1; if (!tb_if.empty) begin $display("[%0t] ERROR: (1) FIFO should be empty after equal write/read", $time); errorCnt++; $error; end
         else                    $display("[%0t] SUCCESS: (1) FIFO data pushed and emptied after equal write/read\n", $time);
-
+    $display("empty = %0b", tb_if.empty);
     // removing test-vector 2 to simplify Lab2 - can bring back for increased testing.
 /*
     // 2) Write near-full, then flush
@@ -161,7 +161,11 @@ module test_NtnuTfe4171Lab2Fifo;
       end
       begin : readerThread
         forever begin
+          $display ("Checking if empty and flush are 0");
+          $display("empty = %0b", tb_if.empty);
+          $display("flush = %0b", tb_if.flush);
           wait ( (tb_if.empty === 0) && (tb_if.flush == 0) ); #1;
+          $display ("flush and empty is 0");
           ev_if.rxTrig = 1; #1;
           wait (ev_if.rxDone == 1); ev_if.rxTrig = 0; wait (ev_if.rxDone == 0); #1ns;
         end

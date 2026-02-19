@@ -1,1 +1,1 @@
-/eda/tools/siemens/questasim.2025.2/linux/VisualizerRls/bin/viscom -nolock -quiet -jmem_size 688416 work.test_NtnuTfe4171Lab2Fifo -quiet -auto_acc_if_foreign -work work -L work -L design -suppress 13219 +acc -allow_unnamed -o _opt -id 1-90b11c1d54d8-6992deb0-924f3-ca24e +__betafsm
+/eda/tools/siemens/questasim.2025.2/linux/VisualizerRls/bin/viscom -nolock -quiet -jmem_size 688416 work.test_NtnuTfe4171Lab2Fifo -quiet -auto_acc_if_foreign -work work -L work -L design -suppress 13219 +acc -allow_unnamed -o _opt -id 1-90b11c1d54d8-6996e280-937b7-10c257 +__betafsm

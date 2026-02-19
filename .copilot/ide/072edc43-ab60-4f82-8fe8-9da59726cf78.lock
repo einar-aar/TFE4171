@@ -1,0 +1,14 @@
+{
+  "socketPath": "/tmp/mcp-BdjInJ/mcp.sock",
+  "scheme": "unix",
+  "headers": {
+    "Authorization": "Nonce ad7d48d3-b38b-4f77-ab63-5e6e3d1c4c40"
+  },
+  "pid": 1045327,
+  "ideName": "Visual Studio Code",
+  "timestamp": 1771492447250,
+  "workspaceFolders": [
+    "/home/courses/desdigsys2/2026s/dds226s15"
+  ],
+  "isTrusted": true
+}
