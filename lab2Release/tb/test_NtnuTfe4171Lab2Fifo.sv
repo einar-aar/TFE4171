@@ -165,7 +165,7 @@ module test_NtnuTfe4171Lab2Fifo;
           $display("empty = %0b", tb_if.empty);
           $display("flush = %0b", tb_if.flush);
           wait ( (tb_if.empty === 0) && (tb_if.flush == 0) ); #1;
-          $display ("flush and empty is 0");
+          $display ("flush and empty 0");
           ev_if.rxTrig = 1; #1;
           wait (ev_if.rxDone == 1); ev_if.rxTrig = 0; wait (ev_if.rxDone == 0); #1ns;
         end
@@ -190,6 +190,44 @@ module test_NtnuTfe4171Lab2Fifo;
     #1us;
     $finish;
   end
+
+property p_reset_posedge;
+  @(posedge tb_if.arst)
+    tb_if.arst;
+endproperty
+
+property p_reset_empty;
+  @(posedge tb_if.arst)
+    tb_if.arst |-> tb_if.empty;
+endproperty
+
+property p_reset_data;
+  @(posedge tb_if.arst)
+    tb_if.arst |-> (tb_if.rd_data === 0);
+endproperty
+
+property flush_high;
+  @(posedge tb_if.clk)
+    tb_if.flush;
+endproperty
+
+property flush_empty;
+  @(posedge tb_if.clk)
+    tb_if.flush |=> tb_if.empty;
+endproperty
+
+assert property (p_reset_empty)
+  else $error("Empty flag should be high from async reset, Empty: %0b",tb_if.empty);
+
+assert property (p_reset_data)
+  else $error("rd_data should be zero, from async reset. rd_data: %H",tb_if.rd_data);
+
+assert property (flush_empty)
+  else $error("Empty flag should be high from flush, Empty:%0b",tb_if.empty);
+
+cover property (p_reset_posedge);
+
+cover property (flush_high);
 
 endmodule
 
