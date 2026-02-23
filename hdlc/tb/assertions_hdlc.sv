@@ -45,9 +45,7 @@ module assertions_hdlc (
 
   // Check if flag sequence is detected
   property RX_FlagDetect;
-    // INSERTED "disable iff (Rst)"
-    @(posedge Clk) disable iff (Rst)
-      Rx_flag |-> ##2 Rx_FlagDetect;
+    @(posedge Clk) Rx_flag |-> ##2 Rx_FlagDetect;
   endproperty
 
   RX_FlagDetect_Assert : assert property (RX_FlagDetect) begin
@@ -74,8 +72,7 @@ module assertions_hdlc (
 
   property RX_AbortSignal;
     // INSERT CODE HERE
-    @(posedge Clk) disable iff (Rst)
-      Abort_flag |-> ##2 Rx_AbortDetect;
+    @(posedge Clk) Abort_flag |-> ##2 Rx_AbortDetect;
   endproperty
 
   RX_AbortSignal_Assert : assert property (RX_AbortSignal) begin

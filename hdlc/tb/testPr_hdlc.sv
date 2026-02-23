@@ -38,14 +38,14 @@ program testPr_hdlc(
     // INSERT CODE HERE
     //Checks that Rx_AbrotSignal is high
     ReadAddress(8'h02,ReadData);
-    assert(ReadData[5:0] === 6'b001000)
-      else $error("VerifyAbortReceive failed, Rx_AbortSignal is low");
+    assert(ReadData[5:0] === 6'b101000)
+      else $error("VerifyAbortReceive failed, RXSC: %b",ReadData);
     
     //If assert above is throw error, check that RX data buffer is empty
-    if (ReadData[5:0] === 6'b001000) begin
+    if (ReadData[5:0] === 6'b101000) begin
       ReadAddress(8'h03,ReadData);
       assert(!ReadData)
-        else $error("VerifyAbortReceive failed, RX data buffer is not zero");
+        else $error("VerifyAbortReceive failed, RX data buffer is not zero, RX databuffer: %b",ReadData);
     end
   endtask
 
@@ -57,13 +57,13 @@ program testPr_hdlc(
 
     // INSERT CODE HERE
     ReadAddress(8'h02,ReadData);
-    assert(ReadData[5:0] === 6'b000001)
-      else $error("VerifyNormalReceive failed, Rx_Ready is low");
+    assert(ReadData[5:0] === 6'b100001)
+      else $error("VerifyNormalReceive failed, RXSC: %b",ReadData);
 
-    if (ReadData[5:0] === 6'b000001) begin
+    if (ReadData[5:0] === 6'b100001) begin
       ReadAddress(8'h03,ReadData);
-      assert(data[Size] === 8'h0 && data[Size+1] === 8'h0)
-        else $error("VerifyNormalReceive failed, RX data buffer has incorrect value");
+      assert(data[0] === ReadData)
+        else $error("VerifyNormalReceive failed, RX data buffer has incorrect value, FCS: %H",{data[Size],data[Size+1]});
     end
   endtask
 
@@ -75,13 +75,13 @@ program testPr_hdlc(
 
     // INSERT CODE HERE
     ReadAddress(8'h02,ReadData);
-    assert(ReadData[5:0] === 6'b010000)
-      else $error("VerifyOverflowReceive failed, Rx_Overflow is low");
+    assert(ReadData[5:0] === 6'b010001)
+      else $error("VerifyOverflowReceive failed, RXSC: %b",ReadData);
     
-    if (ReadData[5:0] === 6'b010000) begin
+    if (ReadData[5:0] === 6'b010001) begin
       ReadAddress(8'h03,ReadData);
-      assert(data[Size] === 8'h0 && data[Size+1] === 8'h0)
-        else $error("VerifyOverflowReceive failed, RX data buffer has incorrect value");
+      assert(data[0] === ReadData)
+        else $error("VerifyOverflowReceive failed, RX data buffer has incorrect value, FCS: %H",{data[Size],data[Size+1]});
     end
   endtask
 
@@ -240,9 +240,9 @@ program testPr_hdlc(
 
     //Enable FCS
     if(!Overflow && !NonByteAligned)
-      WriteAddress(RXSC, 8'h20);
+      WriteAddress(2'h2, 8'h20);
     else
-      WriteAddress(RXSC, 8'h00);
+      WriteAddress(2'h2, 8'h00);
 
     //Generate stimulus
     InsertFlagOrAbort(1);

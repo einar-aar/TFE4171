@@ -315,3 +315,23 @@ run -all
 ls
 cd lab2Release
 ./run_tb.scr
+cd hdlc
+./simulate.sh
+./tb/simulate.sh
+cd tb
+./simulate.sh
+ls
+cp -r ../dd2master/termproject/hdlc ~/
+./simulate.sh
+ls
+cd hdlc
+cd tb
+ls
+./simulate.sh
+ls
+cd ..
+ls
+cp -r ../dd2master/termproject/hdlc ~/
+cd hdlc/tb
+ls
+./simulate.sh
