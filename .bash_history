@@ -278,3 +278,40 @@ find . -name "coverage.ucdb"
 find . -name "coverage.ucdb"
 sudo find / -name "coverage.ucdb" 2>/dev/null
 vcover report -details coverage.ucdb
+cd lab2Release
+./run_tb.scr
+vcover report -details coverage.ucdb
+./run_tb.scr
+vcover report -details coverage.ucdb
+./run_tb.scr
+vcover report -details coverage.ucdb
+cd
+ls
+cd lab2Release/
+ls
+./run_tb.scr
+./coverage_command.src
+./coverage_command.scr
+vsim -c -coverage work.test_NtnuTfe4171Lab1Fifo -voptargs="+cover=sbceft" -do "run -all; coverage save -onexit -codeAll -cvg coverage.ucdb; exit"
+vsim -c -coverage work.test_NtnuTfe4171Lab1Fifo -voptargs="+cover=sbceft" \
+vsim -c -coverage work.test_NtnuTfe4171Lab2Fifo \ 
+-voptargs="+cover=sbceft" -do "run -all; coverage save -onexit -codeAll -cvg coverage.ucdb; exit"
+vsim -c -coverage work.test_NtnuTfe4171Lab2Fifo \ 
+-voptargs="+cover=sbceft" \
+clear
+vsim -c -coverage work.test_NtnuTfe4171Lab2Fifo \ -voptargs="+cover=sbceft" \-do "run -all; coverage save -onexit -codeAll -cvg coverage.ucdb; exit"
+./run_tb.scr
+vcover report -html -htmldir htmlReport -details coverage.ucdb
+vcover report -html -output htmlReport -details coverage.ucdb
+ls
+cd..
+cd ..
+ls
+cd lab2Release/
+ls
+vcover report -details coverage.ucdb
+./run_tb.scr
+run -all
+ls
+cd lab2Release
+./run_tb.scr
