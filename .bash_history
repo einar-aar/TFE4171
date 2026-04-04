@@ -335,3 +335,25 @@ cp -r ../dd2master/termproject/hdlc ~/
 cd hdlc/tb
 ls
 ./simulate.sh
+cd hdlc
+cd tb
+./simulate.sh
+onespin
+cp -r /home/courses/desdigsys2/2026s/dd2master/projects .
+onespin
+cp -r /home/courses/desdigsys2/2026s/dd2master/projects .
+onespin
+git fetch
+cd ..
+ls
+cd dd2master
+ls
+sudo ls
+cd ..
+cd dds226s15
+ls
+cp -r ../dds2master/ex-4 .
+cp -r ../dds2master/ex4 .
+cp -r ../dds2master/lab4 .
+cp -r ../dds2master/lab4release .
+onespin

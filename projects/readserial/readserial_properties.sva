@@ -1,0 +1,41 @@
+
+module readserial_properties (
+
+    input logic clk,
+    input logic reset_n,
+    input logic rxd,
+    input logic [7:0] data,
+    input logic valid,
+    input shortint unsigned cnt_s,
+    input logic cnt_en,
+    input logic state_s,
+    input logic [7:0] data_i
+);
+
+    localparam IDLE = 1'b0;
+    localparam READ_DATA = 1'b1;
+
+    sequence sequenceReset;
+        reset_n == 1'b0;
+    endsequence
+
+    sequence sequenceNoStartBit;
+        state_s == IDLE && rxd == 1'b1;
+    endsequence
+
+    property propertyReset;
+        @(posedge clk)
+        sequenceReset |=> state_s == IDLE && cnt_s == 0 && valid == 1'b0 && cnt_en == 1'b0;
+    endproperty
+
+    property propertyNoStartBit;
+        @(posedge clk)
+        sequenceNoStartBit |=> state_s == IDLE && valid == 0;
+    endproperty
+
+    assertReset: assert property (propertyReset);
+    assertNoStartBit: assert property (propertyNoStartBit);
+
+endmodule
+
+bind readserial readserial_properties inst_readserial_properties (.*);

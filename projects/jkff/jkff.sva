@@ -1,0 +1,64 @@
+// @lang=sva @ts=2
+
+module jkff_property_suite(clk, j_i, k_i, q_o);
+
+input logic clk;
+input logic j_i,k_i;
+input logic q_o;
+
+// sequence definitions
+
+
+// property definitions
+property property_j;
+@(posedge clk)
+    j_i === 1 && k_i === 0 |=> q_o === 1;
+endproperty
+
+property property_k;
+@(posedge clk)
+    j_i === 0 && k_i === 1 |=> q_o === 0;
+endproperty
+
+property property_both;
+@(posedge clk)
+    j_i === 1 && k_i === 1 |=> $past(q_o) !== q_o;
+endproperty
+
+property property_none;
+@(posedge clk)
+    j_i === 0 && k_i === 0 |=> $past(q_o) === q_o;
+endproperty
+
+
+// make assertion on properties to be checked
+
+assert_j : assert property (property_j) begin
+    $display("Passed on: J = 1, K = 0");
+  end else begin 
+    $error("Error on: J = 1, K = 0"); 
+  end
+
+assert_k : assert property (property_k) begin
+    $display("Passed on: J = 0, K = 1");
+  end else begin 
+    $error("Error on: J = 0, K = 1"); 
+  end
+
+assert_both : assert property (property_both) begin
+    $display("Passed on: J = 1, K = 1");
+  end else begin 
+    $error("Error on: J = 1, K = 1"); 
+  end
+
+assert_none : assert property (property_none) begin
+    $display("Passed on: J = 0, K = 0");
+  end else begin 
+    $error("Error on: J = 0, K = 0"); 
+  end
+
+endmodule
+
+// bind the verification IP to the design
+
+bind jkff jkff_property_suite inst_jkff_property_suite (.*);
