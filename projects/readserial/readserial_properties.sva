@@ -23,6 +23,18 @@ module readserial_properties (
         state_s == IDLE && rxd == 1'b1;
     endsequence
 
+    sequence sequenceStartCondition;
+        state_s == IDLE && rxd == 1'b0;
+    endsequence
+
+    sequence in_idle_counter_is_0;
+        state_s == IDLE && cnt_s == 0;
+    endsequence
+
+    sequence in_idle_counter_not_enabled;
+        state_s == IDLE && cnt_en == 1'b0;
+    endsequence
+
     property propertyReset;
         @(posedge clk)
         sequenceReset |=> state_s == IDLE && cnt_s == 0 && valid == 1'b0 && cnt_en == 1'b0;
@@ -33,8 +45,25 @@ module readserial_properties (
         sequenceNoStartBit |=> state_s == IDLE && valid == 0;
     endproperty
 
+    property propertyCheckOutput;
+        @(posedge clk) disable iff (!reset_n)
+        (sequenceStartCondition and in_idle_counter_is_0 and in_idle_counter_not_enabled)
+        |=> (state_s == READ_DATA && valid == 1'b0)
+            ##1 valid == 1'b0
+            ##1 valid == 1'b0
+            ##1 valid == 1'b0
+            ##1 valid == 1'b0
+            ##1 valid == 1'b0
+            ##1 valid == 1'b0
+            ##1 valid == 1'b0
+            ##1 (state_s == IDLE && valid == 1'b1 && 
+                data == {$past(rxd, 8), $past(rxd, 7), $past(rxd, 6), $past(rxd, 5),
+                         $past(rxd, 4), $past(rxd, 3), $past(rxd, 2), $past(rxd, 1)});
+    endproperty
+
     assertReset: assert property (propertyReset);
     assertNoStartBit: assert property (propertyNoStartBit);
+    assertCheckOutput: assert property (propertyCheckOutput);
 
 endmodule
 
