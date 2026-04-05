@@ -61,9 +61,21 @@ module readserial_properties (
                          $past(rxd, 4), $past(rxd, 3), $past(rxd, 2), $past(rxd, 1)});
     endproperty
 
+    property in_idle_counter_not_enabled__step;
+        @(posedge clk) disable iff (!reset_n)
+        in_idle_counter_not_enabled |-> in_idle_counter_not_enabled;
+    endproperty
+
+    property in_idle_counter_not_enabled__base;
+        @(posedge clk)
+        sequenceReset |=> in_idle_counter_not_enabled;
+    endproperty
+
     assertReset: assert property (propertyReset);
     assertNoStartBit: assert property (propertyNoStartBit);
     assertCheckOutput: assert property (propertyCheckOutput);
+    assertIn_idle_counter_not_enabled__step: assert property (in_idle_counter_not_enabled__step);
+    assertIn_idle_counter_not_enabled__base: assert property (in_idle_counter_not_enabled__base);
 
 endmodule
 
