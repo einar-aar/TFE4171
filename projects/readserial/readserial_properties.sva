@@ -63,7 +63,7 @@ module readserial_properties (
 
     property in_idle_counter_not_enabled__step;
         @(posedge clk) disable iff (!reset_n)
-        in_idle_counter_not_enabled |-> in_idle_counter_not_enabled;
+        in_idle_counter_not_enabled |=> ((state_s == IDLE && cnt_en == 1'b0) || !(state_s == IDLE));
     endproperty
 
     property in_idle_counter_not_enabled__base;
@@ -71,11 +71,23 @@ module readserial_properties (
         sequenceReset |=> in_idle_counter_not_enabled;
     endproperty
 
+    property in_idle_counter_is_0__step;
+        @(posedge clk) disable iff (!reset_n)
+        in_idle_counter_is_0 |=> ((state_s == IDLE && cnt_s == 0) || !(state_s == IDLE));
+    endproperty
+
+    property in_idle_counter_is_0__base;
+        @(posedge clk)
+        sequenceReset |=> in_idle_counter_is_0;
+    endproperty
+
     assertReset: assert property (propertyReset);
     assertNoStartBit: assert property (propertyNoStartBit);
     assertCheckOutput: assert property (propertyCheckOutput);
     assertIn_idle_counter_not_enabled__step: assert property (in_idle_counter_not_enabled__step);
     assertIn_idle_counter_not_enabled__base: assert property (in_idle_counter_not_enabled__base);
+    assertIn_idle_counter_is_0__step: assert property (in_idle_counter_is_0__step);
+    assertIn_idle_counter_is_0__base: assert property (in_idle_counter_is_0__base);
 
 endmodule
 
