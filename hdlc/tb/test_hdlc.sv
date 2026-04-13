@@ -38,6 +38,10 @@ module test_hdlc ();
   assign uin_hdlc.RxD                = u_dut.RxD;
   assign uin_hdlc.ZeroDetect         = u_dut.u_RxChannel.ZeroDetect;
 
+  // Added signals
+  assign uin_hdlc.Tx                 = u_dut.Tx;
+  assign uin_hdlc.Tx_ValidFrame      = u_dut.Tx_ValidFrame;
+
   //Clock
   always #250ns uin_hdlc.Clk = ~uin_hdlc.Clk;
 

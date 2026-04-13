@@ -24,7 +24,12 @@ module assertions_hdlc (
   input  logic Rx_AbortDetect,
   input  logic Rx_AbortSignal,
   input  logic Rx_Overflow,
-  input  logic Rx_WrBuff
+  input  logic Rx_WrBuff,
+
+  // Added signals
+  input  logic Tx,
+  input  logic TxEN,
+  input  logic Tx_ValidFrame
 );
 
   initial begin
@@ -82,4 +87,42 @@ module assertions_hdlc (
     ErrCntAssertions++; 
   end
 
+  /********************************************
+   *  Verify correct Idle_pattern behavior  *
+   ********************************************/
+
+    sequence Idle_Sequence;
+        Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
+        Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1;
+    endsequence
+
+    property RX_IdleSignal;
+        // INSERT CODE HERE
+        @(posedge Clk) Idle_Sequence |->  !Rx_WrBuff;
+    endproperty
+
+    RX_IdleSignal_Assert : assert property (RX_IdleSignal) begin
+        //$display("PASS: Idle signal");
+     end else begin 
+        $error("Idle squence went high without being in idle. Rx_wrbuff:%b",Rx_WrBuff); 
+        ErrCntAssertions++; 
+    end
+
+    // Verify 0 insertion after 5 1's
+    sequence zero_after_five_ones;
+      (TxEN && Tx_ValidFrame && Tx)[*5];
+    endsequence
+
+    property property_zero_after_five_ones;
+      @(posedge Clk) disable iff (!Rst)
+      zero_after_five_ones |=> (Tx == 1'b0);
+    endproperty
+
+    assert_zero_after_five_ones: assert property (property_zero_after_five_ones) begin
+      $display("PASS: Zero was inserted after 5 ones");
+    end else begin
+      $error("Zero was NOT inserted after 5 ones");
+      ErrCntAssertions++;
+    end
+  
 endmodule

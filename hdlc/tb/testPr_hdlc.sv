@@ -41,7 +41,6 @@ program testPr_hdlc(
     assert(ReadData[5:0] === 6'b101000)
       else $error("VerifyAbortReceive failed, RXSC: %b",ReadData);
     
-    //If assert above is throw error, check that RX data buffer is empty
     if (ReadData[5:0] === 6'b101000) begin
       ReadAddress(8'h03,ReadData);
       assert(!ReadData)
@@ -61,9 +60,12 @@ program testPr_hdlc(
       else $error("VerifyNormalReceive failed, RXSC: %b",ReadData);
 
     if (ReadData[5:0] === 6'b100001) begin
-      ReadAddress(8'h03,ReadData);
-      assert(data[0] === ReadData)
-        else $error("VerifyNormalReceive failed, RX data buffer has incorrect value, FCS: %H",{data[Size],data[Size+1]});
+      for (int i = 0; i < Size; i++) begin
+        ReadAddress(8'h03, ReadData);
+        $display("Checking byte %0d", i);
+        assert(data[i] === ReadData)
+          else $error("VerifyNormalReceive failed for byte %0d, value is %0d, expected %0d, FCS: %H", i, ReadData, data[i], data[Size+1]);
+      end
     end
   endtask
 
@@ -79,9 +81,12 @@ program testPr_hdlc(
       else $error("VerifyOverflowReceive failed, RXSC: %b",ReadData);
     
     if (ReadData[5:0] === 6'b010001) begin
-      ReadAddress(8'h03,ReadData);
-      assert(data[0] === ReadData)
-        else $error("VerifyOverflowReceive failed, RX data buffer has incorrect value, FCS: %H",{data[Size],data[Size+1]});
+      for (int i = 0; i < Size; i++) begin
+        ReadAddress(8'h03,ReadData);
+        $display("Checking byte %0d", i);
+        assert(data[i] === ReadData)
+          else $error("VerifyNormalReceive failed for byte %0d, value is %0d, expected %0d, FCS: %H", i, ReadData, data[i], data[Size+1]);
+      end
     end
   endtask
 

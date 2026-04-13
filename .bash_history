@@ -357,3 +357,8 @@ cp -r ../dds2master/ex4 .
 cp -r ../dds2master/lab4 .
 cp -r ../dds2master/lab4release .
 onespin
+./simulate.sh
+.tb//simulate.sh
+./tb/simulate.sh
+cd tb
+./simulate.sh

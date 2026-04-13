@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 11:23:08 on Feb 23,2026
+# Start time: 11:34:48 on Apr 13,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -10,10 +10,10 @@
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxController(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "RxController(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxBuff(fast)".
-# ** Warning: ./test_hdlc.sv(45): (vopt-2685) [TFMPC] - Too few port connections for 'u_dut'.  Expected 13, found 10.
-# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx_Done'.
-# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'TxEN'.
-# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx'.
+# ** Warning: ./test_hdlc.sv(49): (vopt-2685) [TFMPC] - Too few port connections for 'u_dut'.  Expected 13, found 10.
+# ** Warning: ./test_hdlc.sv(49): (vopt-2718) [TFMPC] - Missing connection for port 'Tx_Done'.
+# ** Warning: ./test_hdlc.sv(49): (vopt-2718) [TFMPC] - Missing connection for port 'TxEN'.
+# ** Warning: ./test_hdlc.sv(49): (vopt-2718) [TFMPC] - Missing connection for port 'Tx'.
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=6.
 # //  Questa Sim
 # //  Version 2025.2 linux May 31 2025
@@ -56,64 +56,573 @@
 # PASS: Flag detect
 # PASS: Flag detect
 # PASS: Abort signal
+# Checking byte 0
+# Checking byte 1
+# Checking byte 2
+# Checking byte 3
+# Checking byte 4
+# Checking byte 5
+# Checking byte 6
+# Checking byte 7
+# Checking byte 8
+# Checking byte 9
 # *************************************************************
-#                69250 - Starting task Receive - Abort
-# *************************************************************
-# PASS: Flag detect
-# PASS: Abort signal
-# *************************************************************
-#               263250 - Starting task Receive - Overflow
-# *************************************************************
-# PASS: Flag detect
-# PASS: Flag detect
-# PASS: Abort signal
-# *************************************************************
-#               815250 - Starting task Receive - Normal
-# *************************************************************
-# PASS: Flag detect
-# PASS: Flag detect
-# PASS: Abort signal
-# *************************************************************
-#              1026750 - Starting task Receive - Normal
-# *************************************************************
-# PASS: Flag detect
-# PASS: Flag detect
-# PASS: Abort signal
-# *************************************************************
-#              1565250 - Starting task Receive - Abort
+#                78250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Flag detect
 # PASS: Abort signal
+# ** Error: Idle squence went high without being in idle. Rx_wrbuff:0
+#    Time: 262750 ns Started: 259250 ns  Scope: test_hdlc.u_assertion_bind.RX_IdleSignal_Assert File: ./assertions_hdlc.sv Line: 107 Expr: ~Rx_WrBuff
 # *************************************************************
-#              2087250 - Starting task Receive - Overflow
+#               272250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # PASS: Abort signal
+# Checking byte 0
+# Checking byte 1
+# Checking byte 2
+# Checking byte 3
+# Checking byte 4
+# Checking byte 5
+# Checking byte 6
+# Checking byte 7
+# Checking byte 8
+# Checking byte 9
+# Checking byte 10
+# Checking byte 11
+# Checking byte 12
+# Checking byte 13
+# Checking byte 14
+# Checking byte 15
+# Checking byte 16
+# Checking byte 17
+# Checking byte 18
+# Checking byte 19
+# Checking byte 20
+# Checking byte 21
+# Checking byte 22
+# Checking byte 23
+# Checking byte 24
+# Checking byte 25
+# Checking byte 26
+# Checking byte 27
+# Checking byte 28
+# Checking byte 29
+# Checking byte 30
+# Checking byte 31
+# Checking byte 32
+# Checking byte 33
+# Checking byte 34
+# Checking byte 35
+# Checking byte 36
+# Checking byte 37
+# Checking byte 38
+# Checking byte 39
+# Checking byte 40
+# Checking byte 41
+# Checking byte 42
+# Checking byte 43
+# Checking byte 44
+# Checking byte 45
+# Checking byte 46
+# Checking byte 47
+# Checking byte 48
+# Checking byte 49
+# Checking byte 50
+# Checking byte 51
+# Checking byte 52
+# Checking byte 53
+# Checking byte 54
+# Checking byte 55
+# Checking byte 56
+# Checking byte 57
+# Checking byte 58
+# Checking byte 59
+# Checking byte 60
+# Checking byte 61
+# Checking byte 62
+# Checking byte 63
+# Checking byte 64
+# Checking byte 65
+# Checking byte 66
+# Checking byte 67
+# Checking byte 68
+# Checking byte 69
+# Checking byte 70
+# Checking byte 71
+# Checking byte 72
+# Checking byte 73
+# Checking byte 74
+# Checking byte 75
+# Checking byte 76
+# Checking byte 77
+# Checking byte 78
+# Checking byte 79
+# Checking byte 80
+# Checking byte 81
+# Checking byte 82
+# Checking byte 83
+# Checking byte 84
+# Checking byte 85
+# Checking byte 86
+# Checking byte 87
+# Checking byte 88
+# Checking byte 89
+# Checking byte 90
+# Checking byte 91
+# Checking byte 92
+# Checking byte 93
+# Checking byte 94
+# Checking byte 95
+# Checking byte 96
+# Checking byte 97
+# Checking byte 98
+# Checking byte 99
+# Checking byte 100
+# Checking byte 101
+# Checking byte 102
+# Checking byte 103
+# Checking byte 104
+# Checking byte 105
+# Checking byte 106
+# Checking byte 107
+# Checking byte 108
+# Checking byte 109
+# Checking byte 110
+# Checking byte 111
+# Checking byte 112
+# Checking byte 113
+# Checking byte 114
+# Checking byte 115
+# Checking byte 116
+# Checking byte 117
+# Checking byte 118
+# Checking byte 119
+# Checking byte 120
+# Checking byte 121
+# Checking byte 122
+# Checking byte 123
+# Checking byte 124
+# Checking byte 125
 # *************************************************************
-#              2639250 - Starting task Receive - Normal
+#               949250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # PASS: Abort signal
+# Checking byte 0
+# Checking byte 1
+# Checking byte 2
+# Checking byte 3
+# Checking byte 4
+# Checking byte 5
+# Checking byte 6
+# Checking byte 7
+# Checking byte 8
+# Checking byte 9
+# Checking byte 10
+# Checking byte 11
+# Checking byte 12
+# Checking byte 13
+# Checking byte 14
+# Checking byte 15
+# Checking byte 16
+# Checking byte 17
+# Checking byte 18
+# Checking byte 19
+# Checking byte 20
+# Checking byte 21
+# Checking byte 22
+# Checking byte 23
+# Checking byte 24
+# Checking byte 25
+# Checking byte 26
+# Checking byte 27
+# Checking byte 28
+# Checking byte 29
+# Checking byte 30
+# Checking byte 31
+# Checking byte 32
+# Checking byte 33
+# Checking byte 34
+# Checking byte 35
+# Checking byte 36
+# Checking byte 37
+# Checking byte 38
+# Checking byte 39
+# Checking byte 40
+# Checking byte 41
+# Checking byte 42
+# Checking byte 43
+# Checking byte 44
 # *************************************************************
-#              2769750 - Starting task Receive - Normal
+#              1204750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # PASS: Abort signal
+# Checking byte 0
+# Checking byte 1
+# Checking byte 2
+# Checking byte 3
+# Checking byte 4
+# Checking byte 5
+# Checking byte 6
+# Checking byte 7
+# Checking byte 8
+# Checking byte 9
+# Checking byte 10
+# Checking byte 11
+# Checking byte 12
+# Checking byte 13
+# Checking byte 14
+# Checking byte 15
+# Checking byte 16
+# Checking byte 17
+# Checking byte 18
+# Checking byte 19
+# Checking byte 20
+# Checking byte 21
+# Checking byte 22
+# Checking byte 23
+# Checking byte 24
+# Checking byte 25
+# Checking byte 26
+# Checking byte 27
+# Checking byte 28
+# Checking byte 29
+# Checking byte 30
+# Checking byte 31
+# Checking byte 32
+# Checking byte 33
+# Checking byte 34
+# Checking byte 35
+# Checking byte 36
+# Checking byte 37
+# Checking byte 38
+# Checking byte 39
+# Checking byte 40
+# Checking byte 41
+# Checking byte 42
+# Checking byte 43
+# Checking byte 44
+# Checking byte 45
+# Checking byte 46
+# Checking byte 47
+# Checking byte 48
+# Checking byte 49
+# Checking byte 50
+# Checking byte 51
+# Checking byte 52
+# Checking byte 53
+# Checking byte 54
+# Checking byte 55
+# Checking byte 56
+# Checking byte 57
+# Checking byte 58
+# Checking byte 59
+# Checking byte 60
+# Checking byte 61
+# Checking byte 62
+# Checking byte 63
+# Checking byte 64
+# Checking byte 65
+# Checking byte 66
+# Checking byte 67
+# Checking byte 68
+# Checking byte 69
+# Checking byte 70
+# Checking byte 71
+# Checking byte 72
+# Checking byte 73
+# Checking byte 74
+# Checking byte 75
+# Checking byte 76
+# Checking byte 77
+# Checking byte 78
+# Checking byte 79
+# Checking byte 80
+# Checking byte 81
+# Checking byte 82
+# Checking byte 83
+# Checking byte 84
+# Checking byte 85
+# Checking byte 86
+# Checking byte 87
+# Checking byte 88
+# Checking byte 89
+# Checking byte 90
+# Checking byte 91
+# Checking byte 92
+# Checking byte 93
+# Checking byte 94
+# Checking byte 95
+# Checking byte 96
+# Checking byte 97
+# Checking byte 98
+# Checking byte 99
+# Checking byte 100
+# Checking byte 101
+# Checking byte 102
+# Checking byte 103
+# Checking byte 104
+# Checking byte 105
+# Checking byte 106
+# Checking byte 107
+# Checking byte 108
+# Checking byte 109
+# Checking byte 110
+# Checking byte 111
+# Checking byte 112
+# Checking byte 113
+# Checking byte 114
+# Checking byte 115
+# Checking byte 116
+# Checking byte 117
+# Checking byte 118
+# Checking byte 119
+# Checking byte 120
+# Checking byte 121
+# Checking byte 122
+# Checking byte 123
+# Checking byte 124
+# Checking byte 125
 # *************************************************************
-#              2987250 - Finishing Test Program
+#              1868250 - Starting task Receive - Abort
 # *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(115)
-#    Time: 2987250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 115
-# Stopped at ./testPr_hdlc.sv line 115
+# PASS: Flag detect
+# PASS: Abort signal
+# ** Error: Idle squence went high without being in idle. Rx_wrbuff:0
+#    Time: 2380750 ns Started: 2377250 ns  Scope: test_hdlc.u_assertion_bind.RX_IdleSignal_Assert File: ./assertions_hdlc.sv Line: 107 Expr: ~Rx_WrBuff
+# *************************************************************
+#              2390250 - Starting task Receive - Overflow
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS: Abort signal
+# Checking byte 0
+# Checking byte 1
+# Checking byte 2
+# Checking byte 3
+# Checking byte 4
+# Checking byte 5
+# Checking byte 6
+# Checking byte 7
+# Checking byte 8
+# Checking byte 9
+# Checking byte 10
+# Checking byte 11
+# Checking byte 12
+# Checking byte 13
+# Checking byte 14
+# Checking byte 15
+# Checking byte 16
+# Checking byte 17
+# Checking byte 18
+# Checking byte 19
+# Checking byte 20
+# Checking byte 21
+# Checking byte 22
+# Checking byte 23
+# Checking byte 24
+# Checking byte 25
+# Checking byte 26
+# Checking byte 27
+# Checking byte 28
+# Checking byte 29
+# Checking byte 30
+# Checking byte 31
+# Checking byte 32
+# Checking byte 33
+# Checking byte 34
+# Checking byte 35
+# Checking byte 36
+# Checking byte 37
+# Checking byte 38
+# Checking byte 39
+# Checking byte 40
+# Checking byte 41
+# Checking byte 42
+# Checking byte 43
+# Checking byte 44
+# Checking byte 45
+# Checking byte 46
+# Checking byte 47
+# Checking byte 48
+# Checking byte 49
+# Checking byte 50
+# Checking byte 51
+# Checking byte 52
+# Checking byte 53
+# Checking byte 54
+# Checking byte 55
+# Checking byte 56
+# Checking byte 57
+# Checking byte 58
+# Checking byte 59
+# Checking byte 60
+# Checking byte 61
+# Checking byte 62
+# Checking byte 63
+# Checking byte 64
+# Checking byte 65
+# Checking byte 66
+# Checking byte 67
+# Checking byte 68
+# Checking byte 69
+# Checking byte 70
+# Checking byte 71
+# Checking byte 72
+# Checking byte 73
+# Checking byte 74
+# Checking byte 75
+# Checking byte 76
+# Checking byte 77
+# Checking byte 78
+# Checking byte 79
+# Checking byte 80
+# Checking byte 81
+# Checking byte 82
+# Checking byte 83
+# Checking byte 84
+# Checking byte 85
+# Checking byte 86
+# Checking byte 87
+# Checking byte 88
+# Checking byte 89
+# Checking byte 90
+# Checking byte 91
+# Checking byte 92
+# Checking byte 93
+# Checking byte 94
+# Checking byte 95
+# Checking byte 96
+# Checking byte 97
+# Checking byte 98
+# Checking byte 99
+# Checking byte 100
+# Checking byte 101
+# Checking byte 102
+# Checking byte 103
+# Checking byte 104
+# Checking byte 105
+# Checking byte 106
+# Checking byte 107
+# Checking byte 108
+# Checking byte 109
+# Checking byte 110
+# Checking byte 111
+# Checking byte 112
+# Checking byte 113
+# Checking byte 114
+# Checking byte 115
+# Checking byte 116
+# Checking byte 117
+# Checking byte 118
+# Checking byte 119
+# Checking byte 120
+# Checking byte 121
+# Checking byte 122
+# Checking byte 123
+# Checking byte 124
+# Checking byte 125
+# *************************************************************
+#              3067250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS: Abort signal
+# Checking byte 0
+# Checking byte 1
+# Checking byte 2
+# Checking byte 3
+# Checking byte 4
+# Checking byte 5
+# Checking byte 6
+# Checking byte 7
+# Checking byte 8
+# Checking byte 9
+# Checking byte 10
+# Checking byte 11
+# Checking byte 12
+# Checking byte 13
+# Checking byte 14
+# Checking byte 15
+# Checking byte 16
+# Checking byte 17
+# Checking byte 18
+# Checking byte 19
+# Checking byte 20
+# Checking byte 21
+# Checking byte 22
+# Checking byte 23
+# Checking byte 24
+# *************************************************************
+#              3221750 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS: Abort signal
+# Checking byte 0
+# Checking byte 1
+# Checking byte 2
+# Checking byte 3
+# Checking byte 4
+# Checking byte 5
+# Checking byte 6
+# Checking byte 7
+# Checking byte 8
+# Checking byte 9
+# Checking byte 10
+# Checking byte 11
+# Checking byte 12
+# Checking byte 13
+# Checking byte 14
+# Checking byte 15
+# Checking byte 16
+# Checking byte 17
+# Checking byte 18
+# Checking byte 19
+# Checking byte 20
+# Checking byte 21
+# Checking byte 22
+# Checking byte 23
+# Checking byte 24
+# Checking byte 25
+# Checking byte 26
+# Checking byte 27
+# Checking byte 28
+# Checking byte 29
+# Checking byte 30
+# Checking byte 31
+# Checking byte 32
+# Checking byte 33
+# Checking byte 34
+# Checking byte 35
+# Checking byte 36
+# Checking byte 37
+# Checking byte 38
+# Checking byte 39
+# Checking byte 40
+# Checking byte 41
+# Checking byte 42
+# Checking byte 43
+# Checking byte 44
+# Checking byte 45
+# Checking byte 46
+# *************************************************************
+#              3485250 - Finishing Test Program
+# *************************************************************
+# ** Note: $stop    : ./testPr_hdlc.sv(120)
+#    Time: 3485250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 120
+# Stopped at ./testPr_hdlc.sv line 120
 #  exit
 # *********************************
 # *                               *
-# * 	Assertion Errors: 0	  *
+# * 	Assertion Errors: 2	  *
 # *                               *
 # *********************************
-# End time: 11:23:14 on Feb 23,2026, Elapsed time: 0:00:06
-# Errors: 0, Warnings: 6
+# End time: 11:34:56 on Apr 13,2026, Elapsed time: 0:00:08
+# Errors: 2, Warnings: 6
