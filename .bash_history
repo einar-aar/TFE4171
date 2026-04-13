@@ -362,3 +362,11 @@ onespin
 ./tb/simulate.sh
 cd tb
 ./simulate.sh
+cd hdlc/tb
+./simulate.sh
+cd hdlc/tb
+ls
+./simulate.sh
+cd hdlc
+cd tb
+./simulate.sh

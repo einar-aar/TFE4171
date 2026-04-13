@@ -29,7 +29,9 @@ module assertions_hdlc (
   // Added signals
   input  logic Tx,
   input  logic TxEN,
-  input  logic Tx_ValidFrame
+  input  logic Tx_ValidFrame,
+  input  logic Rx_StartZeroDetect,
+  input  logic ZeroDetect
 );
 
   initial begin
@@ -91,38 +93,61 @@ module assertions_hdlc (
    *  Verify correct Idle_pattern behavior  *
    ********************************************/
 
-    sequence Idle_Sequence;
-        Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
-        Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1;
-    endsequence
+  sequence Idle_Sequence;
+      Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
+      Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1;
+  endsequence
 
-    property RX_IdleSignal;
-        // INSERT CODE HERE
-        @(posedge Clk) Idle_Sequence |->  !Rx_WrBuff;
-    endproperty
+  property RX_IdleSignal;
+      // INSERT CODE HERE
+      @(posedge Clk) Idle_Sequence |->  !Rx_WrBuff;
+  endproperty
 
-    RX_IdleSignal_Assert : assert property (RX_IdleSignal) begin
-        //$display("PASS: Idle signal");
-     end else begin 
-        $error("Idle squence went high without being in idle. Rx_wrbuff:%b",Rx_WrBuff); 
-        ErrCntAssertions++; 
-    end
+  RX_IdleSignal_Assert : assert property (RX_IdleSignal) begin
+      //$display("PASS: Idle signal");
+    end else begin 
+      $error("Idle squence went high without being in idle. Rx_wrbuff:%b",Rx_WrBuff); 
+      ErrCntAssertions++; 
+  end
 
-    // Verify 0 insertion after 5 1's
-    sequence zero_after_five_ones;
-      (TxEN && Tx_ValidFrame && Tx)[*5];
-    endsequence
+  /******************************************
+   *  Verify 0 insertion after 5 ones on TX *
+   *****************************************/
+  sequence tx_zero_after_five_ones;
+    (Tx_ValidFrame && Tx)[*5];
+  endsequence
 
-    property property_zero_after_five_ones;
-      @(posedge Clk) disable iff (!Rst)
-      zero_after_five_ones |=> (Tx == 1'b0);
-    endproperty
+  property property_tx_zero_after_five_ones;
+    @(posedge Clk) disable iff (!Rst)
+    tx_zero_after_five_ones |=> (Tx == 1'b0);
+  endproperty
 
-    assert_zero_after_five_ones: assert property (property_zero_after_five_ones) begin
-      $display("PASS: Zero was inserted after 5 ones");
-    end else begin
-      $error("Zero was NOT inserted after 5 ones");
-      ErrCntAssertions++;
-    end
+  assert_tx_zero_after_five_ones: assert property (property_tx_zero_after_five_ones) begin
+    $display("PASS: Zero was inserted after 5 ones");
+  end else begin
+    $error("Zero was NOT inserted after 5 ones");
+    ErrCntAssertions++;
+  end
+
+  /****************************************
+   *  Verify 0 removal after 5 ones on RX *
+   ***************************************/
+
+  sequence rx_zero_after_five_ones;
+    (Rx_ValidFrame && Rx_StartZeroDetect && Rx == 1'b1)[*5] ##1
+    (Rx_ValidFrame && Rx_StartZeroDetect && Rx == 1'b0);
+  endsequence
+
+  property rx_detect_zero_after_ones;
+    @(posedge Clk) disable iff (!Rst)
+    rx_zero_after_five_ones |-> ZeroDetect;
+  endproperty
+
+  assert_rx_detect_zero_after_ones: assert property (rx_detect_zero_after_ones) begin
+    $display("PASS: Zero was removed after 5 ones on Rx");
+  end else begin
+    $error("FAIL: Zero was not removes after 5 ones on Rx");
+    ErrCntAssertions++;
+  end
   
 endmodule

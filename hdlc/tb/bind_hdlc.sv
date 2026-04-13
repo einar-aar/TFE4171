@@ -17,9 +17,13 @@ module bind_hdlc ();
     .Rx_AbortSignal   (uin_hdlc.Rx_AbortSignal),
     .Rx_Overflow      (uin_hdlc.Rx_Overflow),
     .Rx_WrBuff        (uin_hdlc.Rx_WrBuff),
+
+    // Added signals
     .Tx               (uin_hdlc.Tx),
     .TxEN             (uin_hdlc.TxEN),
-    .Tx_ValidFrame    (uin_hdlc.Tx_ValidFrame)
+    .Tx_ValidFrame    (uin_hdlc.Tx_ValidFrame),
+    .Rx_StartZeroDetect (uin_hdlc.Rx_StartZeroDetect),
+    .ZeroDetect       (uin_hdlc.ZeroDetect)
   );
 
 endmodule
