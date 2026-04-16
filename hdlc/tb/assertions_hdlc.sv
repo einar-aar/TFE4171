@@ -31,32 +31,35 @@ module assertions_hdlc (
   input  logic TxEN,
   input  logic Tx_ValidFrame,
   input  logic Rx_StartZeroDetect,
-  input  logic ZeroDetect
+  input  logic ZeroDetect,
+  input  logic Rx_EoF,
+  input  logic Tx_AbortedTrans
 );
 
   initial begin
     ErrCntAssertions  =  0;
   end
 
-  /*******************************************
-   *  Verify correct Rx_FlagDetect behavior  *
+
+  /********************************************
+   *  Verify correct Rx_FlagDetect behavior   *
+   *          (Verify SOF and EOF)            *
    *******************************************/
 
   sequence Rx_flag;
     // INSERT CODE HERE
     Rx == 0 ##1
-    Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
-    Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
+    Rx[*6] ##1
     Rx == 0;
   endsequence
 
   // Check if flag sequence is detected
-  property RX_FlagDetect;
+  property Rx_Detect;
     @(posedge Clk) Rx_flag |-> ##2 Rx_FlagDetect;
   endproperty
 
-  RX_FlagDetect_Assert : assert property (RX_FlagDetect) begin
-    $display("PASS: Flag detect");
+  assert_Rx_Detect : assert property (Rx_Detect) begin
+    $display("PASS: Rx Flag detect");
   end else begin 
     $error("Flag sequence did not generate FlagDetect"); 
     ErrCntAssertions++; 
@@ -68,24 +71,42 @@ module assertions_hdlc (
 
   //If abort is detected during valid frame. then abort signal should go high
 
-  // INSERTED CODE START
   sequence Abort_flag;
     Rx == 0 ##1
-    Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
-    Rx == 1 ##1 Rx == 1 ##1 Rx == 1;
+    Rx[*7];
   endsequence
-  // INSERTED CODE END
 
-  property RX_AbortSignal;
-    // INSERT CODE HERE
-    @(posedge Clk) Abort_flag |-> ##2 Rx_AbortDetect;
+  property Rx_Abort;
+    @(posedge Clk) disable iff (!Rst)
+    Abort_flag |-> ##2 Rx_AbortDetect;
   endproperty
 
-  RX_AbortSignal_Assert : assert property (RX_AbortSignal) begin
+  assert_Rx_Abort : assert property (Rx_Abort) begin
     $display("PASS: Abort signal");
   end else begin 
     $error("AbortSignal did not go high after AbortDetect during validframe"); 
     ErrCntAssertions++; 
+  end
+
+  /**********************************************
+   *  Verify Rx_AbortSignal during valid frame  *
+   *********************************************/
+
+  sequence Abort_during_valid_frame;
+    (Rx == 0 && Rx_ValidFrame) ## 1
+    (Rx && Rx_ValidFrame)[*7];
+  endsequence;
+
+  property Rx_abort_during_valid_frame;
+    @(posedge Clk) disable iff (!Rst)
+    Abort_during_valid_frame |-> ##2 Rx_AbortDetect;
+  endproperty
+
+  assert_Rx_abort_during_valid_frame: assert property (Rx_abort_during_valid_frame) begin
+    $display("PASS: Abort during valid frame");
+  end else begin
+    $error("FAIL: Abort not successfully asserted during valid frame");
+    ErrCntAssertions++;
   end
 
   /********************************************
@@ -154,5 +175,21 @@ module assertions_hdlc (
       $display("Tx_ValidFrame is high %0t", $time);
     end
   end
+
+/*****************************************************
+ *  Check EoF received after whole RX frame received *
+ ****************************************************/
+
+property Rx_EoF_generated;
+  @(posedge Clk) disable iff (!Rst)
+  (Rx_ValidFrame && !Rx_AbortDetect && Rx_FlagDetect) |=> Rx_EoF;
+endproperty
+
+assert_Rx_EoF_generated: assert property (Rx_EoF_generated) begin
+  $display("PASS: EoF generated");
+end else begin
+  $error("FAIL: EoF not generated");
+  ErrCntAssertions++;
+end
 
 endmodule

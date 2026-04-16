@@ -41,6 +41,9 @@ module test_hdlc ();
   // Added signals
   assign uin_hdlc.Tx                 = u_dut.Tx;
   assign uin_hdlc.Tx_ValidFrame      = u_dut.Tx_ValidFrame;
+  assign uin_hdlc.Tx_AbortedTrans    = u_dut.Tx_AbortedTrans;
+  assign uin_hdlc.Tx_Full            = u_dut.Tx_Full;
+  assign uin_hdlc.Tx_AbortFrame      = u_dut.Tx_AbortFrame;
 
   //Clock
   always #250ns uin_hdlc.Clk = ~uin_hdlc.Clk;

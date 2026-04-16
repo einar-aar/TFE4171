@@ -39,19 +39,17 @@ program testPr_hdlc(
     //Checks that Rx_AbortSignal is high
     ReadAddress(8'h02,ReadData);
     assert(ReadData[5:0] === 6'b101000)
-      else $error("VerifyAbortReceive failed, RXSC: %b",ReadData);
-    
+      else begin
+        $error("VerifyAbortReceive failed, RXSC: %b",ReadData);
+        TbErrorCnt++;
+      end
     if (ReadData[5:0] === 6'b101000) begin
       ReadAddress(8'h03,ReadData);
       assert(!ReadData)
-        else $error("VerifyAbortReceive failed, RX databuffer is %b and not Zero",ReadData);
-    end
-
-    ReadAddress(8'h00,ReadData);
-    if (ReadData[1] ===1'b1) begin
-    $display("testing abort on TX");
-    assert(ReadData[3] === 1'b1)
-      else $error("VerifyAbortReceive failed, Tx_AbortedTrans did not go high");
+        else begin
+          $error("VerifyAbortReceive failed, RX databuffer is %b and not Zero",ReadData);
+          TbErrorCnt++;
+        end
     end
   endtask
 
@@ -64,14 +62,20 @@ program testPr_hdlc(
     // INSERT CODE HERE
     ReadAddress(8'h02,ReadData);
     assert(ReadData[5:0] === 6'b100001)
-      else $error("VerifyNormalReceive failed, RXSC: %b",ReadData);
+      else begin
+        $error("VerifyNormalReceive failed, RXSC: %b",ReadData);
+        TbErrorCnt++;
+      end
 
     if (ReadData[5:0] === 6'b100001) begin
       for (int i = 0; i < Size; i++) begin
         ReadAddress(8'h03, ReadData);
         //$display("Checking byte %0d", i);
         assert(data[i] === ReadData)
-          else $error("VerifyNormalReceive failed for byte %0d, value is %0d, expected %0d, FCS: %H", i, ReadData, data[i], data[Size+1]);
+          else begin
+            $error("VerifyNormalReceive failed for byte %0d, value is %0d, expected %0d, FCS: %H", i, ReadData, data[i], data[Size+1]);
+            TbErrorCnt++;
+          end
       end
     end
   endtask
@@ -85,14 +89,19 @@ program testPr_hdlc(
     // INSERT CODE HERE
     ReadAddress(8'h02,ReadData);
     assert(ReadData[5:0] === 6'b010001)
-      else $error("VerifyOverflowReceive failed, RXSC: %b",ReadData);
-    
+      else begin
+        $error("VerifyOverflowReceive failed, RXSC: %b",ReadData);
+        TbErrorCnt++;
+      end
     if (ReadData[5:0] === 6'b010001) begin
       for (int i = 0; i < Size; i++) begin
         ReadAddress(8'h03,ReadData);
         //$display("Checking byte %0d", i);
         assert(data[i] === ReadData)
-          else $error("VerifyNormalReceive failed for byte %0d, value is %0d, expected %0d, FCS: %H", i, ReadData, data[i], data[Size+1]);
+          else begin
+          $error("VerifyNormalReceive failed for byte %0d, value is %0d, expected %0d, FCS: %H", i, ReadData, data[i], data[Size+1]);
+          TbErrorCnt++;
+          end
       end
     end
   endtask
@@ -109,6 +118,9 @@ program testPr_hdlc(
     $display("*************************************************************");
 
     Init();
+    $display("*************************************************************");
+    $display("%t - Testing Receive Functionality", $time);
+    $display("*************************************************************");
 
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead
     Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
@@ -120,6 +132,12 @@ program testPr_hdlc(
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 25, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 47, 0, 0, 0, 0, 0, 0); //Normal
+
+    $display("*************************************************************");
+    $display("%t - Testing Transmit Functionality", $time);
+    $display("*************************************************************");
+
+    Transmit();
 
     $display("*************************************************************");
     $display("%t - Finishing Test Program", $time);
@@ -310,5 +328,32 @@ program testPr_hdlc(
     end
     FCSBytes = CheckReg;
   endtask
+  task Transmit();
+    static logic [2:0] Tx_SC = 3'h0;
+    static logic [2:0] Tx_Buff = 3'h1;
+    logic [7:0] WriteData;
+
+    //Starting by clearing tx_sc
+    WriteAddress(Tx_SC,8'b0);
+    while(!uin_hdlc.Tx_Full)begin
+      WriteData = $urandom;
+      WriteAddress(Tx_Buff,WriteData);
+    end
+    $display("Tx_buffer is filled");
+    //Start Tx and tx abort
+    WriteAddress(Tx_SC,8'hff);
+  endtask
+
+  property Tx_AbortedTrans_Signal;
+  @(posedge uin_hdlc.Clk)
+    uin_hdlc.Tx_AbortFrame |-> ##[1:2] uin_hdlc.Tx_AbortedTrans;
+  endproperty
+
+  assert_Tx_AbortedTrans: assert property(Tx_AbortedTrans_Signal)begin
+    $display("Tx_AbortedTrans passed");
+  end else begin
+    $error("Tx_AbortedTrans failed");
+    TbErrorCnt++;
+  end
 
 endprogram

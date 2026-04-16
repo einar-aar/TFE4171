@@ -23,6 +23,10 @@ interface in_hdlc ();
   logic Tx;
   logic TxEN;
   logic Tx_ValidFrame;
+  logic Tx_AbortedTrans;
+  logic Tx_Full;
+  logic Tx_AbortFrame;
+
 
   // RX
   logic Rx;
@@ -51,5 +55,7 @@ interface in_hdlc ();
   logic       Rx_StopFCS;
   logic       RxD;
   logic       ZeroDetect;
+  
+
 
 endinterface
