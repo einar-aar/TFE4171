@@ -71,9 +71,8 @@ module assertions_hdlc (
   // INSERTED CODE START
   sequence Abort_flag;
     Rx == 0 ##1
-    Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
-    Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
-    Rx == 1;
+    Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
+    Rx == 1 ##1 Rx == 1 ##1 Rx == 1;
   endsequence
   // INSERTED CODE END
 
@@ -94,13 +93,13 @@ module assertions_hdlc (
    ********************************************/
 
   sequence Idle_Sequence;
-      Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1
-      Rx == 1 ##1 Rx == 1 ##1 Rx == 1 ##1 Rx == 1;
+    (Rx && !Rx_AbortDetect)[*8];
   endsequence
 
   property RX_IdleSignal;
       // INSERT CODE HERE
-      @(posedge Clk) Idle_Sequence |->  !Rx_WrBuff;
+      @(posedge Clk) disable iff (!Rst)
+      Idle_Sequence |=> !Rx_WrBuff;
   endproperty
 
   RX_IdleSignal_Assert : assert property (RX_IdleSignal) begin
@@ -150,4 +149,10 @@ module assertions_hdlc (
     ErrCntAssertions++;
   end
   
+  always @(posedge Clk) begin
+    if (Tx_ValidFrame) begin
+      $display("Tx_ValidFrame is high %0t", $time);
+    end
+  end
+
 endmodule

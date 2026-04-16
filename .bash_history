@@ -370,3 +370,8 @@ ls
 cd hdlc
 cd tb
 ./simulate.sh
+cd hdlc/tb
+ls
+./simulate.sh
+celar
+clear

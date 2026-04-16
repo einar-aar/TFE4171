@@ -36,7 +36,7 @@ program testPr_hdlc(
     logic [7:0] ReadData;
   
     // INSERT CODE HERE
-    //Checks that Rx_AbrotSignal is high
+    //Checks that Rx_AbortSignal is high
     ReadAddress(8'h02,ReadData);
     assert(ReadData[5:0] === 6'b101000)
       else $error("VerifyAbortReceive failed, RXSC: %b",ReadData);
@@ -44,7 +44,14 @@ program testPr_hdlc(
     if (ReadData[5:0] === 6'b101000) begin
       ReadAddress(8'h03,ReadData);
       assert(!ReadData)
-        else $error("VerifyAbortReceive failed, RX data buffer is not zero, RX databuffer: %b",ReadData);
+        else $error("VerifyAbortReceive failed, RX databuffer is %b and not Zero",ReadData);
+    end
+
+    ReadAddress(8'h00,ReadData);
+    if (ReadData[1] ===1'b1) begin
+    $display("testing abort on TX");
+    assert(ReadData[3] === 1'b1)
+      else $error("VerifyAbortReceive failed, Tx_AbortedTrans did not go high");
     end
   endtask
 
@@ -62,7 +69,7 @@ program testPr_hdlc(
     if (ReadData[5:0] === 6'b100001) begin
       for (int i = 0; i < Size; i++) begin
         ReadAddress(8'h03, ReadData);
-        $display("Checking byte %0d", i);
+        //$display("Checking byte %0d", i);
         assert(data[i] === ReadData)
           else $error("VerifyNormalReceive failed for byte %0d, value is %0d, expected %0d, FCS: %H", i, ReadData, data[i], data[Size+1]);
       end
@@ -83,7 +90,7 @@ program testPr_hdlc(
     if (ReadData[5:0] === 6'b010001) begin
       for (int i = 0; i < Size; i++) begin
         ReadAddress(8'h03,ReadData);
-        $display("Checking byte %0d", i);
+        //$display("Checking byte %0d", i);
         assert(data[i] === ReadData)
           else $error("VerifyNormalReceive failed for byte %0d, value is %0d, expected %0d, FCS: %H", i, ReadData, data[i], data[Size+1]);
       end
