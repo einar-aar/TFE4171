@@ -13,6 +13,4 @@
 # // and may not be used in any way not expressly authorized by SISW.
 # //
 # vsim.wlf opened as dataset "vsim"
-add wave -position insertpoint vsim:/test_hdlc/*
-# (vish-4014) No objects found matching 'vsim:/test_hdlc/*'.
 add wave -position insertpoint vsim:/test_hdlc/uin_hdlc/*

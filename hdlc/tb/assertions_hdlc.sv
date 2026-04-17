@@ -33,7 +33,8 @@ module assertions_hdlc (
   input  logic Rx_StartZeroDetect,
   input  logic ZeroDetect,
   input  logic Rx_EoF,
-  input  logic Tx_AbortedTrans
+  input  logic Tx_AbortedTrans,
+  input  logic Rx_FrameSize
 );
 
   initial begin
@@ -189,6 +190,35 @@ assert_Rx_EoF_generated: assert property (Rx_EoF_generated) begin
   $display("PASS: EoF generated");
 end else begin
   $error("FAIL: EoF not generated");
+  ErrCntAssertions++;
+end
+
+/************************************************
+ *  Check Rx_Overflow when > 128 bytes received *
+ ***********************************************/
+
+int Rx_count;
+always @(posedge Clk or negedge Rst) begin
+  if (!Rst) begin
+    Rx_count <= 0;
+  end else begin
+    if ($fell(Rx_ValidFrame)) begin // Reset counter after frame
+      Rx_count <= 0;
+    end else if (Rx_WrBuff) begin
+      Rx_count <= Rx_count + 1;
+    end
+  end
+end
+
+property Rx_Overflow_generated;
+  @(posedge Clk) disable iff (!Rst)
+  (Rx_count >= 128) && Rx_WrBuff |-> Rx_Overflow;
+endproperty
+
+assert_Rx_Overflow_generated: assert property (Rx_Overflow_generated) begin
+  $display("PASS: Rx_Overflow generated");
+end else begin
+  $error("FAIL: Rx_Overflow not asserted");
   ErrCntAssertions++;
 end
 

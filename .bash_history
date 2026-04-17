@@ -413,3 +413,6 @@ onespin
 cd projects/readserial
 onespin
 vsim -view vsim.wlf &
+cd hdlc
+cd tb
+vsim -view vsim.wlf &

@@ -25,7 +25,8 @@ module bind_hdlc ();
     .Rx_StartZeroDetect (uin_hdlc.Rx_StartZeroDetect),
     .ZeroDetect       (uin_hdlc.ZeroDetect),
     .Rx_EoF           (uin_hdlc.Rx_EoF),
-    .Tx_AbortedTrans  (uin_hdlc.Tx_AbortedTrans)
+    .Tx_AbortedTrans  (uin_hdlc.Tx_AbortedTrans),
+    .Rx_FrameSize     (uin_hdlc.Rx_FrameSize)
   );
 
 endmodule
