@@ -34,7 +34,8 @@ module assertions_hdlc (
   input  logic ZeroDetect,
   input  logic Rx_EoF,
   input  logic Tx_AbortedTrans,
-  input  logic Rx_FrameSize
+  input  logic Rx_FrameSize,
+  input  logic Rx_Ready
 );
 
   initial begin
@@ -202,7 +203,7 @@ always @(posedge Clk or negedge Rst) begin
   if (!Rst) begin
     Rx_count <= 0;
   end else begin
-    if ($fell(Rx_ValidFrame)) begin // Reset counter after frame
+    if ($rose(Rx_ValidFrame)) begin // Reset counter after frame
       Rx_count <= 0;
     end else if (Rx_WrBuff) begin
       Rx_count <= Rx_count + 1;
@@ -219,6 +220,23 @@ assert_Rx_Overflow_generated: assert property (Rx_Overflow_generated) begin
   $display("PASS: Rx_Overflow generated");
 end else begin
   $error("FAIL: Rx_Overflow not asserted");
+  ErrCntAssertions++;
+end
+
+/*******************************************************
+ *  Check Rx_FrameSize == bytes received excluding FCS *
+ ******************************************************/
+
+property FrameSize_valid;
+@(posedge Clk) disable iff (!Rst)
+  (Rx_EoF && !Rx_AbortSignal)
+  |=> ##1 (Rx_FrameSize == ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
+endproperty
+
+assert_FrameSize_valid: assert property (FrameSize_valid) begin
+  $display("PASS: Rx_FrameSize is valid got: %0d expected: %0d", Rx_FrameSize, ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
+end else begin
+  $error("FAIL: Rx_FrameSize is not valid. Frame size: %0d, Expected: %0d", Rx_FrameSize, ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
   ErrCntAssertions++;
 end
 
