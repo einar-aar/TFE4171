@@ -9,8 +9,14 @@ determination_requirements:
   if (valid) determined(data); endif;
 
 reset_property:
-  sva/inst_readserial_properties/ops/a_reset;
+  sva/inst_readserial_properties.propertyReset;
 property_graph:
-  sva/inst_readserial_properties/ops/a_reset -> sva/inst_readserial_properties/ops/a_read_byte;
-  sva/inst_readserial_properties/ops/a_read_byte -> sva/inst_readserial_properties/ops/a_read_byte;
+  sva/inst_readserial_properties.propertyReset -> sva/inst_readserial_properties.propertyNoStartBit;
+  sva/inst_readserial_properties.propertyReset -> sva/inst_readserial_properties.propertyCheckOutput;
+
+  sva/inst_readserial_properties.propertyNoStartBit -> sva/inst_readserial_properties.propertyNoStartBit;
+  sva/inst_readserial_properties.propertyNoStartBit -> sva/inst_readserial_properties.propertyCheckOutput;
+
+  sva/inst_readserial_properties.propertyCheckOutput -> sva/inst_readserial_properties.propertyNoStartBit;
+  sva/inst_readserial_properties.propertyCheckOutput -> sva/inst_readserial_properties.propertyCheckOutput;
 end completeness;

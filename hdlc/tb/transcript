@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 13:57:45 on Apr 16,2026
+# Start time: 11:28:45 on Apr 17,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -58,8 +58,8 @@
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
-# ** Error: FAIL: EoF not generated
-#    Time: 59750 ns Started: 59250 ns  Scope: test_hdlc.u_assertion_bind.assert_Rx_EoF_generated File: ./assertions_hdlc.sv Line: 191 Expr: Rx_EoF
+# Rx_EoF rose at time 61750
+# PASS: EoF generated
 # PASS: Abort signal
 # *************************************************************
 #                78250 - Starting task Receive - Abort
@@ -67,29 +67,31 @@
 # PASS: Rx Flag detect
 # PASS: Abort signal
 # PASS: Abort during valid frame
+# Rx_EoF rose at time 264750
+# PASS: EoF generated
 # *************************************************************
 #               272250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
-# ** Error: FAIL: EoF not generated
-#    Time: 814750 ns Started: 814250 ns  Scope: test_hdlc.u_assertion_bind.assert_Rx_EoF_generated File: ./assertions_hdlc.sv Line: 191 Expr: Rx_EoF
+# Rx_EoF rose at time 816750
+# PASS: EoF generated
 # PASS: Abort signal
 # *************************************************************
 #               949250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
-# ** Error: FAIL: EoF not generated
-#    Time: 1151250 ns Started: 1150750 ns  Scope: test_hdlc.u_assertion_bind.assert_Rx_EoF_generated File: ./assertions_hdlc.sv Line: 191 Expr: Rx_EoF
+# Rx_EoF rose at time 1153250
+# PASS: EoF generated
 # PASS: Abort signal
 # *************************************************************
 #              1204750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
-# ** Error: FAIL: EoF not generated
-#    Time: 1733750 ns Started: 1733250 ns  Scope: test_hdlc.u_assertion_bind.assert_Rx_EoF_generated File: ./assertions_hdlc.sv Line: 191 Expr: Rx_EoF
+# Rx_EoF rose at time 1735750
+# PASS: EoF generated
 # PASS: Abort signal
 # *************************************************************
 #              1868250 - Starting task Receive - Abort
@@ -97,29 +99,31 @@
 # PASS: Rx Flag detect
 # PASS: Abort signal
 # PASS: Abort during valid frame
+# Rx_EoF rose at time 2382750
+# PASS: EoF generated
 # *************************************************************
 #              2390250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
-# ** Error: FAIL: EoF not generated
-#    Time: 2932750 ns Started: 2932250 ns  Scope: test_hdlc.u_assertion_bind.assert_Rx_EoF_generated File: ./assertions_hdlc.sv Line: 191 Expr: Rx_EoF
+# Rx_EoF rose at time 2934750
+# PASS: EoF generated
 # PASS: Abort signal
 # *************************************************************
 #              3067250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
-# ** Error: FAIL: EoF not generated
-#    Time: 3188250 ns Started: 3187750 ns  Scope: test_hdlc.u_assertion_bind.assert_Rx_EoF_generated File: ./assertions_hdlc.sv Line: 191 Expr: Rx_EoF
+# Rx_EoF rose at time 3190250
+# PASS: EoF generated
 # PASS: Abort signal
 # *************************************************************
 #              3221750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
-# ** Error: FAIL: EoF not generated
-#    Time: 3429750 ns Started: 3429250 ns  Scope: test_hdlc.u_assertion_bind.assert_Rx_EoF_generated File: ./assertions_hdlc.sv Line: 191 Expr: Rx_EoF
+# Rx_EoF rose at time 3431750
+# PASS: EoF generated
 # PASS: Abort signal
 # *************************************************************
 #              3485250 - Testing Transmit Functionality
@@ -135,8 +139,8 @@
 #  exit
 # *********************************
 # *                               *
-# * 	Assertion Errors: 7	  *
+# * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 13:57:52 on Apr 16,2026, Elapsed time: 0:00:07
-# Errors: 7, Warnings: 6
+# End time: 11:28:51 on Apr 17,2026, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 6

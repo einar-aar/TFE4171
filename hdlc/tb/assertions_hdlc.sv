@@ -182,7 +182,7 @@ module assertions_hdlc (
 
 property Rx_EoF_generated;
   @(posedge Clk) disable iff (!Rst)
-  (Rx_ValidFrame && !Rx_AbortDetect && Rx_FlagDetect) |=> Rx_EoF;
+  ($fell(Rx_ValidFrame) && !Rx_AbortDetect) |=> Rx_EoF;
 endproperty
 
 assert_Rx_EoF_generated: assert property (Rx_EoF_generated) begin

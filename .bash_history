@@ -375,3 +375,41 @@ ls
 ./simulate.sh
 celar
 clear
+cd hdlc
+cd tb
+./simulate.sh
+ls
+cd hdlc
+ls
+cd tb
+ls
+./vsim.wlf
+vsim view vsim-wlf
+vsim -view vsim-wlf
+vsim -view vsim.wlf
+vsim -view vsim.wlf &
+ls
+cd hdlc/tb
+ls
+vsim -view vsim.wlf
+./simulate.sh
+vsim -view vsim.wlf
+./simulate.sh
+vsim -view vsim.wlf
+./simulate.sh'
+./simulate.sh
+clear
+./simulate.sh
+clear
+./simulate.sh
+clear
+./simulate.sh
+clear
+./simulate.sh
+vsim -view vsim.wlf &
+vsim -view vsim.wlf 
+./simulate.sh
+onespin
+cd projects/readserial
+onespin
+vsim -view vsim.wlf &
