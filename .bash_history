@@ -423,3 +423,7 @@ cd hdlc
 cd tb
 .simulate.sh
 ./simulate.sh
+cd hldc/tb
+cd hdlc/tb
+./simulate.sh
+./simulate.sh'

@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 12:48:12 on Apr 20,2026
+# Start time: 14:00:41 on Apr 20,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -10,11 +10,7 @@
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxController(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "RxController(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxBuff(fast)".
-# ** Warning: ./test_hdlc.sv(52): (vopt-2685) [TFMPC] - Too few port connections for 'u_dut'.  Expected 13, found 10.
-# ** Warning: ./test_hdlc.sv(52): (vopt-2718) [TFMPC] - Missing connection for port 'Tx_Done'.
-# ** Warning: ./test_hdlc.sv(52): (vopt-2718) [TFMPC] - Missing connection for port 'TxEN'.
-# ** Warning: ./test_hdlc.sv(52): (vopt-2718) [TFMPC] - Missing connection for port 'Tx'.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=6.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=2.
 # //  Questa Sim
 # //  Version 2025.2 linux May 31 2025
 # //
@@ -58,82 +54,95 @@
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # PASS: Abort signal
-# PASS: Rx_FrameSize is valid got: a expected: a
 # *************************************************************
 #                78250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Abort signal
 # PASS: Abort during valid frame
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # *************************************************************
 #               272250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx_Overflow generated
 # PASS: Rx Flag detect
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # PASS: Abort signal
-# PASS: Rx_FrameSize is valid got: 7e expected: 7e
 # *************************************************************
 #               949250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # PASS: Abort signal
-# PASS: Rx_FrameSize is valid got: 2d expected: 2d
 # *************************************************************
 #              1204750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # PASS: Abort signal
-# PASS: Rx_FrameSize is valid got: 7e expected: 7e
 # *************************************************************
 #              1868250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Abort signal
 # PASS: Abort during valid frame
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # *************************************************************
 #              2390250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx_Overflow generated
 # PASS: Rx Flag detect
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # PASS: Abort signal
-# PASS: Rx_FrameSize is valid got: 7e expected: 7e
 # *************************************************************
 #              3067250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # PASS: Abort signal
-# PASS: Rx_FrameSize is valid got: 19 expected: 19
 # *************************************************************
 #              3221750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
+# PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
+# PASS: Rx_FrameSize is valid
 # PASS: Abort signal
-# PASS: Rx_FrameSize is valid got: 2f expected: 2f
 # *************************************************************
 #              3485250 - Testing Transmit Functionality
 # *************************************************************
 # Tx_buffer is filled
+# Tx_Full passed
+# Tx_AbortedTrans passed
 # *************************************************************
-#              3614250 - Finishing Test Program
+#              3666250 - Finishing Test Program
 # *************************************************************
 # ** Note: $stop    : ./testPr_hdlc.sv(145)
-#    Time: 3614250 ns  Iteration: 2  Instance: /test_hdlc/u_testPr
+#    Time: 3666250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
 # Break in Module testPr_hdlc at ./testPr_hdlc.sv line 145
 # Stopped at ./testPr_hdlc.sv line 145
 #  exit
@@ -142,5 +151,5 @@
 # * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 12:48:17 on Apr 20,2026, Elapsed time: 0:00:05
-# Errors: 0, Warnings: 6
+# End time: 14:00:46 on Apr 20,2026, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 2

@@ -35,7 +35,10 @@ module assertions_hdlc (
   input  logic Rx_EoF,
   input  logic Tx_AbortedTrans,
   input  logic [7:0] Rx_FrameSize,
-  input  logic Rx_Ready
+  input  logic Rx_Ready,
+  input  logic Rx_RdBuff,
+  input  logic Rx_FrameError,
+  input  logic Rx_Drop
 );
 
   initial begin
@@ -228,15 +231,55 @@ end
  ******************************************************/
 
 property FrameSize_valid;
-@(posedge Clk) disable iff (!Rst)
-  (Rx_EoF && !Rx_AbortSignal)
-  |=> ##1 (Rx_FrameSize == ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
+  @(posedge Clk) disable iff (!Rst)
+  Rx_EoF |=> (Rx_FrameSize == ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
 endproperty
 
 assert_FrameSize_valid: assert property (FrameSize_valid) begin
   $display("PASS: Rx_FrameSize is valid");
 end else begin
   $error("FAIL: Rx_FrameSize is not valid. Frame size: %0h, Expected: %0h", Rx_FrameSize, ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
+  ErrCntAssertions++;
+end
+
+/*******************************************************
+ *  Check Rx_FrameSize == bytes received excluding FCS *
+ ******************************************************/
+
+// Counting bytes read
+int Read_bytes_count;
+always @(posedge Clk or negedge Rst) begin
+  if (!Rst || $rose(Rx_EoF)) begin
+    Read_bytes_count <= 0;
+  end else if (Rx_Ready && Rx_RdBuff) begin
+    Read_bytes_count <= Read_bytes_count + 1;
+  end
+end
+
+// Asserting that Rx_Ready goes high when Rx_EoF goes high
+property Rx_ready_after_EoF;
+  @(posedge Clk) disable iff (!Rst)
+  Rx_EoF |-> Rx_Ready;
+endproperty
+
+assert_Rx_ready_after_EoF: assert property (Rx_ready_after_EoF) begin
+  $display("PASS: Rx_Ready went high with Rx_EoF");
+end else begin
+  $error("FAIL: Rx_Ready didn't go high with Rx_EoF");
+  ErrCntAssertions++;
+end
+
+// Asserting that Rx_Ready is high when there are bytes to read
+property Rx_ready_when_available_bytes;
+  @(posedge Clk) disable iff (!Rst)
+  (Rx_Ready && (Read_bytes_count <= (Rx_FrameSize - 2)) && !Rx_AbortSignal &&
+  !Rx_Drop && !Rx_FrameError) |=> Rx_Ready;
+endproperty
+
+assert_Rx_ready_when_available_bytes: assert property (Rx_ready_when_available_bytes) begin
+  // $display("PASS: Rx_Ready high as long as there are bytes to be read");
+end else begin
+  $error("FAIL: Rx_Ready not high while there were bytes to be read");
   ErrCntAssertions++;
 end
 

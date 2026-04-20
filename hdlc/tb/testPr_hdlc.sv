@@ -161,7 +161,7 @@ program testPr_hdlc(
     uin_hdlc.Address     = 3'b000;
     uin_hdlc.WriteEnable =   1'b0;
     uin_hdlc.ReadEnable  =   1'b0;
-    uin_hdlc.DataIn      =     '0;
+    uin_hdlc.DataIn      =   8'b0;
     uin_hdlc.TxEN        =   1'b1;
     uin_hdlc.Rx          =   1'b1;
     uin_hdlc.RxEN        =   1'b1;
@@ -328,9 +328,26 @@ program testPr_hdlc(
     end
     FCSBytes = CheckReg;
   endtask
+
+
+  task TxOverflowCheck();
+    logic [7:0] readData;
+    static logic [2:0] Tx_SC = 3'b000;
+    static int Tx_FullPos = 4;
+    ReadAddress(Tx_SC, readData);
+
+    assert_Tx_Overflow: assert(readData[Tx_FullPos] === 1'b1)begin
+      $display("Tx_Full passed");
+    end else begin
+      $error("Tx_Full failed");
+      TbErrorCnt++;
+    end
+
+  endtask
+
   task Transmit();
-    static logic [2:0] Tx_SC = 3'h0;
-    static logic [2:0] Tx_Buff = 3'h1;
+    static logic [2:0] Tx_SC = 3'b000;
+    static logic [2:0] Tx_Buff = 3'b001;
     logic [7:0] WriteData;
 
     //Starting by clearing tx_sc
@@ -340,13 +357,18 @@ program testPr_hdlc(
       WriteAddress(Tx_Buff,WriteData);
     end
     $display("Tx_buffer is filled");
-    //Start Tx and tx abort
-    WriteAddress(Tx_SC,8'hff);
+    TxOverflowCheck();
+    //Start Tx
+    WriteAddress(Tx_SC,8'b00000010);
+    repeat (50) @(posedge uin_hdlc.Clk);
+    //Abort Tx
+    WriteAddress(Tx_SC,8'b00000100);
+    repeat (50) @(posedge uin_hdlc.Clk);
   endtask
 
   property Tx_AbortedTrans_Signal;
   @(posedge uin_hdlc.Clk)
-    uin_hdlc.Tx_AbortFrame |-> ##[1:2] uin_hdlc.Tx_AbortedTrans;
+    uin_hdlc.Tx_AbortFrame |-> ##2 uin_hdlc.Tx_AbortedTrans;
   endproperty
 
   assert_Tx_AbortedTrans: assert property(Tx_AbortedTrans_Signal)begin
@@ -356,4 +378,5 @@ program testPr_hdlc(
     TbErrorCnt++;
   end
 
+  
 endprogram

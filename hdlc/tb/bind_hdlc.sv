@@ -27,7 +27,10 @@ module bind_hdlc ();
     .Rx_EoF           (uin_hdlc.Rx_EoF),
     .Tx_AbortedTrans  (uin_hdlc.Tx_AbortedTrans),
     .Rx_FrameSize     (uin_hdlc.Rx_FrameSize),
-    .Rx_Ready         (uin_hdlc.Rx_Ready)
+    .Rx_Ready         (uin_hdlc.Rx_Ready),
+    .Rx_RdBuff        (uin_hdlc.Rx_RdBuff),
+    .Rx_FrameError    (uin_hdlc.Rx_FrameError),
+    .Rx_Drop          (uin_hdlc.Rx_Drop)
   );
 
 endmodule
