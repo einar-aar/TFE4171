@@ -34,7 +34,7 @@ module assertions_hdlc (
   input  logic ZeroDetect,
   input  logic Rx_EoF,
   input  logic Tx_AbortedTrans,
-  input  logic Rx_FrameSize,
+  input  logic [7:0] Rx_FrameSize,
   input  logic Rx_Ready
 );
 
@@ -234,9 +234,9 @@ property FrameSize_valid;
 endproperty
 
 assert_FrameSize_valid: assert property (FrameSize_valid) begin
-  $display("PASS: Rx_FrameSize is valid got: %0d expected: %0d", Rx_FrameSize, ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
+  $display("PASS: Rx_FrameSize is valid");
 end else begin
-  $error("FAIL: Rx_FrameSize is not valid. Frame size: %0d, Expected: %0d", Rx_FrameSize, ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
+  $error("FAIL: Rx_FrameSize is not valid. Frame size: %0h, Expected: %0h", Rx_FrameSize, ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
   ErrCntAssertions++;
 end
 

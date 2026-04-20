@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 13:31:45 on Apr 17,2026
+# Start time: 12:48:12 on Apr 20,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -45,8 +45,6 @@
 # Loading work.testPr_hdlc(fast)
 # Loading work.assertions_hdlc(fast)
 # Loading work.bind_hdlc(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'Rx_FrameSize'. The port definition is at: ./assertions_hdlc.sv(37).
-#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_assertion_bind File: ./bind_hdlc.sv Line: 9
 # log -r *
 #  run -all
 # *************************************************************
@@ -62,8 +60,7 @@
 # PASS: Rx Flag detect
 # PASS: EoF generated
 # PASS: Abort signal
-# ** Error: FAIL: Rx_FrameSize is not valid. Frame size: 0, Expected: 10
-#    Time: 62750 ns Started: 61750 ns  Scope: test_hdlc.u_assertion_bind.assert_FrameSize_valid File: ./assertions_hdlc.sv Line: 239 Expr: Rx_FrameSize==(Rx_count-2>=126?126:Rx_count-2)
+# PASS: Rx_FrameSize is valid got: a expected: a
 # *************************************************************
 #                78250 - Starting task Receive - Abort
 # *************************************************************
@@ -79,8 +76,7 @@
 # PASS: Rx Flag detect
 # PASS: EoF generated
 # PASS: Abort signal
-# ** Error: FAIL: Rx_FrameSize is not valid. Frame size: 0, Expected: 126
-#    Time: 817750 ns Started: 816750 ns  Scope: test_hdlc.u_assertion_bind.assert_FrameSize_valid File: ./assertions_hdlc.sv Line: 239 Expr: Rx_FrameSize==(Rx_count-2>=126?126:Rx_count-2)
+# PASS: Rx_FrameSize is valid got: 7e expected: 7e
 # *************************************************************
 #               949250 - Starting task Receive - Normal
 # *************************************************************
@@ -88,8 +84,7 @@
 # PASS: Rx Flag detect
 # PASS: EoF generated
 # PASS: Abort signal
-# ** Error: FAIL: Rx_FrameSize is not valid. Frame size: 1, Expected: 45
-#    Time: 1154250 ns Started: 1153250 ns  Scope: test_hdlc.u_assertion_bind.assert_FrameSize_valid File: ./assertions_hdlc.sv Line: 239 Expr: Rx_FrameSize==(Rx_count-2>=126?126:Rx_count-2)
+# PASS: Rx_FrameSize is valid got: 2d expected: 2d
 # *************************************************************
 #              1204750 - Starting task Receive - Normal
 # *************************************************************
@@ -97,8 +92,7 @@
 # PASS: Rx Flag detect
 # PASS: EoF generated
 # PASS: Abort signal
-# ** Error: FAIL: Rx_FrameSize is not valid. Frame size: 0, Expected: 126
-#    Time: 1736750 ns Started: 1735750 ns  Scope: test_hdlc.u_assertion_bind.assert_FrameSize_valid File: ./assertions_hdlc.sv Line: 239 Expr: Rx_FrameSize==(Rx_count-2>=126?126:Rx_count-2)
+# PASS: Rx_FrameSize is valid got: 7e expected: 7e
 # *************************************************************
 #              1868250 - Starting task Receive - Abort
 # *************************************************************
@@ -114,8 +108,7 @@
 # PASS: Rx Flag detect
 # PASS: EoF generated
 # PASS: Abort signal
-# ** Error: FAIL: Rx_FrameSize is not valid. Frame size: 0, Expected: 126
-#    Time: 2935750 ns Started: 2934750 ns  Scope: test_hdlc.u_assertion_bind.assert_FrameSize_valid File: ./assertions_hdlc.sv Line: 239 Expr: Rx_FrameSize==(Rx_count-2>=126?126:Rx_count-2)
+# PASS: Rx_FrameSize is valid got: 7e expected: 7e
 # *************************************************************
 #              3067250 - Starting task Receive - Normal
 # *************************************************************
@@ -123,8 +116,7 @@
 # PASS: Rx Flag detect
 # PASS: EoF generated
 # PASS: Abort signal
-# ** Error: FAIL: Rx_FrameSize is not valid. Frame size: 1, Expected: 25
-#    Time: 3191250 ns Started: 3190250 ns  Scope: test_hdlc.u_assertion_bind.assert_FrameSize_valid File: ./assertions_hdlc.sv Line: 239 Expr: Rx_FrameSize==(Rx_count-2>=126?126:Rx_count-2)
+# PASS: Rx_FrameSize is valid got: 19 expected: 19
 # *************************************************************
 #              3221750 - Starting task Receive - Normal
 # *************************************************************
@@ -132,8 +124,7 @@
 # PASS: Rx Flag detect
 # PASS: EoF generated
 # PASS: Abort signal
-# ** Error: FAIL: Rx_FrameSize is not valid. Frame size: 1, Expected: 47
-#    Time: 3432750 ns Started: 3431750 ns  Scope: test_hdlc.u_assertion_bind.assert_FrameSize_valid File: ./assertions_hdlc.sv Line: 239 Expr: Rx_FrameSize==(Rx_count-2>=126?126:Rx_count-2)
+# PASS: Rx_FrameSize is valid got: 2f expected: 2f
 # *************************************************************
 #              3485250 - Testing Transmit Functionality
 # *************************************************************
@@ -148,8 +139,8 @@
 #  exit
 # *********************************
 # *                               *
-# * 	Assertion Errors: 7	  *
+# * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 13:31:50 on Apr 17,2026, Elapsed time: 0:00:05
-# Errors: 7, Warnings: 7
+# End time: 12:48:17 on Apr 20,2026, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 6
