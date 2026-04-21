@@ -169,7 +169,7 @@ module assertions_hdlc (
   endproperty
 
   assert_rx_detect_zero_after_ones: assert property (rx_detect_zero_after_ones) begin
-    $display("PASS: Zero was removed after 5 ones on Rx");
+    //$display("PASS: Zero was removed after 5 ones on Rx");
   end else begin
     $error("FAIL: Zero was not removes after 5 ones on Rx");
     ErrCntAssertions++;
@@ -177,7 +177,7 @@ module assertions_hdlc (
   
   always @(posedge Clk) begin
     if (Tx_ValidFrame) begin
-      $display("Tx_ValidFrame is high %0t", $time);
+      //$display("Tx_ValidFrame is high %0t", $time);
     end
   end
 

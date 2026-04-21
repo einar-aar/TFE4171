@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 14:00:41 on Apr 20,2026
+# Start time: 11:32:03 on Apr 21,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -46,6 +46,7 @@
 # *************************************************************
 #                    0 - Starting Test Program
 # *************************************************************
+# Tx_Done asseriton passed
 # *************************************************************
 #                 1000 - Testing Receive Functionality
 # *************************************************************
@@ -67,8 +68,9 @@
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
+# PASS: Verify empty Rx buffer during abort, frame error or frame drop
 # *************************************************************
-#               272250 - Starting task Receive - Overflow
+#               274250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx_Overflow generated
@@ -78,7 +80,7 @@
 # PASS: Rx_FrameSize is valid
 # PASS: Abort signal
 # *************************************************************
-#               949250 - Starting task Receive - Normal
+#               951250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
@@ -87,7 +89,7 @@
 # PASS: Rx_FrameSize is valid
 # PASS: Abort signal
 # *************************************************************
-#              1204750 - Starting task Receive - Normal
+#              1206750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
@@ -96,7 +98,7 @@
 # PASS: Rx_FrameSize is valid
 # PASS: Abort signal
 # *************************************************************
-#              1868250 - Starting task Receive - Abort
+#              1870250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Abort signal
@@ -104,8 +106,9 @@
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
+# PASS: Verify empty Rx buffer during abort, frame error or frame drop
 # *************************************************************
-#              2390250 - Starting task Receive - Overflow
+#              2394250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx_Overflow generated
@@ -115,7 +118,7 @@
 # PASS: Rx_FrameSize is valid
 # PASS: Abort signal
 # *************************************************************
-#              3067250 - Starting task Receive - Normal
+#              3071250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
@@ -124,7 +127,7 @@
 # PASS: Rx_FrameSize is valid
 # PASS: Abort signal
 # *************************************************************
-#              3221750 - Starting task Receive - Normal
+#              3225750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
 # PASS: Rx Flag detect
@@ -133,23 +136,53 @@
 # PASS: Rx_FrameSize is valid
 # PASS: Abort signal
 # *************************************************************
-#              3485250 - Testing Transmit Functionality
+#              3489250 - Testing Transmit Functionality
 # *************************************************************
+# Start Transmit()
+# Filling Tx_buffer
 # Tx_buffer is filled
 # Tx_Full passed
+# Starting transmission for Tx_Done testing:
+# ** Error: Zero was NOT inserted after 5 ones
+#    Time: 4139250 ns Started: 4136750 ns  Scope: test_hdlc.u_assertion_bind.assert_tx_zero_after_five_ones File: ./assertions_hdlc.sv Line: 153 Expr: ~Tx
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# PASS: Zero was inserted after 5 ones
+# Tx_Buffer empty, ending transmission
+# Tx_Done asseriton passed
+# Filling Tx_Buffer
+# PASS: Zero was inserted after 5 ones
+# Tx_buffer is filled
+# Tx_Full passed
+# Starting Tx
+# Aborting Tx
 # Tx_AbortedTrans passed
+# End Transmit()
 # *************************************************************
-#              3666250 - Finishing Test Program
+#              4817250 - Finishing Test Program
 # *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(145)
-#    Time: 3666250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 145
-# Stopped at ./testPr_hdlc.sv line 145
+# ** Note: $stop    : ./testPr_hdlc.sv(191)
+#    Time: 4817250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 191
+# Stopped at ./testPr_hdlc.sv line 191
 #  exit
 # *********************************
 # *                               *
-# * 	Assertion Errors: 0	  *
+# * 	Assertion Errors: 1	  *
 # *                               *
 # *********************************
-# End time: 14:00:46 on Apr 20,2026, Elapsed time: 0:00:05
-# Errors: 0, Warnings: 2
+# End time: 11:32:10 on Apr 21,2026, Elapsed time: 0:00:07
+# Errors: 1, Warnings: 2

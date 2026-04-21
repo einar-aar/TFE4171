@@ -427,3 +427,17 @@ cd hldc/tb
 cd hdlc/tb
 ./simulate.sh
 ./simulate.sh'
+vsim -view vsim.wlf &
+cd hdlc
+cd tb
+vsim -view vsim.wlf &
+cd hdlc/tb
+./simulate.sh
+./simulate.sh'
+./simulate.sh
+clear
+cd hdlc
+cd lab
+cd tb
+./simuate.sh
+./simulate.sh

@@ -1,12 +1,12 @@
 {
-  "socketPath": "/tmp/mcp-4LPlKW/mcp.sock",
+  "socketPath": "/tmp/mcp-ffbbQW/mcp.sock",
   "scheme": "unix",
   "headers": {
-    "Authorization": "Nonce 36388069-fef2-426b-ba3f-0084d1377650"
+    "Authorization": "Nonce e04b5eeb-3445-4688-8ea5-f57b43e5c29e"
   },
-  "pid": 3868098,
+  "pid": 32442,
   "ideName": "Visual Studio Code",
-  "timestamp": 1776680669024,
+  "timestamp": 1776761018272,
   "workspaceFolders": [
     "/home/courses/desdigsys2/2026s/dds226s15"
   ],

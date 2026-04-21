@@ -27,6 +27,8 @@ interface in_hdlc ();
   logic Tx_AbortedTrans;
   logic Tx_Full;
   logic Tx_AbortFrame;
+  logic Tx_RdBuff;
+  logic Tx_DataAvail;
 
 
   // RX

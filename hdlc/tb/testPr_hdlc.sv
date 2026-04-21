@@ -106,6 +106,52 @@ program testPr_hdlc(
     end
   endtask
 
+  task VerifyEmptyRxBuffer(input bit abort, input bit error, input bit dropped);
+
+    logic [7:0] ReadData;
+
+    ReadAddress(8'h02, ReadData);
+
+    if (abort == 1) begin
+      assert(ReadData[3] == 1'b1)
+      else begin
+      $error("FAIL: Abort signal bit not set in Rx_SC");
+      TbErrorCnt++;
+      end
+    end
+
+    if (error == 1) begin
+      assert(ReadData[2] == 1'b1)
+      else begin
+      $error("FAIL: Frame error bit not set in Rx_SC");
+      TbErrorCnt++;
+      end
+    end
+
+    if (dropped == 1) begin
+      assert(ReadData[1] == 1'b1)
+      else begin
+      $error("FAIL: Dropped bit not set in Rx_SC");
+      TbErrorCnt++;
+      end
+    end
+
+    assert(ReadData[0] == 1'b0)
+    else begin
+      $error("FAIL: Rx_Ready signal is high while abort, frame error or drop frame signal is also high");
+      TbErrorCnt++;
+    end
+
+    ReadAddress(8'h03, ReadData);
+
+    assert(ReadData == 8'h00)
+    else begin
+      $error("FAIL: Rx buffer contains other values than 0, while abort, frame error or drop frame signal is high");
+      TbErrorCnt++;
+    end
+
+    $display("PASS: Verify empty Rx buffer during abort, frame error or frame drop");
+  endtask
   /****************************************************************************
    *                                                                          *
    *                             Simulation code                              *
@@ -298,12 +344,22 @@ program testPr_hdlc(
     repeat(8)
       @(posedge uin_hdlc.Clk);
 
-    if(Abort)
+    if(Abort) begin
       VerifyAbortReceive(ReceiveData, Size);
-    else if(Overflow)
+      VerifyEmptyRxBuffer(1, 0, 0);
+    end
+    else if(FCSerr || NonByteAligned) begin
+      VerifyEmptyRxBuffer(0, 1, 0);
+    end
+    else if(Drop) begin
+      VerifyEmptyRxBuffer(0, 0, 1);
+    end
+    else if(Overflow) begin
       VerifyOverflowReceive(ReceiveData, Size);
-    else if(!SkipRead)
+    end
+    else if(!SkipRead) begin
       VerifyNormalReceive(ReceiveData, Size);
+    end
 
     #5000ns;
   endtask
@@ -350,21 +406,58 @@ program testPr_hdlc(
     static logic [2:0] Tx_Buff = 3'b001;
     logic [7:0] WriteData;
 
+    $display("Start Transmit()");
+    
     //Starting by clearing tx_sc
     WriteAddress(Tx_SC,8'b0);
+    $display("Filling Tx_buffer");
     while(!uin_hdlc.Tx_Full)begin
       WriteData = $urandom;
       WriteAddress(Tx_Buff,WriteData);
     end
     $display("Tx_buffer is filled");
     TxOverflowCheck();
+
+    //Do transmission to empty tx_buffer
     //Start Tx
+    $display("Starting transmission for Tx_Done testing:");
+    WriteAddress(Tx_SC,8'b00000010);
+
+    //Wait for transmission to be done
+    while(!uin_hdlc.Tx_Done)begin
+      @(posedge uin_hdlc.Clk);
+    end
+    $display("Tx_Buffer empty, ending transmission");
+    //Added to make sure we are not driving Tx_RdBuff for later Assertion
+    @(posedge uin_hdlc.Clk)
+    //End transmission
+    WriteAddress(Tx_SC,8'b0);
+
+    //Fill buffer back up
+    $display("Filling Tx_Buffer");
+    while(!uin_hdlc.Tx_Full)begin
+      WriteData = $urandom;
+      WriteAddress(Tx_Buff,WriteData);
+    end
+    $display("Tx_buffer is filled");
+    TxOverflowCheck();
+    //Do Abort transmission
+    //Start Tx
+    $display("Starting Tx");
     WriteAddress(Tx_SC,8'b00000010);
     repeat (50) @(posedge uin_hdlc.Clk);
+
     //Abort Tx
+    $display("Aborting Tx");
     WriteAddress(Tx_SC,8'b00000100);
     repeat (50) @(posedge uin_hdlc.Clk);
+
+    $display("End Transmit()");
   endtask
+
+  //Concurrent assertions
+
+  //Aborted transmission
 
   property Tx_AbortedTrans_Signal;
   @(posedge uin_hdlc.Clk)
@@ -378,5 +471,19 @@ program testPr_hdlc(
     TbErrorCnt++;
   end
 
+
+  //Transmission Done
+  property Tx_Done_Signal;
+  @(posedge uin_hdlc.Clk)
+    $rose(uin_hdlc.Tx_Done) && !uin_hdlc.Tx_AbortedTrans |-> $fell(uin_hdlc.Tx_RdBuff)
+  endproperty
+
+  assert_Tx_Done: assert property(Tx_Done_Signal) begin
+    $display("Tx_Done asseriton passed");
+  end else begin
+    $error("Tx_Done assertion failed");
+    TbErrorCnt++;
+  end
+  
   
 endprogram
