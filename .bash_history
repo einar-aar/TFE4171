@@ -441,3 +441,14 @@ cd lab
 cd tb
 ./simuate.sh
 ./simulate.sh
+cd hdlc/tb
+./simuate.sh'
+./simuate.sh
+ls
+./simuate.sh
+./simulate.sh
+vsim -view vsim.wlf
+./simulate.sh
+vsim -view vsim.wlf
+./simulate.sh
+vsim -view vsim.wlf

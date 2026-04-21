@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 11:32:03 on Apr 21,2026
+# Start time: 13:09:24 on Apr 21,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -141,10 +141,11 @@
 # Start Transmit()
 # Filling Tx_buffer
 # Tx_buffer is filled
+# The TxDataArrays Match
 # Tx_Full passed
 # Starting transmission for Tx_Done testing:
-# ** Error: Zero was NOT inserted after 5 ones
-#    Time: 4139250 ns Started: 4136750 ns  Scope: test_hdlc.u_assertion_bind.assert_tx_zero_after_five_ones File: ./assertions_hdlc.sv Line: 153 Expr: ~Tx
+# Checking TX serial output against TX buffer...
+# Start flag detected
 # PASS: Zero was inserted after 5 ones
 # PASS: Zero was inserted after 5 ones
 # PASS: Zero was inserted after 5 ones
@@ -160,9 +161,9 @@
 # PASS: Zero was inserted after 5 ones
 # PASS: Zero was inserted after 5 ones
 # PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# Tx_Buffer empty, ending transmission
 # Tx_Done asseriton passed
+# TX serial output matches TX buffer
+# Tx_Buffer empty, ending transmission
 # Filling Tx_Buffer
 # PASS: Zero was inserted after 5 ones
 # Tx_buffer is filled
@@ -172,17 +173,17 @@
 # Tx_AbortedTrans passed
 # End Transmit()
 # *************************************************************
-#              4817250 - Finishing Test Program
+#              4832250 - Finishing Test Program
 # *************************************************************
 # ** Note: $stop    : ./testPr_hdlc.sv(191)
-#    Time: 4817250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+#    Time: 4832250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
 # Break in Module testPr_hdlc at ./testPr_hdlc.sv line 191
 # Stopped at ./testPr_hdlc.sv line 191
 #  exit
 # *********************************
 # *                               *
-# * 	Assertion Errors: 1	  *
+# * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 11:32:10 on Apr 21,2026, Elapsed time: 0:00:07
-# Errors: 1, Warnings: 2
+# End time: 13:09:30 on Apr 21,2026, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 2

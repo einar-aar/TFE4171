@@ -401,9 +401,96 @@ program testPr_hdlc(
 
   endtask
 
+  task CompareTxData(logic [125:0] [7:0] DataArrayOne, logic [125:0] [7:0] DataArrayTwo);
+    assert_TxDataArray: assert(DataArrayOne === DataArrayTwo)begin
+      $display("The TxDataArrays Match");
+    end else begin
+      $error("The TxDataArrays don't match");
+    end
+  endtask
+
+  task CheckTxSerialMatchesBuffer(input logic [125:0][7:0] exp_data, input int size);
+    int byte_index;
+    int bit_index;
+    int ones_count;
+    int local_errCount;
+    logic [7:0] rx_byte;
+    logic [7:0] flag_shift;
+    bit started;
+
+    local_errCount = 0;
+    byte_index   = 0;
+    bit_index    = 0;
+    ones_count = 0;
+    rx_byte    = 8'h00;
+    flag_shift = 8'h00;
+    started    = 0;
+
+    $display("Checking TX serial output against TX buffer...");
+
+    
+    wait (uin_hdlc.Tx_ValidFrame);
+
+    while (!started) begin
+      @(posedge uin_hdlc.Clk);
+      flag_shift = {uin_hdlc.Tx, flag_shift[7:1]}; 
+      if (flag_shift == 8'b01111110) begin
+        started = 1;
+        $display("Start flag detected");
+      end
+    end
+
+    while (byte_index < size) begin
+      @(posedge uin_hdlc.Clk);
+
+      if (ones_count == 5) begin
+        if (uin_hdlc.Tx == 1'b0) begin
+          ones_count = 0;
+          continue;
+        end
+        else begin
+          $error("Expected stuffed zero after five consecutive ones"); // Redundant check but nessesary for reconstruction of data
+          TbErrorCnt++;
+          ones_count = 0;
+        end
+      end
+
+      rx_byte[bit_index] = uin_hdlc.Tx;
+      bit_index++;
+
+      if (uin_hdlc.Tx)
+        ones_count++;
+      else
+        ones_count = 0;
+
+      if (bit_index == 8) begin
+        assert (rx_byte === exp_data[byte_index])begin
+            //$display("TX byte %0d matched: %02h", byte_index, rx_byte);
+          end else begin
+            $error("TX serial mismatch at byte %0d: got %02h expected %02h",
+                  byte_index, rx_byte, exp_data[byte_index]);
+            TbErrorCnt++;
+            local_errCount++;
+          end
+
+        rx_byte  = 8'h00;
+        bit_index  = 0;
+        byte_index++;
+      end
+    end
+    assert_Tx_match_Tx_buffer: assert(local_errCount === 0)begin
+      $display("TX serial output matches TX buffer");
+    end else begin
+      $error("TX serial output has mismatch from TX buffer");
+    end
+    
+  endtask
+
   task Transmit();
     static logic [2:0] Tx_SC = 3'b000;
     static logic [2:0] Tx_Buff = 3'b001;
+    int index;
+    logic [125:0] [7:0] expData;
     logic [7:0] WriteData;
 
     $display("Start Transmit()");
@@ -413,16 +500,20 @@ program testPr_hdlc(
     $display("Filling Tx_buffer");
     while(!uin_hdlc.Tx_Full)begin
       WriteData = $urandom;
+      expData[index] = WriteData;
+      index++;
       WriteAddress(Tx_Buff,WriteData);
     end
+    index--;
     $display("Tx_buffer is filled");
+    CompareTxData(expData, uin_hdlc.Tx_DataArray[125:0]);
     TxOverflowCheck();
-
+    
     //Do transmission to empty tx_buffer
     //Start Tx
     $display("Starting transmission for Tx_Done testing:");
     WriteAddress(Tx_SC,8'b00000010);
-
+    CheckTxSerialMatchesBuffer(expData,index);
     //Wait for transmission to be done
     while(!uin_hdlc.Tx_Done)begin
       @(posedge uin_hdlc.Clk);

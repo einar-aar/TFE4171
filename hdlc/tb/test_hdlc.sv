@@ -46,6 +46,7 @@ module test_hdlc ();
   assign uin_hdlc.Tx_AbortFrame      = u_dut.Tx_AbortFrame;
   assign uin_hdlc.Tx_RdBuff          = u_dut.Tx_RdBuff;
   assign uin_hdlc.Tx_DataAvail       = u_dut.Tx_DataAvail;
+  assign uin_hdlc.Tx_DataArray       = u_dut.Tx_DataArray;
 
 
   

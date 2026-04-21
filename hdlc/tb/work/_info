@@ -14,11 +14,11 @@ Z1 d/home/courses/desdigsys2/2026s/dds226s15/hdlc/tb
 T_opt
 !i145 1
 !i144 0
-!s110 1776763927
-VkhE83XJWaUN2fclXE_Rf42
+!s110 1776769766
+V8Y?LbK<DJ<DEhPMb6R`D]2
 04 9 4 work test_hdlc fast 0
 04 9 4 work bind_hdlc fast 0
-=1-90b11c1d54d8-69e74413-f1e4f-1d457
+=1-90b11c1d54d8-69e75ae4-da2a6-4353e
 R0
 !s12f OEM100
 !s12b OEM100
@@ -31,7 +31,7 @@ OE;O;2025.2;82
 vAddressIF
 Z3 2../rtl/AddressIF.sv|../rtl/hdlc.sv|../rtl/RxBuff.sv|../rtl/RxChannel.sv|../rtl/RxController.sv|../rtl/RxFCS.sv|../rtl/TxBuff.sv|../rtl/TxChannel.sv|../rtl/TxController.sv|../rtl/TxFCS.sv
 Z4 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
-Z5 !s110 1776763920
+Z5 !s110 1776769761
 !i10b 1
 !s100 @WdjNn@U0B^hZLn^6OG4k3
 ID?dH?]3WAde__b0GGY9c00
@@ -47,7 +47,7 @@ Z8 OE;L;2025.2;82
 r1
 !s85 0
 31
-Z9 !s108 1776763920.000000
+Z9 !s108 1776769760.000000
 Z10 !s107 ../rtl/TxFCS.sv|../rtl/TxController.sv|../rtl/TxChannel.sv|../rtl/TxBuff.sv|../rtl/RxFCS.sv|../rtl/RxController.sv|../rtl/RxChannel.sv|../rtl/RxBuff.sv|../rtl/hdlc.sv|../rtl/AddressIF.sv|
 Z11 !s90 -sv|../rtl/AddressIF.sv|../rtl/hdlc.sv|../rtl/RxBuff.sv|../rtl/RxChannel.sv|../rtl/RxController.sv|../rtl/RxFCS.sv|../rtl/TxBuff.sv|../rtl/TxChannel.sv|../rtl/TxController.sv|../rtl/TxFCS.sv|
 !i113 0
@@ -57,23 +57,23 @@ n@address@i@f
 vassertions_hdlc
 Z13 2./assertions_hdlc.sv|./bind_hdlc.sv|./in_hdlc.sv|./test_hdlc.sv|./testPr_hdlc.sv
 R4
-Z14 !s110 1776763921
+Z14 !s110 1776769762
 !i10b 1
-!s100 o?:Xn5z@?35JGkoWM_SA]3
-IknP?K1`;e96oTj<RL7<;[2
+!s100 FkWBjGod;W19bU65[ZT@d1
+IaPM5S`Li<kJ4FC^8YAG@n3
 S1
 R1
-w1776761424
+w1776769758
 8./assertions_hdlc.sv
 F./assertions_hdlc.sv
 !i122 1
-L0 17 270
+L0 17 294
 R7
 R8
 r1
 !s85 0
 31
-Z15 !s108 1776763921.000000
+Z15 !s108 1776769762.000000
 Z16 !s107 ./testPr_hdlc.sv|./test_hdlc.sv|./in_hdlc.sv|./bind_hdlc.sv|./assertions_hdlc.sv|
 Z17 !s90 -sv|./assertions_hdlc.sv|./bind_hdlc.sv|./in_hdlc.sv|./test_hdlc.sv|./testPr_hdlc.sv|
 !i113 0
@@ -135,11 +135,11 @@ R13
 R4
 R14
 !i10b 1
-!s100 U_CnD=cmmbYnaN?cPX9eK0
-Ig[4cc6ED9L4W]]eR]kBgh1
+!s100 2DEJY59lP5T^SzPAhVU?A3
+I:lG`C532Vn:cQRC:X>;F;0
 S1
 R1
-w1776763489
+w1776765684
 8./in_hdlc.sv
 F./in_hdlc.sv
 !i122 1
@@ -158,7 +158,7 @@ R2
 vRxBuff
 R3
 R4
-R14
+R5
 !i10b 1
 !s100 S5SN;@e`ZSCLj]71@G5Ua1
 I3oN]AP^Q=R?hm4]XfNLk:0
@@ -184,7 +184,7 @@ n@rx@buff
 vRxChannel
 R3
 R4
-R14
+R5
 !i10b 1
 !s100 UaO5@WgeXUlgI`ZR7ClV22
 IA=QWL8;Al:Y6fK0zhCd8a0
@@ -210,7 +210,7 @@ n@rx@channel
 vRxController
 R3
 R4
-R14
+R5
 !i10b 1
 !s100 PzhToVW9A;_?C9_U@1gz50
 IWm;]<7dP@FYXmC]zfIRWH0
@@ -236,7 +236,7 @@ n@rx@controller
 vRxFCS
 R3
 R4
-R14
+R5
 !i10b 1
 !s100 KXeN9:J3i=@]P;aC?CfkL2
 IziQHaM6`igo`B:3WQ^2EK3
@@ -264,15 +264,15 @@ R13
 R4
 R14
 !i10b 1
-!s100 Vlgaf4X9<_zdGno98m<H[2
-IBS0oUe@m<7d?[lk^YUKoT3
+!s100 I^_B0kFgcn1XSmG@6=G2Y3
+I`BiFZ1=TfgW[CN`?zcCVS1
 S1
 R1
-w1776763522
+w1776765705
 8./test_hdlc.sv
 F./test_hdlc.sv
 !i122 1
-L0 13 69
+L0 13 70
 R7
 R8
 r1
@@ -289,11 +289,11 @@ R13
 R4
 R14
 !i10b 1
-!s100 6cV;kDefW?^gM<EVR6WaY2
-IliI0`ZgVE`:3Ellglf@7f0
+!s100 EUH?Yi?>7;e0k4RXI5d>>0
+Ik>SWI0UjDP4aW45b<LQMJ2
 S1
 R1
-w1776763917
+w1776769554
 8./testPr_hdlc.sv
 F./testPr_hdlc.sv
 !i122 1
@@ -313,7 +313,7 @@ ntest@pr_hdlc
 vTxBuff
 R3
 R4
-R14
+R5
 !i10b 1
 !s100 ]EP^SiKVNb=AMe15PhX1X2
 IX_Q2M;bR=SQUF=QI^`FAm1
@@ -339,7 +339,7 @@ n@tx@buff
 vTxChannel
 R3
 R4
-R14
+R5
 !i10b 1
 !s100 6dPaoSz??X=R8emMk]@733
 I7`=8XFzWgjHS<FmafW[eS2
@@ -365,7 +365,7 @@ n@tx@channel
 vTxController
 R3
 R4
-R14
+R5
 !i10b 1
 !s100 =HbYd3nMYY^5`jBi<06RZ3
 I3^F;D1O<FbkHEhj9AoV0@2
@@ -391,7 +391,7 @@ n@tx@controller
 vTxFCS
 R3
 R4
-R14
+R5
 !i10b 1
 !s100 O^c0?=mXfDOWiF:GRW4zn1
 IbChRnMiHMoj[7nzVG4AaQ0

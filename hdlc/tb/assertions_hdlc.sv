@@ -138,8 +138,32 @@ module assertions_hdlc (
   /******************************************
    *  Verify 0 insertion after 5 ones on TX *
    *****************************************/
+
+  logic TxInIdle;
+  int idleBitCount;
+  always @(posedge Clk or negedge Rst) begin
+
+    if (!Rst) begin
+      TxInIdle <= 1'b0;
+      idleBitCount <= 0;
+    end else begin
+
+      if (Tx) begin
+        idleBitCount <= idleBitCount + 1;
+      end else begin
+        idleBitCount <= 0;
+      end
+
+      if (idleBitCount >= 8) begin
+        TxInIdle <= 1;
+      end else begin
+        TxInIdle <= 0;
+      end
+    end
+  end
+
   sequence tx_zero_after_five_ones;
-    (Tx_ValidFrame && Tx)[*5];
+    (Tx_ValidFrame && Tx && !Tx_AbortedTrans && !TxInIdle && ($past(TxInIdle, 1) == 0) && ($past(TxInIdle, 2) == 0))[*5];
   endsequence
 
   property property_tx_zero_after_five_ones;
@@ -150,7 +174,7 @@ module assertions_hdlc (
   assert_tx_zero_after_five_ones: assert property (property_tx_zero_after_five_ones) begin
     $display("PASS: Zero was inserted after 5 ones");
   end else begin
-    $error("Zero was NOT inserted after 5 ones");
+    $error("FAIL: Zero was NOT inserted after 5 ones");
     ErrCntAssertions++;
   end
 

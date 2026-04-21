@@ -29,6 +29,7 @@ interface in_hdlc ();
   logic Tx_AbortFrame;
   logic Tx_RdBuff;
   logic Tx_DataAvail;
+  logic [127:0][7:0] Tx_DataArray;
 
 
   // RX
