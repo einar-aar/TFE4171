@@ -38,7 +38,8 @@ module assertions_hdlc (
   input  logic Rx_Ready,
   input  logic Rx_RdBuff,
   input  logic Rx_FrameError,
-  input  logic Rx_Drop
+  input  logic Rx_Drop,
+  input  logic RxD
 );
 
   initial begin
@@ -163,7 +164,8 @@ module assertions_hdlc (
   end
 
   sequence tx_zero_after_five_ones;
-    (Tx_ValidFrame && Tx && !Tx_AbortedTrans && !TxInIdle && ($past(TxInIdle, 1) == 0) && ($past(TxInIdle, 2) == 0))[*5];
+    (Tx_ValidFrame && Tx && !Tx_AbortedTrans && !TxInIdle &&
+    ($past(TxInIdle, 1) == 0) && ($past(TxInIdle, 2) == 0))[*5];
   endsequence
 
   property property_tx_zero_after_five_ones;
@@ -183,26 +185,21 @@ module assertions_hdlc (
    ***************************************/
 
   sequence rx_zero_after_five_ones;
-    (Rx_ValidFrame && Rx_StartZeroDetect && Rx == 1'b1)[*5] ##1
-    (Rx_ValidFrame && Rx_StartZeroDetect && Rx == 1'b0);
+    (Rx_ValidFrame && RxD == 1'b1 &&
+    ($past(Rx_FlagDetect, 1) == 0) &&
+    ($past(Rx_FlagDetect, 2) == 0))[*5];
   endsequence
 
   property rx_detect_zero_after_ones;
     @(posedge Clk) disable iff (!Rst)
-    rx_zero_after_five_ones |-> ZeroDetect;
+    rx_zero_after_five_ones |=> ZeroDetect;
   endproperty
 
   assert_rx_detect_zero_after_ones: assert property (rx_detect_zero_after_ones) begin
-    //$display("PASS: Zero was removed after 5 ones on Rx");
+    $display("PASS: Zero was removed after 5 ones on Rx");
   end else begin
-    $error("FAIL: Zero was not removes after 5 ones on Rx");
+    $error("FAIL: Zero was not removed after 5 ones on Rx");
     ErrCntAssertions++;
-  end
-  
-  always @(posedge Clk) begin
-    if (Tx_ValidFrame) begin
-      //$display("Tx_ValidFrame is high %0t", $time);
-    end
   end
 
 /*****************************************************

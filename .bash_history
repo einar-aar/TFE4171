@@ -452,3 +452,23 @@ vsim -view vsim.wlf
 vsim -view vsim.wlf
 ./simulate.sh
 vsim -view vsim.wlf
+cd hdlc
+cd tb
+./simulate.sh
+cd hdlc
+cd tb
+vsim -viem vsim-wlf &
+vsim -viem vsim.wlf &
+vsim -view vsim.wlf &
+cd hdlc/tb
+./simulate.sh
+clear
+./simulate.sh
+cd hdlc/tb
+./simulate.sh
+cd hdlc
+cd hdlc
+cd tb
+vsim -view vsim.wlf &
+cd tb
+./simulate.sh

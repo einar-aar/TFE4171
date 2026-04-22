@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 13:09:24 on Apr 21,2026
+# Start time: 12:08:50 on Apr 22,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -63,6 +63,17 @@
 #                78250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Rx Flag detect
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
 # PASS: Abort signal
 # PASS: Abort during valid frame
 # PASS: Rx_Ready went high with Rx_EoF
@@ -73,6 +84,21 @@
 #               274250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx_Overflow generated
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
@@ -83,6 +109,12 @@
 #               951250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
@@ -92,6 +124,18 @@
 #              1206750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
@@ -101,6 +145,17 @@
 #              1870250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Rx Flag detect
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
 # PASS: Abort signal
 # PASS: Abort during valid frame
 # PASS: Rx_Ready went high with Rx_EoF
@@ -111,6 +166,21 @@
 #              2394250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx_Overflow generated
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
@@ -121,6 +191,10 @@
 #              3071250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
@@ -130,6 +204,8 @@
 #              3225750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
+# PASS: Zero was removed after 5 ones on Rx
+# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
@@ -185,5 +261,5 @@
 # * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 13:09:30 on Apr 21,2026, Elapsed time: 0:00:06
+# End time: 12:08:58 on Apr 22,2026, Elapsed time: 0:00:08
 # Errors: 0, Warnings: 2

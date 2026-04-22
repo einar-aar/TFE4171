@@ -30,7 +30,8 @@ module bind_hdlc ();
     .Rx_Ready         (uin_hdlc.Rx_Ready),
     .Rx_RdBuff        (uin_hdlc.Rx_RdBuff),
     .Rx_FrameError    (uin_hdlc.Rx_FrameError),
-    .Rx_Drop          (uin_hdlc.Rx_Drop)
+    .Rx_Drop          (uin_hdlc.Rx_Drop),
+    .RxD              (uin_hdlc.RxD)
   );
 
 endmodule
