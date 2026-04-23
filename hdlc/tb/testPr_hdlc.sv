@@ -364,7 +364,7 @@ program testPr_hdlc(
     #5000ns;
   endtask
 
-  task GenerateFCSBytes(logic [127:0][7:0] data, int size, output logic[15:0] FCSBytes);
+  task GenerateFCSBytes(logic [128:0][7:0] data, int size, output logic[15:0] FCSBytes);
     logic [23:0] CheckReg;
     CheckReg[15:8]  = data[1];
     CheckReg[7:0]   = data[0];
@@ -383,6 +383,34 @@ program testPr_hdlc(
       end
     end
     FCSBytes = CheckReg;
+  endtask
+
+  task VerifyCRC(logic [128:0][7:0] data, int size);
+    
+    logic [15:0] actual_crc;
+    logic [15:0] expected_crc;
+
+    GenerateFCSBytes(data, size, expected_crc);
+
+    wait(uin_hdlc.Tx_FCSDone);
+
+    wait(uin_hdlc.Tx_WriteFCS);
+    @(posedge uin_hdlc.Clk);
+    @(posedge uin_hdlc.Clk);
+    actual_crc[15:8] = uin_hdlc.Tx_Data;
+
+    wait(uin_hdlc.Tx_WriteFCS);
+    @(posedge uin_hdlc.Clk);
+    @(posedge uin_hdlc.Clk);
+    actual_crc[7:0] = uin_hdlc.Tx_Data;
+
+    assert(actual_crc == expected_crc) begin
+      $display("PASS: valid CRC generated: %h", actual_crc);
+    end else begin
+      $error("FAIL: CRC not valid. got %b, expected %b hex: %h vs %h",
+        actual_crc, expected_crc, actual_crc, expected_crc);
+      TbErrorCnt++;
+    end
   endtask
 
 
@@ -491,6 +519,7 @@ program testPr_hdlc(
     static logic [2:0] Tx_Buff = 3'b001;
     int index;
     logic [125:0] [7:0] expData;
+    logic [128:0] [7:0] crcData;
     logic [7:0] WriteData;
 
     $display("Start Transmit()");
@@ -498,12 +527,17 @@ program testPr_hdlc(
     //Starting by clearing tx_sc
     WriteAddress(Tx_SC,8'b0);
     $display("Filling Tx_buffer");
+    index = 0;
     while(!uin_hdlc.Tx_Full)begin
       WriteData = $urandom;
       expData[index] = WriteData;
+      crcData[index] = WriteData;
       index++;
       WriteAddress(Tx_Buff,WriteData);
     end
+    crcData[index]     = 8'h00;
+    crcData[index + 1] = 8'h00;
+    crcData[index+2]   = 8'h00;
     index--;
     $display("Tx_buffer is filled");
     CompareTxData(expData, uin_hdlc.Tx_DataArray[125:0]);
@@ -513,7 +547,12 @@ program testPr_hdlc(
     //Start Tx
     $display("Starting transmission for Tx_Done testing:");
     WriteAddress(Tx_SC,8'b00000010);
-    CheckTxSerialMatchesBuffer(expData,index);
+
+    fork
+      VerifyCRC(crcData, index + 1);
+      CheckTxSerialMatchesBuffer(expData,index);
+    join
+
     //Wait for transmission to be done
     while(!uin_hdlc.Tx_Done)begin
       @(posedge uin_hdlc.Clk);

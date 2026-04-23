@@ -47,9 +47,10 @@ module test_hdlc ();
   assign uin_hdlc.Tx_RdBuff          = u_dut.Tx_RdBuff;
   assign uin_hdlc.Tx_DataAvail       = u_dut.Tx_DataAvail;
   assign uin_hdlc.Tx_DataArray       = u_dut.Tx_DataArray;
-
-
-  
+  assign uin_hdlc.Tx_Data            = u_dut.Tx_Data;
+  assign uin_hdlc.Tx_WriteFCS        = u_dut.Tx_WriteFCS;
+  assign uin_hdlc.Tx_FCSDone         = u_dut.Tx_FCSDone;
+  assign uin_hdlc.Tx_FrameSize       = u_dut.Tx_FrameSize;
 
   //Clock
   always #250ns uin_hdlc.Clk = ~uin_hdlc.Clk;

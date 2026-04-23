@@ -30,6 +30,10 @@ interface in_hdlc ();
   logic Tx_RdBuff;
   logic Tx_DataAvail;
   logic [127:0][7:0] Tx_DataArray;
+  logic [7:0] Tx_Data;
+  logic Tx_WriteFCS;
+  logic Tx_FCSDone;
+  logic Tx_FrameSize;
 
 
   // RX

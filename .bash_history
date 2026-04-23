@@ -472,3 +472,24 @@ cd tb
 vsim -view vsim.wlf &
 cd tb
 ./simulate.sh
+cd hdlc
+cd tb
+./simulate.sh
+cd hdlc
+cd tb
+./simulate.sh
+cd hdlc
+cd tb
+./simulate.sh
+cd hdlc
+cd tb
+./simulate.sh
+cd hdlc
+cd tb
+./simulate.sh
+cd hdlc
+cd tb
+vsim -view vsim.wlf &
+cd hdlc
+cd tb
+./simulate.sh

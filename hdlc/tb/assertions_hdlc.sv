@@ -61,13 +61,13 @@ module assertions_hdlc (
 
   // Check if flag sequence is detected
   property Rx_Detect;
-    @(posedge Clk) Rx_flag |-> ##2 Rx_FlagDetect;
+    @(posedge Clk) Rx_flag |=> ##1 Rx_FlagDetect;
   endproperty
 
   assert_Rx_Detect : assert property (Rx_Detect) begin
     $display("PASS: Rx Flag detect");
   end else begin 
-    $error("Flag sequence did not generate FlagDetect"); 
+    $error("FAIL: Flag sequence did not generate FlagDetect"); 
     ErrCntAssertions++; 
   end
 
@@ -78,40 +78,31 @@ module assertions_hdlc (
   //If abort is detected during valid frame. then abort signal should go high
 
   sequence Abort_flag;
-    Rx == 0 ##1
-    Rx[*7];
+    ((Rx == 0) && Rx_ValidFrame) ##1
+    (Rx && Rx_ValidFrame)[*7];
   endsequence
 
   property Rx_Abort;
     @(posedge Clk) disable iff (!Rst)
-    Abort_flag |-> ##2 Rx_AbortDetect;
+    Abort_flag |=> ##1 Rx_AbortDetect;
+  endproperty
+
+  property Rx_AbortDetect_registered;
+    @(posedge Clk) disable iff (!Rst)
+    (Rx_ValidFrame && Rx_AbortDetect) |=> Rx_AbortSignal;
   endproperty
 
   assert_Rx_Abort : assert property (Rx_Abort) begin
-    $display("PASS: Abort signal");
+    $display("PASS: Abort sequence detected during valid frame");
   end else begin 
-    $error("AbortSignal did not go high after AbortDetect during validframe"); 
+    $error("FAIL: Rx_AbortDetect did not go high after abort sequence during validframe"); 
     ErrCntAssertions++; 
   end
 
-  /**********************************************
-   *  Verify Rx_AbortSignal during valid frame  *
-   *********************************************/
-
-  sequence Abort_during_valid_frame;
-    (Rx == 0 && Rx_ValidFrame) ## 1
-    (Rx && Rx_ValidFrame)[*7];
-  endsequence;
-
-  property Rx_abort_during_valid_frame;
-    @(posedge Clk) disable iff (!Rst)
-    Abort_during_valid_frame |-> ##2 Rx_AbortDetect;
-  endproperty
-
-  assert_Rx_abort_during_valid_frame: assert property (Rx_abort_during_valid_frame) begin
-    $display("PASS: Abort during valid frame");
+  assert_Rx_AbortDetect_registered: assert property (Rx_AbortDetect_registered) begin
+    $display("PASS: Rx_AbortSignal went high after Rx_AbortDetect during valid frame");
   end else begin
-    $error("FAIL: Abort not successfully asserted during valid frame");
+    $erroe("FAIL: Rx_AbortSignal did not go high after Rx_AbortDetect went high during valid frame");
     ErrCntAssertions++;
   end
 
@@ -174,7 +165,7 @@ module assertions_hdlc (
   endproperty
 
   assert_tx_zero_after_five_ones: assert property (property_tx_zero_after_five_ones) begin
-    $display("PASS: Zero was inserted after 5 ones");
+    // $display("PASS: Zero was inserted after 5 ones");
   end else begin
     $error("FAIL: Zero was NOT inserted after 5 ones");
     ErrCntAssertions++;
@@ -196,7 +187,7 @@ module assertions_hdlc (
   endproperty
 
   assert_rx_detect_zero_after_ones: assert property (rx_detect_zero_after_ones) begin
-    $display("PASS: Zero was removed after 5 ones on Rx");
+    // $display("PASS: Zero was removed after 5 ones on Rx");
   end else begin
     $error("FAIL: Zero was not removed after 5 ones on Rx");
     ErrCntAssertions++;

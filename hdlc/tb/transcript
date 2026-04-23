@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 12:08:50 on Apr 22,2026
+# Start time: 10:38:54 on Apr 23,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -41,6 +41,8 @@
 # Loading work.testPr_hdlc(fast)
 # Loading work.assertions_hdlc(fast)
 # Loading work.bind_hdlc(fast)
+# ** Warning: (vsim-PLI-3003) [TOFD] - System task or function '$erroe' is not defined.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_assertion_bind/assert_Rx_AbortDetect_registered File: ./assertions_hdlc.sv Line: 105
 # log -r *
 #  run -all
 # *************************************************************
@@ -58,24 +60,13 @@
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
-# PASS: Abort signal
 # *************************************************************
 #                78250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Rx Flag detect
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Abort signal
+# PASS: Abort sequence detected during valid frame
 # PASS: Abort during valid frame
+# PASS: Rx_AbortSignal went high after Rx_AbortDetect during valid frame
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
@@ -84,80 +75,34 @@
 #               274250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx_Overflow generated
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
-# PASS: Abort signal
 # *************************************************************
 #               951250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
-# PASS: Abort signal
 # *************************************************************
 #              1206750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
-# PASS: Abort signal
 # *************************************************************
 #              1870250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Rx Flag detect
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Abort signal
 # PASS: Abort during valid frame
+# PASS: Abort sequence detected during valid frame
+# PASS: Rx_AbortSignal went high after Rx_AbortDetect during valid frame
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
@@ -166,51 +111,27 @@
 #              2394250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Rx Flag detect
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx_Overflow generated
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
-# PASS: Abort signal
 # *************************************************************
 #              3071250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
-# PASS: Abort signal
 # *************************************************************
 #              3225750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Rx Flag detect
-# PASS: Zero was removed after 5 ones on Rx
-# PASS: Zero was removed after 5 ones on Rx
 # PASS: Rx Flag detect
 # PASS: Rx_Ready went high with Rx_EoF
 # PASS: EoF generated
 # PASS: Rx_FrameSize is valid
-# PASS: Abort signal
 # *************************************************************
 #              3489250 - Testing Transmit Functionality
 # *************************************************************
@@ -222,26 +143,12 @@
 # Starting transmission for Tx_Done testing:
 # Checking TX serial output against TX buffer...
 # Start flag detected
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
-# PASS: Zero was inserted after 5 ones
 # Tx_Done asseriton passed
+# ** Error: FAIL: CRC not valid. got 0101011111011010, expected 0010111101011010 hex: 57da vs 2f5a
+#    Time: 4643750 ns  Scope: test_hdlc.u_testPr.VerifyCRC File: ./testPr_hdlc.sv Line: 410
 # TX serial output matches TX buffer
 # Tx_Buffer empty, ending transmission
 # Filling Tx_Buffer
-# PASS: Zero was inserted after 5 ones
 # Tx_buffer is filled
 # Tx_Full passed
 # Starting Tx
@@ -258,8 +165,8 @@
 #  exit
 # *********************************
 # *                               *
-# * 	Assertion Errors: 0	  *
+# * 	Assertion Errors: 1	  *
 # *                               *
 # *********************************
-# End time: 12:08:58 on Apr 22,2026, Elapsed time: 0:00:08
-# Errors: 0, Warnings: 2
+# End time: 10:39:00 on Apr 23,2026, Elapsed time: 0:00:06
+# Errors: 1, Warnings: 3
