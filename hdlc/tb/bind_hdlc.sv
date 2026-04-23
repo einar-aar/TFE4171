@@ -31,7 +31,10 @@ module bind_hdlc ();
     .Rx_RdBuff        (uin_hdlc.Rx_RdBuff),
     .Rx_FrameError    (uin_hdlc.Rx_FrameError),
     .Rx_Drop          (uin_hdlc.Rx_Drop),
-    .RxD              (uin_hdlc.RxD)
+    .RxD              (uin_hdlc.RxD),
+    .Tx_AbortFrame    (uin_hdlc.Tx_AbortFrame),
+    .Tx_RdBuff        (uin_hdlc.Tx_RdBuff),
+    .Tx_Done          (uin_hdlc.Tx_Done)
   );
 
 endmodule

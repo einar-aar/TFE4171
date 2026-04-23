@@ -183,6 +183,7 @@ program testPr_hdlc(
     $display("%t - Testing Transmit Functionality", $time);
     $display("*************************************************************");
 
+    
     Transmit();
 
     $display("*************************************************************");
@@ -385,12 +386,57 @@ program testPr_hdlc(
     FCSBytes = CheckReg;
   endtask
 
+  task automatic GenerateCRCBytes(
+  input  logic [127:0][7:0] data,
+  input  int size,
+  output logic [15:0] fcs
+);
+  logic [15:0] crc, old_crc;
+  logic inbit;
+  int i, j;
+
+  crc = 16'h0000;
+
+  // Real message bytes
+  for (i = 0; i < size; i++) begin
+    for (j = 0; j < 8; j++) begin
+      old_crc = crc;
+      inbit   = data[i][j];
+
+      crc[0]    = inbit ^ old_crc[15];
+      crc[1]    = old_crc[0];
+      crc[2]    = old_crc[1] ^ old_crc[15];
+      crc[14:3] = old_crc[13:2];
+      crc[15]   = old_crc[14] ^ old_crc[15];
+    end
+  end
+
+  // Append 16 zero bits
+  for (j = 0; j < 16; j++) begin
+    old_crc = crc;
+    inbit   = 1'b0;
+
+    crc[0]    = inbit ^ old_crc[15];
+    crc[1]    = old_crc[0];
+    crc[2]    = old_crc[1] ^ old_crc[15];
+    crc[14:3] = old_crc[13:2];
+    crc[15]   = old_crc[14] ^ old_crc[15];
+  end
+
+  fcs = crc;
+endtask
+
+function automatic logic [7:0] Reverse8(input logic [7:0] b);
+  Reverse8 = {b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7]};
+endfunction
+
   task VerifyCRC(logic [128:0][7:0] data, int size);
     
     logic [15:0] actual_crc;
+    logic [15:0] test_crc;
     logic [15:0] expected_crc;
 
-    GenerateFCSBytes(data, size, expected_crc);
+    GenerateCRCBytes(data, size, expected_crc);
 
     wait(uin_hdlc.Tx_FCSDone);
 
@@ -398,17 +444,27 @@ program testPr_hdlc(
     @(posedge uin_hdlc.Clk);
     @(posedge uin_hdlc.Clk);
     actual_crc[15:8] = uin_hdlc.Tx_Data;
+    test_crc[15:8] = Reverse8(uin_hdlc.Tx_Data);
 
     wait(uin_hdlc.Tx_WriteFCS);
     @(posedge uin_hdlc.Clk);
     @(posedge uin_hdlc.Clk);
     actual_crc[7:0] = uin_hdlc.Tx_Data;
+    test_crc[7:0] = Reverse8(uin_hdlc.Tx_Data);
 
     assert(actual_crc == expected_crc) begin
       $display("PASS: valid CRC generated: %h", actual_crc);
     end else begin
       $error("FAIL: CRC not valid. got %b, expected %b hex: %h vs %h",
         actual_crc, expected_crc, actual_crc, expected_crc);
+      TbErrorCnt++;
+    end
+
+    assert(actual_crc == expected_crc) begin
+      $display("PASS: valid CRC generated: %h", actual_crc);
+    end else begin
+      $error("FAIL: CRC_test not valid. got %b, expected %b hex: %h vs %h",
+        test_crc, expected_crc, test_crc, expected_crc);
       TbErrorCnt++;
     end
   endtask
@@ -586,21 +642,6 @@ program testPr_hdlc(
   endtask
 
   //Concurrent assertions
-
-  //Aborted transmission
-
-  property Tx_AbortedTrans_Signal;
-  @(posedge uin_hdlc.Clk)
-    uin_hdlc.Tx_AbortFrame |-> ##2 uin_hdlc.Tx_AbortedTrans;
-  endproperty
-
-  assert_Tx_AbortedTrans: assert property(Tx_AbortedTrans_Signal)begin
-    $display("Tx_AbortedTrans passed");
-  end else begin
-    $error("Tx_AbortedTrans failed");
-    TbErrorCnt++;
-  end
-
 
   //Transmission Done
   property Tx_Done_Signal;

@@ -39,7 +39,10 @@ module assertions_hdlc (
   input  logic Rx_RdBuff,
   input  logic Rx_FrameError,
   input  logic Rx_Drop,
-  input  logic RxD
+  input  logic RxD,
+  input  logic Tx_AbortFrame,
+  input  logic Tx_RdBuff,
+  input  logic Tx_Done
 );
 
   initial begin
@@ -53,7 +56,6 @@ module assertions_hdlc (
    *******************************************/
 
   sequence Rx_flag;
-    // INSERT CODE HERE
     Rx == 0 ##1
     Rx[*6] ##1
     Rx == 0;
@@ -77,14 +79,14 @@ module assertions_hdlc (
 
   //If abort is detected during valid frame. then abort signal should go high
 
-  sequence Abort_flag;
+  sequence Rx_AbortFlag;
     ((Rx == 0) && Rx_ValidFrame) ##1
     (Rx && Rx_ValidFrame)[*7];
   endsequence
 
   property Rx_Abort;
     @(posedge Clk) disable iff (!Rst)
-    Abort_flag |=> ##1 Rx_AbortDetect;
+    Rx_AbortFlag |=> ##1 Rx_AbortDetect;
   endproperty
 
   property Rx_AbortDetect_registered;
@@ -93,7 +95,7 @@ module assertions_hdlc (
   endproperty
 
   assert_Rx_Abort : assert property (Rx_Abort) begin
-    $display("PASS: Abort sequence detected during valid frame");
+    $display("PASS: Rx Abort sequence detected during valid frame");
   end else begin 
     $error("FAIL: Rx_AbortDetect did not go high after abort sequence during validframe"); 
     ErrCntAssertions++; 
@@ -102,7 +104,23 @@ module assertions_hdlc (
   assert_Rx_AbortDetect_registered: assert property (Rx_AbortDetect_registered) begin
     $display("PASS: Rx_AbortSignal went high after Rx_AbortDetect during valid frame");
   end else begin
-    $erroe("FAIL: Rx_AbortSignal did not go high after Rx_AbortDetect went high during valid frame");
+    $error("FAIL: Rx_AbortSignal did not go high after Rx_AbortDetect went high during valid frame");
+    ErrCntAssertions++;
+  end
+
+  /********************************************
+   *  Verify correct Tx abort behavior  *
+   ********************************************/
+
+  property Tx_Abort;
+    @(posedge Clk) disable iff (!Rst)
+    Tx_AbortFrame |=> ##1 Tx_AbortedTrans;
+  endproperty
+
+  assert_Tx_Abort: assert property (Tx_Abort) begin
+    $display("PASS: Tx abort was successfully asserted");
+  end else begin
+    $error("FAIL: Tx_AbortedTrans didn't go high after Tx_AbortFrame command");
     ErrCntAssertions++;
   end
 
@@ -115,7 +133,6 @@ module assertions_hdlc (
   endsequence
 
   property RX_IdleSignal;
-      // INSERT CODE HERE
       @(posedge Clk) disable iff (!Rst)
       Idle_Sequence |=> !Rx_WrBuff;
   endproperty
@@ -193,106 +210,122 @@ module assertions_hdlc (
     ErrCntAssertions++;
   end
 
-/*****************************************************
- *  Check EoF received after whole RX frame received *
- ****************************************************/
+  /*****************************************************
+  *  Check EoF received after whole RX frame received *
+  ****************************************************/
 
-property Rx_EoF_generated;
-  @(posedge Clk) disable iff (!Rst)
-  ($fell(Rx_ValidFrame) && !Rx_AbortDetect) |=> Rx_EoF;
-endproperty
+  property Rx_EoF_generated;
+    @(posedge Clk) disable iff (!Rst)
+    ($fell(Rx_ValidFrame) && !Rx_AbortDetect) |=> Rx_EoF;
+  endproperty
 
-assert_Rx_EoF_generated: assert property (Rx_EoF_generated) begin
-  $display("PASS: EoF generated");
-end else begin
-  $error("FAIL: EoF not generated");
-  ErrCntAssertions++;
-end
-
-/************************************************
- *  Check Rx_Overflow when > 128 bytes received *
- ***********************************************/
-
-int Rx_count;
-always @(posedge Clk or negedge Rst) begin
-  if (!Rst) begin
-    Rx_count <= 0;
+  assert_Rx_EoF_generated: assert property (Rx_EoF_generated) begin
+    $display("PASS: EoF generated");
   end else begin
-    if ($rose(Rx_ValidFrame)) begin // Reset counter after frame
+    $error("FAIL: EoF not generated");
+    ErrCntAssertions++;
+  end
+
+  /************************************************
+  *  Check Rx_Overflow when > 128 bytes received *
+  ***********************************************/
+
+  int Rx_count;
+  always @(posedge Clk or negedge Rst) begin
+    if (!Rst) begin
       Rx_count <= 0;
-    end else if (Rx_WrBuff) begin
-      Rx_count <= Rx_count + 1;
+    end else begin
+      if ($rose(Rx_ValidFrame)) begin // Reset counter after frame
+        Rx_count <= 0;
+      end else if (Rx_WrBuff) begin
+        Rx_count <= Rx_count + 1;
+      end
     end
   end
-end
 
-property Rx_Overflow_generated;
-  @(posedge Clk) disable iff (!Rst)
-  (Rx_count >= 128) && Rx_WrBuff |-> Rx_Overflow;
-endproperty
+  property Rx_Overflow_generated;
+    @(posedge Clk) disable iff (!Rst)
+    (Rx_count >= 128) && Rx_WrBuff |-> Rx_Overflow;
+  endproperty
 
-assert_Rx_Overflow_generated: assert property (Rx_Overflow_generated) begin
-  $display("PASS: Rx_Overflow generated");
-end else begin
-  $error("FAIL: Rx_Overflow not asserted");
-  ErrCntAssertions++;
-end
-
-/*******************************************************
- *  Check Rx_FrameSize == bytes received excluding FCS *
- ******************************************************/
-
-property FrameSize_valid;
-  @(posedge Clk) disable iff (!Rst)
-  Rx_EoF |=> (Rx_FrameSize == ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
-endproperty
-
-assert_FrameSize_valid: assert property (FrameSize_valid) begin
-  $display("PASS: Rx_FrameSize is valid");
-end else begin
-  $error("FAIL: Rx_FrameSize is not valid. Frame size: %0h, Expected: %0h", Rx_FrameSize, ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
-  ErrCntAssertions++;
-end
-
-/*******************************************************
- *  Check Rx_FrameSize == bytes received excluding FCS *
- ******************************************************/
-
-// Counting bytes read
-int Read_bytes_count;
-always @(posedge Clk or negedge Rst) begin
-  if (!Rst || $rose(Rx_EoF)) begin
-    Read_bytes_count <= 0;
-  end else if (Rx_Ready && Rx_RdBuff) begin
-    Read_bytes_count <= Read_bytes_count + 1;
+  assert_Rx_Overflow_generated: assert property (Rx_Overflow_generated) begin
+    $display("PASS: Rx_Overflow generated");
+  end else begin
+    $error("FAIL: Rx_Overflow not asserted");
+    ErrCntAssertions++;
   end
-end
 
-// Asserting that Rx_Ready goes high when Rx_EoF goes high
-property Rx_ready_after_EoF;
-  @(posedge Clk) disable iff (!Rst)
-  Rx_EoF |-> Rx_Ready;
-endproperty
+  /*******************************************************
+  *  Check Rx_FrameSize == bytes received excluding FCS *
+  ******************************************************/
 
-assert_Rx_ready_after_EoF: assert property (Rx_ready_after_EoF) begin
-  $display("PASS: Rx_Ready went high with Rx_EoF");
-end else begin
-  $error("FAIL: Rx_Ready didn't go high with Rx_EoF");
-  ErrCntAssertions++;
-end
+  property FrameSize_valid;
+    @(posedge Clk) disable iff (!Rst)
+    Rx_EoF |=> (Rx_FrameSize == ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
+  endproperty
 
-// Asserting that Rx_Ready is high when there are bytes to read
-property Rx_ready_when_available_bytes;
-  @(posedge Clk) disable iff (!Rst)
-  (Rx_Ready && (Read_bytes_count <= (Rx_FrameSize - 2)) && !Rx_AbortSignal &&
-  !Rx_Drop && !Rx_FrameError) |=> Rx_Ready;
-endproperty
+  assert_FrameSize_valid: assert property (FrameSize_valid) begin
+    $display("PASS: Rx_FrameSize is valid");
+  end else begin
+    $error("FAIL: Rx_FrameSize is not valid. Frame size: %0h, Expected: %0h", Rx_FrameSize, ((Rx_count-2) >= 126 ? 126 : (Rx_count-2)));
+    ErrCntAssertions++;
+  end
 
-assert_Rx_ready_when_available_bytes: assert property (Rx_ready_when_available_bytes) begin
-  // $display("PASS: Rx_Ready high as long as there are bytes to be read");
-end else begin
-  $error("FAIL: Rx_Ready not high while there were bytes to be read");
-  ErrCntAssertions++;
-end
+  /*******************************************************
+  *  Check Rx_FrameSize == bytes received excluding FCS *
+  ******************************************************/
+
+  // Counting bytes read
+  int Read_bytes_count;
+  always @(posedge Clk or negedge Rst) begin
+    if (!Rst || $rose(Rx_EoF)) begin
+      Read_bytes_count <= 0;
+    end else if (Rx_Ready && Rx_RdBuff) begin
+      Read_bytes_count <= Read_bytes_count + 1;
+    end
+  end
+
+  // Asserting that Rx_Ready goes high when Rx_EoF goes high
+  property Rx_ready_after_EoF;
+    @(posedge Clk) disable iff (!Rst)
+    Rx_EoF |-> Rx_Ready;
+  endproperty
+
+  assert_Rx_ready_after_EoF: assert property (Rx_ready_after_EoF) begin
+    $display("PASS: Rx_Ready went high with Rx_EoF");
+  end else begin
+    $error("FAIL: Rx_Ready didn't go high with Rx_EoF");
+    ErrCntAssertions++;
+  end
+
+  // Asserting that Rx_Ready is high when there are bytes to read
+  property Rx_ready_when_available_bytes;
+    @(posedge Clk) disable iff (!Rst)
+    (Rx_Ready && (Read_bytes_count <= (Rx_FrameSize - 2)) && !Rx_AbortSignal &&
+    !Rx_Drop && !Rx_FrameError) |=> Rx_Ready;
+  endproperty
+
+  assert_Rx_ready_when_available_bytes: assert property (Rx_ready_when_available_bytes) begin
+    // $display("PASS: Rx_Ready high as long as there are bytes to be read");
+  end else begin
+    $error("FAIL: Rx_Ready not high while there were bytes to be read");
+    ErrCntAssertions++;
+  end
+
+  /************************************
+  *  Checking valid Tx done behaviour *
+  ************************************/
+
+  property Tx_Done_Signal;
+    @(posedge Clk) disable iff (!Rst)
+    $rose(Tx_Done) && !Tx_AbortedTrans |-> $fell(Tx_RdBuff);
+  endproperty
+
+  assert_Tx_Done_Signal: assert property(Tx_Done_Signal) begin
+    $display("PASS: Tx_Done assertion passed");
+  end else begin
+    $error("FAIL: Tx_Done assertion failed");
+    ErrCntAssertions++;
+  end
 
 endmodule
